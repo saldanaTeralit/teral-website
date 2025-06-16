@@ -1,0 +1,481 @@
+.fondo-compartido {
+    background-image: url('img/fondo-relieve.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+/*  Diseño en computadoras (horizontal) */
+nav ul li {
+    display: inline-block;
+}
+
+/*  Diseño en móviles (lista vertical) */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /*Cambia a formato de lista */
+        align-items: center; /*Centra los elementos */
+    }
+
+    nav ul li {
+        display: block; /*Cada elemento ocupa toda la línea */
+        padding: 10px 0;
+    }
+}
+nav ul li a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Cambia el color al pasar el mouse */
+}
+#reseña-form, 
+#reseña-form input, 
+#reseña-form select, 
+#reseña-form textarea, 
+#reseña-form button {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Arial, sans-serif;
+}
+
+.reseñas-container, 
+.reseña-item {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Arial, sans-serif;
+}
+
+.reseña-img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+#reseñas-container {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.reseña-item {
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.reseñas {
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #6A0DAD; /* Color morado */
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #530A86; /* Un tono más oscuro al pasar el cursor */
+}
+
+.reseñas-container {
+  margin-top: 20px;
+}
+
+.reseña-item {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-style: italic;
+}
+/* Diseño normal para laptop/PC */
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 800px;
+  margin: auto;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Mantiene redes a la derecha en PC */
+  text-align: right;
+}
+
+/* Diseño especial para móviles */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-info, 
+  .contact-extra {
+    align-items: center; /* Centra correos y redes solo en móvil */
+    text-align: center;
+  }
+
+  .contact-extra {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info, 
+  .contact-extra {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ✅ Asegura que todo quede centrado */
+    text-align: center;
+  }
+
+  .contact-extra {
+    justify-content: center; /* ✅ Evita que se desplacen a la orilla */
+    margin-top: 20px;
+  }
+}
+/* Botón de Instagram con degradado */
+.instagram-btn {
+  position: relative;
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  overflow: hidden; /* Evita que la capa extra se salga */
+}
+
+.instagram-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Capa oscura */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.instagram-btn:hover::after {
+  opacity: 1; /* Activa la capa oscura en hover */
+}
+
+.instagram-btn:hover {
+  transform: scale(1.05);
+}
+/* Botón de Facebook con fondo azul */
+.facebook-btn {
+  background: #1877F2;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.facebook-btn:hover {
+  background: #145DB7;
+  transform: scale(1.05);
+}
+
+/* Ajuste de íconos en los botones */
+.contacto button img {
+  height: 24px;
+  width: 24px;
+  object-fit: contain;
+}
+
+.contacto .contact-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 8px;
+}
+.contacto .contact-card img {
+  width: 50px;
+  border-radius: 50%;
+}
+.contacto button {
+  background: white;
+  color: #25D366;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.contacto button img {
+  height: 24px; /* Tamaño fijo */
+  width: 24px; /* Mantiene proporción cuadrada */
+  object-fit: contain; /* Evita distorsión */
+}
+.contacto button:hover {
+  background: #25D366;
+  color: white;
+  transform: scale(1.05);
+}
+/* Botón de Instagram con degradado */
+.contacto .instagram-btn {
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contacto .instagram-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Botón de Facebook con fondo azul */
+.contacto .facebook-btn {
+  background: #1877F2;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contacto .facebook-btn:hover {
+  background: #145DB7;
+  transform: scale(1.05);
+}
+
+/* Ajuste de íconos en los botones */
+.contacto button img {
+  height: 24px;
+  width: 24px;
+  object-fit: contain;
+}
+.contacto .instagram-btn,
+.contacto .facebook-btn {
+  margin-bottom: 12px;
+}
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-image: url('IMG/fondo-cuerpo.jpg');
+      background-size: cover; /* Ajusta para que ocupe todo el fondo */
+      background-repeat: no-repeat; /* Evita que se repita */
+      background-attachment: fixed; /* Hace que se mantenga fija al hacer scroll */
+      background-position: center; /* La centra perfectamente */
+      margin: 0;
+      padding: 0;
+}
+
+    
+    header {
+      background-color: none;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      width: 80px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+    nav {
+      background-color: rgba(0, 0, 0, 0) ;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #4b0082;
+    }
+    .servicios ul {
+      list-style: square;
+      padding-left: 20px;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .galeria .img-box {
+      width: 300px;
+      text-align: center;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .contacto {
+      background-color: #eee;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    footer {
+      background-image: url('IMG/fondo-relieve.jpg');
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column; /* Cambia el menú a una vista vertical */
+    align-items: center;
+    gap: 10px; /* Espaciado uniforme */
+    padding: 10px;
+  }
+
+  nav a {
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    width: 90%; /* Hace que las opciones tengan un ancho uniforme */
+    text-align: center; /* Centra el texto */
+    padding: 10px 0;
+  }
+}
+.contacto a {
+  text-decoration: none;
+}
+#mision-vision-valores {
+    background: rgba(255, 255, 255, 0); /* Fondo semitransparente */
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+#mision-vision-valores h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: rgb(59, 0, 153);
+}
+
+#mision-vision-valores div {
+    background: none; /* Fondo oscuro para destacar el texto */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+#mision-vision-valores p {
+    margin-bottom: 20px; /* Espacio entre párrafos */
+    line-height: 1.6;     /* Mejora la legibilidad del texto */
+}
+
+#mision-vision-valores p,
+#mision-vision-valores li {
+    text-align: left;
+}
+#mision-vision-valores h3 {
+    color: #530A86; /* Destacar los títulos */
+    font-size: 22px;
+}
+
+#mision-vision-valores p, #mision-vision-valores ul {
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+#mision-vision-valores ul {
+    list-style: none;
+    padding: 0;
+}
+
+#mision-vision-valores li {
+    padding: 5px 0;
+}
+p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
