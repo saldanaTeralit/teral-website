@@ -479,3 +479,6 @@ p {
     margin-bottom: 20px;
     line-height: 1.6;
 }
+html {
+  scroll-behavior: smooth;
+}
