@@ -190,8 +190,9 @@
     appId: "1:1070051721651:web:1299f799cd117727ffcbc6"
   };
 
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore(app);
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const storage = firebase.storage(); // si usas imagen
 </script>
 </body>
 </html>
