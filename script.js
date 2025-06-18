@@ -55,13 +55,19 @@ function mostrarResenas() {
   db.collection("resenas").orderBy("fecha", "desc").get().then(snapshot => {
     snapshot.forEach(doc => {
       const r = doc.data();
+      const fecha = r.fecha?.toDate?.().toLocaleDateString("es-MX", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }) || "Fecha desconocida";
+
       const div = document.createElement("div");
       div.classList.add("reseña-item");
       div.innerHTML = `
         <p><strong>${r.nombre}</strong> - ${r.calificacion}</p>
-        <p><em>${r.tema}</em></p>
+        <p><em>${r.tema}</em> • <small>${fecha}</small></p>
         <p>${r.descripcion}</p>
-        ${r.imagenURL ? `<img src="${r.imagenURL}" alt="Evidencia" class="reseña-img">` : ""}
+        ${r.imagenURL ? `<img src="${r.imagenURL}" class="reseña-img" alt="Evidencia">` : ""}
         <hr>
       `;
       contenedor.appendChild(div);
