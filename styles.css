@@ -337,7 +337,7 @@ button:hover {
 }
     body {
       font-family: 'Montserrat', sans-serif;
-      background-image: url('IMG/fondo-cuerpo.jpg');
+      background-image: url('fondo-cuerpo.jpg');
       background-size: cover; /* Ajusta para que ocupe todo el fondo */
       background-repeat: no-repeat; /* Evita que se repita */
       background-attachment: fixed; /* Hace que se mantenga fija al hacer scroll */
