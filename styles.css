@@ -482,3 +482,6 @@ p {
 html {
   scroll-behavior: smooth;
 }
+section {
+  scroll-margin-top: 80px; /* ajusta a la altura de tu navbar */
+}
