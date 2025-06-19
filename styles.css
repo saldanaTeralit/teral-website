@@ -418,7 +418,7 @@ body {
       color: white;
       text-align: center;
       padding: 20px;
-      background-size: contain;
+      background-size: cover;
     }
 @media (max-width: 768px) {
   nav {
