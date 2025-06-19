@@ -3,9 +3,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1; /* Asegura que quede detrás del contenido */
-  background: #000; /* Opcional, puedes ajustar el color de fondo base */
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
 }
 .fondo-compartido {
     background-image: url('fondo-relieve.jpg');
@@ -344,15 +344,17 @@ button:hover {
 .contacto .facebook-btn {
   margin-bottom: 12px;
 }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-image: url('fondo-cuerpo.jpg');
-      background-size: cover; /* Ajusta para que ocupe todo el fondo */
-      background-repeat: no-repeat; /* Evita que se repita */
-      background-attachment: fixed; /* Hace que se mantenga fija al hacer scroll */
-      background-position: center; /* La centra perfectamente */
-      margin: 0;
-      padding: 0;
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url('fondo-cuerpo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  position: relative; /* Esto asegura que el contenido se coloque correctamente */
+  z-index: 1;
 }
 
     
