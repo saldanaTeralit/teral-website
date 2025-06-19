@@ -18,6 +18,7 @@
   <title>TERAL IT Solutions</title>
 </head>
 <body>
+    <div id="particles-js"></div>
 <div class="fondo-compartido">
   <header>
     <img src="logo.png" alt="Logo TERAL IT Solutions">
@@ -203,6 +204,46 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const storage = firebase.storage(); // si usas imagen
+</script>
+  <!-- Script de la librería -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<!-- Tu configuración -->
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    color: { value: "#ffffff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#ffffff",
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      out_mode: "out"
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "grab" },
+      onclick: { enable: true, mode: "push" }
+    },
+    modes: {
+      grab: { distance: 140, line_linked: { opacity: 1 } },
+      push: { particles_nb: 4 }
+    }
+  },
+  retina_detect: true
+});
 </script>
 </body>
 </html>
