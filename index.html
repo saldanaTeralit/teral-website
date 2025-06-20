@@ -18,7 +18,7 @@
   <title>TERAL IT Solutions</title>
 </head>
 <body>
-<div id="particles-js"></div>
+<div id="tsparticles"></div>
 <div class="fondo-compartido">
   <header>
     <img src="logo.png" alt="Logo TERAL IT Solutions">
@@ -215,16 +215,17 @@
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script>
 tsParticles.load("tsparticles", {
-  fullScreen: { enable: false, zIndex: 0 },
+  fullScreen: { enable: false },
   style: {
-  position: "absolute",
-  width: "100%",
-  height: "100%"
-}
+    position: "absolute",
+    width: "100%",
+    height: "100%"
+  },
   particles: {
-    number: { value: 60 },
+    number: { value: 80, density: { enable: true, area: 1000 } },
     color: { value: "#572364" },
     shape: { type: "circle" },
     opacity: { value: 0.5 },
@@ -259,5 +260,6 @@ tsParticles.load("tsparticles", {
   detectRetina: true
 });
 </script>
+
 </body>
 </html>
