@@ -1,5 +1,5 @@
 .texto-con-fondo {
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con 40% de opacidad */
+  background-color: rgba(255, 255, 255, 0.4); /* Fondo negro con 40% de opacidad */
   color: #ffffff; /* Asegura contraste con el fondo */
   padding: 20px;
   border-radius: 8px;
