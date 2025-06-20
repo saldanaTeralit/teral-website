@@ -357,7 +357,7 @@ body {
   background-image: url('fondo-cuerpo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-position: center;
   margin: 0;
   padding: 0;
