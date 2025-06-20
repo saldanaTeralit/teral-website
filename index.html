@@ -217,7 +217,12 @@
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script>
 tsParticles.load("tsparticles", {
-  fullScreen: { enable: true, zIndex: 0 },
+  fullScreen: { enable: false, zIndex: 0 },
+  style: {
+  position: "absolute",
+  width: "100%",
+  height: "100%"
+}
   particles: {
     number: { value: 60 },
     color: { value: "#572364" },
