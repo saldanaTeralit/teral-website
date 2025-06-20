@@ -1,3 +1,11 @@
+.texto-con-fondo {
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con 40% de opacidad */
+  color: #ffffff; /* Asegura contraste con el fondo */
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  backdrop-filter: blur(4px); /* Opcional: da un efecto de vidrio esmerilado */
+}
 #tsparticles {
   position: absolute;
   top: 0;
