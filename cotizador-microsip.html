@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <script>
+    (function() {
+      if (sessionStorage.getItem('teral_session') !== 'active') {
+        window.location.replace('login.html');
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instalador y Notas de Desarrollo — Cotizador Microsip | Teral IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="src/img/Teral/teral morado (1).png" type="image/png">
+  
+  <style>
+    body {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    /* Override standard container to match dark mode details */
+    .caseHero {
+      --accent: #CE93D8;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+      text-align: center;
+    }
+
+    .caseHero h1 {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .caseHero-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .caseMetrics {
+      justify-content: center;
+    }
+
+    .caseHero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #CE93D8, #AB47BC);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .caseBody {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 1000px;
+      padding-top: 4rem;
+    }
+
+    .caseSection h2 {
+      color: #fff;
+      font-size: 1.8rem;
+      border-left: 3px solid var(--p2);
+      padding-left: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .caseSection p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ── DOWNLOAD PANEL (GLASSMORPHISM) ── */
+    .download-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 2.5rem 2.2rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(171, 71, 188, 0.05);
+      transition: border-color .3s, box-shadow .3s;
+    }
+
+    .download-box:hover {
+      border-color: rgba(171, 71, 188, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 50px rgba(171, 71, 188, 0.12);
+    }
+
+    .download-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(171, 71, 188, 0.05) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .download-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .download-title-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .download-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .download-meta {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .download-action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .download-btn {
+      background: #fff;
+      color: var(--dark);
+      border: none;
+      padding: 1rem 2.2rem;
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      cursor: none;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .download-btn:hover {
+      background: var(--p3);
+      color: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(171, 71, 188, 0.4);
+    }
+
+    .download-btn svg {
+      transition: transform 0.3s;
+    }
+
+    .download-btn:hover svg {
+      transform: translateY(3px);
+    }
+
+    .checksum-box {
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .checksum-box span.lbl {
+      color: var(--p3);
+      font-weight: bold;
+    }
+
+    .dep-section {
+      margin-top: 1.8rem;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 1.2rem;
+      border-radius: 14px;
+    }
+
+    .dep-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dep-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+    }
+
+    .dep-item:last-child {
+      border-bottom: none;
+    }
+
+    .dep-name {
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 500;
+    }
+
+    .dep-link {
+      color: var(--p3);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+      cursor: none;
+    }
+
+    .dep-link:hover {
+      color: #fff;
+    }
+
+    /* ── STEP BY STEP CARDS ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .steps-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: transform 0.25s, border-color 0.25s;
+      min-width: 0; /* Prevents cell from expanding beyond bounds due to long strings */
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(171, 71, 188, 0.25);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .step-badge {
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(123, 31, 162, 0.4);
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-text {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.6;
+    }
+
+    /* ── TECHNICAL GRID ── */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tech-single-card {
+        grid-column: span 2;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .tech-single-card {
+        grid-column: span 3;
+      }
+    }
+
+    .tech-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 1.8rem;
+      position: relative;
+      transition: all 0.3s ease;
+      min-width: 0; /* Prevents grid stretching due to connection strings or long lines */
+    }
+
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--p4), var(--p2));
+      transition: width 0.4s ease;
+    }
+
+    .tech-card:hover::before {
+      width: 100%;
+    }
+
+    .tech-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(171, 71, 188, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .tech-icon {
+      color: var(--p3);
+      margin-bottom: 1.2rem;
+      display: flex;
+    }
+
+    .tech-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    .tech-card p {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* Custom labels inside code sections or config examples */
+    .config-example {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #b3e5fc;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    /* ── RESPONSIVE OVERRIDES ── */
+    @media (max-width: 768px) {
+      .caseHero {
+        padding: 7rem 5vw 4rem;
+      }
+      
+      .caseMetrics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem 1rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+      }
+      
+      .caseMetric-val {
+        font-size: 1.8rem;
+      }
+      
+      .caseBody {
+        padding: 3rem 5vw;
+      }
+      
+      .download-box {
+        padding: 1.8rem 1.2rem;
+        margin-bottom: 2.5rem;
+      }
+      
+      .download-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 1.5rem;
+      }
+      
+      .download-action-group {
+        min-width: 100%;
+      }
+      
+      .checksum-box {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+        align-items: center;
+        font-size: 0.72rem;
+        word-break: break-all;
+      }
+      
+      .dep-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.8rem 0;
+      }
+      
+      .dep-link {
+        align-self: flex-start;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .caseMetrics {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      
+      .download-title {
+        font-size: 1.2rem;
+      }
+      
+      .download-btn {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .caseSection h2 {
+        font-size: 1.5rem;
+      }
+      
+      .caseCTA {
+        padding: 4rem 5vw;
+      }
+    }
+
+    @media (pointer: coarse) {
+      #cur, #curR {
+        display: none !important;
+      }
+    }
+
+    /* ── BUGFIX OVERFLOW-X & DARK MODE DETAILS ── */
+    .caseBody {
+      margin: 0 auto !important; /* Ensure centered alignment on all devices */
+      width: 100%;
+    }
+
+    code {
+      word-break: break-all;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .caseSection ul li {
+      color: rgba(255, 255, 255, 0.7) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .logoutLink {
+      color: #ef5350 !important;
+      font-weight: 600;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .logoutLink:hover {
+      color: #ff8a80 !important;
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      .logoutLink {
+        font-size: 11px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom interactive cursors -->
+  <div id="cur"></div>
+  <div id="curR"></div>
+
+  <!-- Background Animated Particles -->
+  <canvas id="bgc"></canvas>
+
+  <!-- Navigation -->
+  <nav class="caseNav">
+    <a href="index.html#cases" class="backLink">← Volver a casos de éxito</a>
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <a href="#" onclick="sessionStorage.removeItem('teral_session'); window.location.reload();" class="backLink logoutLink">Cerrar Sesión</a>
+      <a href="index.html" class="nBtn" style="text-decoration:none;display:inline-flex;align-items:center;">
+        Teral IT Solutions
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="caseHero">
+    <div class="caseHero-tag">Instalador & Recursos de Desarrollo</div>
+    <h1>Cotizador Microsip<br><em>Edición Comercial</em></h1>
+    <p class="caseHero-sub">
+      Herramienta de integración comercial a la medida diseñada para unificar la generación de cotizaciones con la base de datos nativa Firebird del ERP Microsip. Accede a las descargas, guías y notas de arquitectura técnica.
+    </p>
+
+    <!-- Project Metrics / Stats -->
+    <div class="caseMetrics">
+      <div>
+        <div class="caseMetric-val">v1.2.0</div>
+        <div class="caseMetric-lbl">Versión Estable</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">2026-05-21</div>
+        <div class="caseMetric-lbl">Último Lanzamiento</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">45 MB</div>
+        <div class="caseMetric-lbl">Peso de Descarga</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">x86 / x64</div>
+        <div class="caseMetric-lbl">Arquitectura Windows</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Body Content -->
+  <main class="caseBody">
+
+    <!-- Descargas & Instalación -->
+    <section class="caseSection">
+      <h2>1. Descarga del Instalador</h2>
+      <p>
+        Utiliza el siguiente enlace para descargar la versión de distribución del Cotizador Microsip. El instalador configurará los registros locales de Windows y la carpeta de ejecución inicial.
+      </p>
+
+      <div class="download-box">
+        <div class="download-header">
+          <div class="download-title-wrapper">
+            <div class="download-title">CotizadorMicrosip_Setup_v1.2.0.exe</div>
+            <div class="download-meta">Publicado por Teral IT Solutions • MD5 verificado</div>
+          </div>
+          <div class="download-action-group">
+            <a href="descargas/cotizador-microsip-setup.exe" class="download-btn" download>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Descargar Instalador (v1.2.0)
+            </a>
+            <div class="checksum-box">
+              <span><span class="lbl">MD5:</span> b68cf90234a9ef3872acdf18903c734a</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dependencias Adicionales -->
+        <div class="dep-section">
+          <div class="dep-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" style="color: var(--p3);">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+            Dependencias y Controladores Requeridos
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 1rem; color: rgba(255, 255, 255, 0.5);">
+            Si estás realizando una instalación limpia o en una terminal adicional sin Microsip previamente configurado, es probable que requieras descargar el motor de base de datos cliente o librerías dinámicas correspondientes.
+          </p>
+          <div class="dep-item">
+            <span class="dep-name">Firebird SQL Client Driver (fbclient.dll) - 32-bits</span>
+            <a href="https://firebirdsql.org/en/downloads/archive/" target="_blank" class="dep-link">Descargar Oficial (1.2 MB) →</a>
+          </div>
+          <div class="dep-item">
+            <span class="dep-name">Microsoft Visual C++ Redistributable 2015-2022</span>
+            <a href="https://learn.microsoft.com/es-es/cpp/windows/latest-supported-vc-redist?view=msvc-170" target="_blank" class="dep-link">Descargar de Microsoft →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guía de Instalación Rápida -->
+    <section class="caseSection">
+      <h2>2. Instrucciones de Instalación</h2>
+      <p>
+        Sigue estos pasos detallados para completar de forma satisfactoria la implementación local de la aplicación en las terminales comerciales:
+      </p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <div class="step-title">Descarga e Inicia</div>
+          <div class="step-text">
+            Descarga el archivo <code>.exe</code> del panel superior. Haz clic secundario sobre él y selecciona <strong>Ejecutar como Administrador</strong>.
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <div class="step-title">Configuración Ruta</div>
+          <div class="step-text">
+            Elige la ruta de instalación por defecto. Generalmente instalada en <code>C:\Teral\CotizadorMicrosip\</code> para evitar restricciones de permisos UAC de Windows.
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <div class="step-title">Cadena Conexión</div>
+          <div class="step-text">
+            Al abrir la aplicación por primera vez, ingresa en el menú <strong>Ajustes > Conexión</strong> e introduce los datos del host de Firebird y la ruta de la base de datos del ERP.
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">4</div>
+          <div class="step-title">Validación Final</div>
+          <div class="step-text">
+            Realiza una prueba de login con un usuario registrado en el sistema. Asegúrate de verificar la lectura correcta del catálogo de clientes e inventarios.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Características del Sistema -->
+    <section class="caseSection">
+      <h2>3. Características Técnicas Destacadas</h2>
+      <p>
+        El sistema cuenta con un abanico de módulos y flujos robustos creados expresamente para optimizar el rendimiento comercial diario.
+      </p>
+
+      <div class="tech-grid">
+        <!-- Tarjeta 1 -->
+        <div class="tech-card">
+          <div class="tech-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3>Sincronización en Tiempo Real</h3>
+          <p>
+            Lee de forma directa las tablas del diccionario de datos de Microsip (Artículos, Existencias por Almacén, Clientes, Reglas de Descuento y Monedas) sin esperas de sincronización ni bases de datos intermedias propensas a desincronizarse.
+          </p>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="tech-card">
+          <div class="tech-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+          </div>
+          <h3>Generación Dinámica de PDFs</h3>
+          <p>
+            Incluye un motor local de reportes para crear cotizaciones en PDF con el branding exacto, notas comerciales, márgenes definidos y desgloses de impuestos listos para enviar al cliente final en un solo clic.
+          </p>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="tech-card">
+          <div class="tech-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <h3>Integración Transaccional Escrita</h3>
+          <p>
+            Inserta las cotizaciones de venta directamente en la base de datos de Microsip respetando las llaves foráneas, tablas de encabezado de ventas y tablas de detalle (<code>DOCTOS_VE</code>, <code>DOCTOS_VE_DET</code>) bajo transacciones atómicas de Firebird.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalles del Desarrollo (Developer Notes) -->
+    <section class="caseSection">
+      <h2>4. Detalles de Arquitectura e Integración</h2>
+      <p>
+        Esta sección expone los detalles internos del flujo y arquitectura del sistema para facilitar el mantenimiento y control técnico en el futuro.
+      </p>
+
+      <div class="tech-grid">
+        <div class="tech-card tech-single-card">
+          <div class="tech-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+              <line x1="6" y1="6" x2="6.01" y2="6" />
+              <line x1="6" y1="18" x2="6.01" y2="18" />
+            </svg>
+          </div>
+          <h3>Esquema de Integración y Conexión</h3>
+          <p>
+            El cotizador se conecta al ERP utilizando el protocolo local o de red de Firebird SQL. La autenticación de la base de datos requiere de un usuario con permisos de lectura y escritura en los esquemas comerciales de Microsip.
+          </p>
+          <div class="config-example">
+# Ejemplo de Cadena de Conexión en Configuración Interna
+Server=192.168.1.150;Port=3050;Database=C:\Microsip Datos\TERAL_SOLUTIONS.FDB;User=SYSDBA;Password=masterkey;Dialect=3;Charset=NONE;</div>
+          <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-top: 0.5rem;">
+            <strong>Nota de seguridad:</strong> Se recomienda aislar el acceso a la base de datos creando un usuario Firebird restringido en lugar del usuario administrador por defecto <code>SYSDBA</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- CTA / Support Section -->
+  <section class="caseCTA" style="background: rgba(123, 31, 162, 0.03); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+    <h2>¿Necesitas Soporte Técnico de Despliegue?</h2>
+    <p>
+      Si tienes dudas adicionales sobre las credenciales de la base de datos Microsip, Firebird o requieres asistencia personalizada para implementar en terminales comerciales:
+    </p>
+    <a href="mailto:contacto@teralsupport.com" class="ctaBtn">Contactar Soporte Técnico Teral →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="caseFooter">
+    <div class="caseFooter-info">
+      <span>Teral IT Solutions</span> &nbsp;·&nbsp; © 2026
+    </div>
+    <a href="index.html" class="caseFooter-link">← Volver al Inicio</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
