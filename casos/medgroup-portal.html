@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso Parapente Logistics — Teral IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    body {
+
+      background: var(--dark);
+    }
+
+
+    #cur {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    #curR {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid rgba(254, 251, 255, 0.893);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all .38s cubic-bezier(.23, 1, .32, 1);
+    }
+
+    body:has(a:hover) #curR,
+    body:has(button:hover) #curR {
+      transform: translate(-50%, -50%) scale(2.1);
+      border-color: #fff;
+    }
+
+    .caseHero {
+      --accent: #80DEEA;
+    }
+
+    .caseHero::before {
+      background: radial-gradient(ellipse 70% 80% at 30% 50%, rgba(0, 188, 212, .2) 0%, transparent 70%);
+    }
+
+    .caseHero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #80DEEA, #4DD0E1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .caseMetric-val {
+      color: #80DEEA;
+    }
+
+    .caseResult span {
+      color: #0097A7;
+    }
+
+    .caseBody {
+      background: var(--bg);
+    }
+
+    .caseCTA::before {
+      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(0, 188, 212, .18), transparent 70%);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cur"></div>
+  <div id="curR"></div>
+  <nav class="caseNav">
+    <a href="../index.html#cases" class="backLink">← Volver a casos de éxito</a>
+    <a href="../index.html#cta" class="nBtn" style="text-decoration:none;display:inline-flex;align-items:center;">Hablar
+      con un experto</a>
+  </nav>
+
+  <section class="caseHero">
+    <div class="caseHero-tag">Infraestructura TI · Logística</div>
+    <h1>Infraestructura de red y gestión<br>de información para<br><em>Parapente Logistics</em></h1>
+    <p class="caseHero-sub">Diseño e implementación de red empresarial, almacenamiento centralizado (NAS) y
+      automatización de procesos para optimizar el acceso a la información y el flujo operativo.</p>
+    <div class="caseMetrics">
+      <div>
+        <div class="caseMetric-val">5x</div>
+        <div class="caseMetric-lbl">Acceso más rápido a la información</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">90%</div>
+        <div class="caseMetric-lbl">Reducción en tiempos de búsqueda de archivos</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">0</div>
+        <div class="caseMetric-lbl">Pérdida de información tras implementación</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">100%</div>
+        <div class="caseMetric-lbl">Información centralizada y accesible</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="caseBody">
+
+    <section class="caseSection">
+      <h2>El reto</h2>
+      <p>Parapente Logistics operaba con una infraestructura de red poco estructurada y sin un sistema centralizado para
+        la gestión de información. Los archivos se encontraban dispersos entre distintos equipos, lo que dificultaba el
+        acceso, aumentaba los tiempos de búsqueda y generaba riesgos de pérdida de datos.</p>
+      <p>Además, los procesos internos dependían en gran medida de tareas manuales, lo que afectaba la eficiencia
+        operativa. La empresa necesitaba una solución que organizara su red, centralizara la información y automatizara
+        flujos clave para mejorar la productividad.</p>
+    </section>
+
+    <section class="caseSection">
+      <h2>La solución</h2>
+      <p>Diseñamos e implementamos una infraestructura de red optimizada junto con un sistema de almacenamiento
+        centralizado basado en NAS, complementado con automatizaciones para agilizar la gestión de información y
+        procesos internos.</p>
+      <ul>
+        <li>Diseño y reestructuración completa de la red empresarial</li>
+        <li>Implementación de servidor NAS para almacenamiento centralizado y seguro</li>
+        <li>Configuración de accesos por roles y permisos de usuario</li>
+        <li>Automatización de organización y respaldo de archivos</li>
+        <li>Sincronización de información entre áreas clave de la empresa</li>
+        <li>Optimización del flujo de trabajo mediante procesos automatizados</li>
+      </ul>
+    </section>
+
+    <section class="caseSection">
+      <h2>Resultados</h2>
+      <div class="caseResults">
+        <div class="caseResult">
+          <span>5x</span>
+          <p>Incremento en la velocidad de acceso a archivos y recursos compartidos</p>
+        </div>
+        <div class="caseResult">
+          <span>90%</span>
+          <p>Reducción en el tiempo requerido para localizar información crítica</p>
+        </div>
+        <div class="caseResult">
+          <span>0</span>
+          <p>Incidentes de pérdida de información gracias a respaldos automatizados</p>
+        </div>
+        <div class="caseResult">
+          <span>+40%</span>
+          <p>Mejora en la eficiencia operativa mediante automatización de procesos</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caseSection">
+      <h2>Stack tecnológico</h2>
+      <ul>
+        <li>Infraestructura de red: segmentación VLAN y optimización de tráfico</li>
+        <li>Almacenamiento: NAS empresarial con redundancia RAID</li>
+        <li>Automatización: scripts y tareas programadas para gestión de archivos</li>
+        <li>Seguridad: control de accesos por usuario, firewall y respaldos automáticos</li>
+        <li>Monitoreo: herramientas de supervisión de red y almacenamiento</li>
+        <li>Infraestructura física: switches gestionables y cableado estructurado</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <section class="caseCTA">
+    <h2>¿Tu infraestructura limita tu operación?</h2>
+    <p>Diseñamos soluciones que optimizan tu red, protegen tu información y mejoran tu productividad desde el primer
+      día.</p>
+    <a href="../index.html#cta" class="ctaBtn">Agendar consultoría gratuita →</a>
+  </section>
+
+  <footer class="caseFooter">
+    <div class="caseFooter-info">
+      <span>Teral IT Solutions</span> &nbsp;·&nbsp; © 2026
+    </div>
+    <a href="../index.html#cases" class="caseFooter-link">← Ver todos los casos</a>
+  </footer>
+
+  <script>
+    /* ── CURSOR ── */
+    const cur = document.getElementById('cur');
+    const ring = document.getElementById('curR');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    (function loop() {
+      cur.style.left = mx + 'px';
+      cur.style.top = my + 'px';
+      rx += (mx - rx) * .11;
+      ry += (my - ry) * .11;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+  </script>
+
+</body>
+
+</html>

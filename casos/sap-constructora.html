@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso BodeVidrio — Teral IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+      body {
+        cursor: auto;
+        background: var(--dark);
+      }
+
+      #cur,
+      #curR {
+        display: none;
+      }
+
+      .caseHero {
+        --accent: #CE93D8;
+      }
+
+      .caseHero h1 em {
+        font-style: normal;
+        background: linear-gradient(90deg, #CE93D8, #AB47BC);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .caseBody {
+        background: var(--bg);
+      }
+
+      #cur {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: var(--text);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+
+      #curR {
+        position: fixed;
+        width: 30px;
+        height: 30px;
+        border: 1.5px solid rgba(254, 251, 255, 0.893);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: all .38s cubic-bezier(.23, 1, .32, 1);
+      }
+
+      body:has(a:hover) #curR,
+      body:has(button:hover) #curR {
+        transform: translate(-50%, -50%) scale(2.1);
+        border-color: var(--text);
+      }
+
+      /* ── CANVAS ── */
+      canvas#bgc {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="cur"></div>
+  <div id="curR"></div>
+  <nav class="caseNav">
+    <a href="../index.html#cases" class="backLink">← Volver a casos de éxito</a>
+    <a href="../index.html#cta" class="nBtn" style="text-decoration:none;display:inline-flex;align-items:center;">Hablar
+      con un experto</a>
+  </nav>
+
+  <section class="caseHero">
+    <div class="caseHero-tag">ERP · Automatización Comercial</div>
+
+    <h1>Sistema de cotizaciones<br>a la medida para<br><em>Grupo BodeVidrio</em></h1>
+
+    <p class="caseHero-sub">
+      Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo
+      operativo real de la empresa, reduciendo tiempos de respuesta y eliminando errores en el proceso comercial.
+    </p>
+
+    <div class="caseMetrics">
+      <div>
+        <div class="caseMetric-val">85%</div>
+        <div class="caseMetric-lbl">Reducción en tiempo de cotización</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">0</div>
+        <div class="caseMetric-lbl">Errores por recaptura de información</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">100%</div>
+        <div class="caseMetric-lbl">Integración con Microsip</div>
+      </div>
+      <div>
+        <div class="caseMetric-val">3x</div>
+        <div class="caseMetric-lbl">Mayor velocidad en atención comercial</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="caseBody">
+
+    <section class="caseSection">
+      <h2>El reto</h2>
+
+      <p>
+        Grupo BodeVidrio operaba su proceso de cotización de manera semi-manual, dependiendo de múltiples fuentes de
+        información: listas de precios en Excel, validaciones internas por área y consultas directas al ERP Microsip.
+      </p>
+
+      <p>
+        Esto generaba tiempos de respuesta elevados hacia clientes, inconsistencias en precios y errores derivados de la
+        recaptura de datos. Además, el proceso no estaba estandarizado, lo que dificultaba escalar el área comercial y
+        mantener control sobre márgenes y condiciones de venta.
+      </p>
+    </section>
+
+    <section class="caseSection">
+      <h2>La solución</h2>
+
+      <p>
+        Diseñamos y desarrollamos un sistema de cotización a la medida, completamente alineado a la operación de Grupo
+        BodeVidrio e integrado en tiempo real con Microsip, respetando su lógica de negocio, estructura de productos y
+        reglas comerciales.
+      </p>
+
+      <ul>
+        <li>Desarrollo de plataforma web de cotización personalizada según el flujo real de ventas</li>
+        <li>Integración directa con Microsip para consulta de productos, precios, clientes y existencias</li>
+        <li>Automatización de reglas comerciales: márgenes, descuentos y validaciones internas</li>
+        <li>Generación de cotizaciones en PDF listas para envío al cliente</li>
+        <li>Eliminación total de recaptura de información entre sistemas</li>
+        <li>Interfaz optimizada para uso rápido por el equipo comercial</li>
+      </ul>
+    </section>
+
+    <section class="caseSection">
+      <h2>Resultados</h2>
+
+      <div class="caseResults">
+        <div class="caseResult">
+          <span>85%</span>
+          <p>Reducción en el tiempo de generación de cotizaciones</p>
+        </div>
+        <div class="caseResult">
+          <span>0</span>
+          <p>Errores por captura manual o inconsistencias de información</p>
+        </div>
+        <div class="caseResult">
+          <span>3x</span>
+          <p>Incremento en la velocidad de respuesta del equipo comercial</p>
+        </div>
+        <div class="caseResult">
+          <span>100%</span>
+          <p>Adopción del sistema por parte del equipo de ventas desde el primer mes</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caseSection">
+      <h2>Tecnologías utilizadas</h2>
+
+      <ul>
+        <li>Integración directa con ERP Microsip (base de datos y lógica de negocio)</li>
+        <li>Backend personalizado para gestión de cotizaciones</li>
+        <li>Generación dinámica de PDFs para propuestas comerciales</li>
+        <li>Arquitectura modular para escalabilidad futura</li>
+        <li>Interfaz web optimizada para operación interna</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <section class="caseCTA">
+    <h2>¿Tu empresa tiene un reto similar?</h2>
+    <p>La primera consultoría es sin costo. Analizamos tu situación actual sin compromiso.</p>
+    <a href="../index.html#cta" class="ctaBtn">Agendar consultoría gratuita →</a>
+  </section>
+
+  <footer class="caseFooter">
+    <div class="caseFooter-info">
+      <span>Teral IT Solutions</span> &nbsp;·&nbsp; © 2026
+    </div>
+    <a href="../index.html#cases" class="caseFooter-link">← Ver todos los casos</a>
+  </footer>
+
+</body>
+<script>
+
+</script>
+
+</html>
