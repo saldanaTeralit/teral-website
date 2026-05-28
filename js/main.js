@@ -261,8 +261,8 @@ const obs = new IntersectionObserver(entries => {
     });
 }, { threshold: .1 });
 
-document.querySelectorAll('.reveal, .cCard, .pStep').forEach(el => obs.observe(el));
-document.querySelectorAll('.cCard').forEach((c, i) => c.style.transitionDelay = (i * .1) + 's');
+document.querySelectorAll('.reveal, .cCard, .customCaseCard, .pStep').forEach(el => obs.observe(el));
+document.querySelectorAll('.cCard, .customCaseCard').forEach((c, i) => c.style.transitionDelay = (i * .1) + 's');
 document.querySelectorAll('.pStep').forEach((c, i) => c.style.transitionDelay = (i * .11) + 's');
 
 
@@ -372,7 +372,7 @@ document.querySelectorAll('.svcCard').forEach(card => {
    CASE CARDS — Magnetic tilt + spotlight
 ═══════════════════════════════════════════════════ */
 
-document.querySelectorAll('.cCard:not(.cCard--wide)').forEach(card => {
+document.querySelectorAll('.cCard:not(.cCard--wide), .customCaseCard').forEach(card => {
     const TILT = 6;
 
     card.addEventListener('mousemove', e => {
@@ -498,23 +498,13 @@ const PARTNERS = [
    CHIP BUILDER
 ════════════════════════════════════════════════════════ */
 function buildChip(p) {
-    return `<div class="pChip" style="
-      --brand:${p.brand};
-      --brand-glow:${p.glow};
-      --brand-bg:${p.bg};
-      --brand-border:${p.border}">
-    <div class="pChip-ico">
-      <img
-        src="${p.logo}"
-        alt="${p.name}"
-        loading="lazy"
-        onerror="this.closest('.pChip-ico').classList.add('no-img')">
-      <span class="pChip-fallback">${p.name.charAt(0)}</span>
-    </div>
-    <div class="pChip-body">
-      <span class="pChip-name">${p.name}</span>
-      <span class="pChip-cert">${p.cert}</span>
-    </div>
+    return `<div class="partner-logo-item">
+    <img
+      src="${p.logo}"
+      alt="${p.name}"
+      loading="lazy"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <span class="partner-logo-fallback" style="display:none;">${p.name}</span>
   </div>`;
 }
 

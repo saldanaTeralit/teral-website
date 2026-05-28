@@ -22,7 +22,7 @@
         cta: { r: 206, g: 147, b: 216, a: 0.22 },  // oscuro  → lila claro
     };
 
-    const DEFAULT_COLOR = SECTION_COLORS.hero;
+    const DEFAULT_COLOR = window.customParticleColor || SECTION_COLORS.hero;
 
     /* ── Estado actual del color (se interpola suavemente) */
     let current = { ...DEFAULT_COLOR };

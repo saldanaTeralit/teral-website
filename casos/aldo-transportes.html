@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desarrollo a Medida — Teral IT Solutions</title>
+  <title>Caso Aldo Transportes — Teral IT Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
@@ -379,20 +379,111 @@
       width: 100%;
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 15px 45px rgba(123, 31, 162, 0.04);
-      border: 1px solid var(--border);
+      box-shadow: 0 15px 45px rgba(123, 31, 162, 0.12), 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid rgba(123, 31, 162, 0.15);
       aspect-ratio: 21/9;
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
+      background: linear-gradient(135deg, #0D0714 0%, #1A0A2E 40%, #2D1254 70%, #1A0A2E 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .showcaseImgWrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(123,31,162,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123,31,162,.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .showcaseImgWrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(123,31,162,0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .showcaseImgWrap:hover {
-      transform: scale(1.008);
+      transform: translateY(-4px);
+      box-shadow: 0 25px 60px rgba(123, 31, 162, 0.18), 0 8px 30px rgba(0,0,0,0.12);
     }
 
-    .showcaseImgWrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .showcaseBrand {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .showcaseLogo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: clamp(1rem, 2.5vw, 1.8rem) clamp(1.5rem, 3.5vw, 2.8rem);
+      backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .showcaseLogo:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .showcaseLogo img {
+      height: clamp(36px, 6vw, 72px);
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.92;
+    }
+
+    .showcaseLogo img.color-logo {
+      filter: none;
+      opacity: 1;
+    }
+
+    .showcaseUnion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.35);
+      position: relative;
+      z-index: 2;
+    }
+
+    .showcaseUnion::before,
+    .showcaseUnion::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: clamp(20px, 3vw, 36px);
+      background: linear-gradient(to bottom, transparent, rgba(171,71,188,0.6), transparent);
+    }
+
+    .showcaseUnionSym {
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-weight: 300;
+      color: rgba(171,71,188,0.8);
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(171,71,188,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .showcaseImgWrap {
+        aspect-ratio: 16/9;
+      }
     }
 
     /* ── NARRATIVA EDITORIAL FLUIDA ── */
@@ -583,20 +674,6 @@
     }
 
     @media (max-width: 600px) {
-      nav.subpage-nav {
-        padding: 0 1rem;
-        height: 60px;
-      }
-      .nLogo img {
-        height: 28px;
-      }
-      .nBack {
-        display: none;
-      }
-      .nBtn {
-        padding: 0.5rem 1.1rem;
-        font-size: 0.78rem;
-      }
       .caseHeroGrid {
         padding-top: 110px;
         padding-bottom: 30px;
@@ -654,143 +731,152 @@
   <!-- NAVIGATION -->
   <nav class="subpage-nav">
     <a href="../index.html" class="nLogo"><img src="../src/img/Teral/teral_n.png" alt="Teral IT"></a>
-    <a href="../index.html" class="nBack"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+    <a href="../casos.html" class="nBack"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6" />
-      </svg>Volver al inicio</a>
+      </svg>Volver a casos de éxito</a>
     <a href="../contacto.html" class="nBtn">Hablar con un experto</a>
   </nav>
 
   <!-- ASYMMETRIC HERO -->
   <section class="caseHeroGrid">
     <div class="heroLeft">
-      <span class="ltag">Servicios TI · Desarrollo</span>
-      <h1>Desarrollo de Software<br><em>a la Medida</em></h1>
-      <p>Construimos aplicaciones web, móviles y empresariales robustas desde cero, diseñadas con arquitecturas de software modernas para escalar de manera inmediata y adaptarse exactamente a tus flujos comerciales.</p>
+      <span class="ltag">Middleware · Integración GPS</span>
+      <h1>Middleware de integración GPS<br>a la medida para<br><em>Aldo Transportes</em></h1>
+      <p>Desarrollamos una capa intermedia de comunicación de datos de alta velocidad que permitió a su plataforma web heredada basada en Apache Tomcat reconocer y usar modelos de GPS modernos, expandiendo su capacidad operativa sin rehacer su sistema desde cero.</p>
       <div class="hBtns">
-        <a href="../contacto.html" class="bA">Iniciar proyecto →</a>
-        <a href="#capacidades" class="bB">Ver capacidades</a>
+        <a href="../contacto.html" class="bA">Quiero una solución similar →</a>
+        <a href="#reto" class="bB">Ver detalles del caso</a>
       </div>
     </div>
 
-    <!-- SERVICE INFO FLOATING CARD -->
+    <!-- PROJECT INFO FLOATING CARD -->
     <div class="projectMetaCard" id="metaCard">
       <div class="metaItem">
-        <span class="metaLabel">Especialidad</span>
-        <span class="metaValue">Web & Mobile Apps</span>
+        <span class="metaLabel">Cliente</span>
+        <span class="metaValue">Aldo Transportes</span>
       </div>
       <div class="metaItem">
-        <span class="metaLabel">Tecnologías</span>
+        <span class="metaLabel">Sector</span>
+        <span class="metaValue">Logística & Transporte</span>
+      </div>
+      <div class="metaItem">
+        <span class="metaLabel">Servicios</span>
         <div class="metaTags">
-          <span class="metaTag">React & Node.js</span>
-          <span class="metaTag">Flutter</span>
+          <span class="metaTag">Custom Middleware</span>
+          <span class="metaTag">Java API</span>
         </div>
       </div>
       <div class="metaItem">
-        <span class="metaLabel">ROI Promedio</span>
-        <span class="metaValue">3.2x Promedio</span>
-      </div>
-      <div class="metaItem">
-        <span class="metaLabel">Roadmap TI</span>
-        <span class="metaValue">Agile Sprints</span>
+        <span class="metaLabel">Año</span>
+        <span class="metaValue">2026</span>
       </div>
       <div class="metaImpact">
-        <div class="metaImpactVal" id="impactVal"><span data-n="47" data-s="+">+0</span></div>
-        <div class="metaImpactLbl">Proyectos Entregados con Éxito</div>
+        <div class="metaImpactVal" id="impactVal"><span data-n="15" data-s="+">+0</span></div>
+        <div class="metaImpactLbl">Nuevos Modelos GPS Soportados</div>
       </div>
     </div>
   </section>
 
-  <!-- PANORAMIC SHOWCASE IMAGE -->
+  <!-- BRANDED SHOWCASE BANNER: Teral × Aldo Transportes -->
   <section class="showcaseContainer">
     <div class="showcaseImgWrap">
-      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80" alt="Teral Desarrollo de Software">
-    </div>
-  </section>
-
-  <!-- NARRATIVE - NUESTRA METODOLOGÍA -->
-  <section class="editorialSec" id="reto">
-    <div class="editorialLeft">
-      <span class="ltag">Nuestra Metodología</span>
-      <h3>Sprints ágiles,<br>visibilidad y precisión.</h3>
-    </div>
-    <div class="editorialRight">
-      <p>Creemos que el software de éxito se construye escuchando y entendiendo el negocio de manera profunda antes de escribir la primera línea de código. Trabajamos bajo marcos metodológicos ágiles con entregas semanales (sprints) y visibilidad del código en tiempo real.</p>
-      <p>Este enfoque iterativo garantiza que el producto final esté perfectamente alineado con tus objetivos operativos y comerciales, permitiéndote mitigar riesgos financieros y moldear la aplicación activamente según tus necesidades.</p>
-      <div class="quoteBlock">
-        <p>"No vendemos plantillas ni sistemas genéricos. Construimos herramientas a la medida con código limpio que se convierte en un activo de alto valor para tu empresa."</p>
-        <div class="quoteAuthor">Dirección de Ingeniería · Teral IT Solutions</div>
+      <div class="showcaseBrand">
+        <div class="showcaseLogo">
+          <img src="../src/img/Teral/teral_n.png" alt="Teral IT Solutions">
+        </div>
+        <div class="showcaseUnion">
+          <span class="showcaseUnionSym">×</span>
+        </div>
+        <div class="showcaseLogo">
+          <img src="../src/img/clientes/aldo.png" alt="Aldo Transportes">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- NARRATIVE - NUESTRA FILOSOFÍA -->
+  <!-- NARRATIVE - EL RETO -->
+  <section class="editorialSec" id="reto">
+    <div class="editorialLeft">
+      <span class="ltag">El Reto</span>
+      <h3>Plataforma heredada y<br>dispositivos obsoletos.</h3>
+    </div>
+    <div class="editorialRight">
+      <p>Aldo Transportes contaba con una plataforma de rastreo propietaria construida sobre Apache Tomcat. Si bien el sistema era robusto para sus necesidades básicas, adolecía de una limitación crítica: su arquitectura rígida y heredada solo aceptaba modelos de dispositivos GPS descontinuados en el mercado.</p>
+      <p>La imposibilidad de adquirir nuevos equipos GPS y la altísima cotización para rehacer toda su plataforma de monitoreo de flota desde cero representaba un grave riesgo de estancamiento tecnológico frente a competidores en el dinámico sector logístico.</p>
+      <div class="quoteBlock">
+        <p>"No podíamos ampliar nuestra flota de subcontratados porque los nuevos GPS que traían eran incompatibles con nuestro Tomcat heredado."</p>
+        <div class="quoteAuthor">Coordinación de Monitoreo · Aldo Transportes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NARRATIVE - LA SOLUCIÓN -->
   <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <section class="editorialSec" style="border-top: none;">
       <div class="editorialLeft">
-        <span class="ltag">Nuestra Filosofía</span>
-        <h3>Arquitecturas limpias y<br>escalabilidad garantizada.</h3>
+        <span class="ltag">La Solución</span>
+        <h3>Capa de comunicación y<br>decodificación en milisegundos.</h3>
       </div>
       <div class="editorialRight">
-        <p>Diseñamos cada aplicación siguiendo estrictamente patrones de arquitectura limpia (Clean Architecture), lo que desacopla la base de datos, la lógica comercial y las interfaces. Esto asegura que tus sistemas sean fáciles de mantener, modificar y escalar en el futuro.</p>
-        <p>Nuestras aplicaciones se construyen para tolerar de forma nativa la integración de nuevas tecnologías y soportar volúmenes masivos de transacciones sin presentar cuellos de botella ni degradar el rendimiento visual del usuario.</p>
+        <p>Diseñamos e implementamos un middleware de comunicación en Java de alto rendimiento. Esta capa intermedia se encarga de escuchar las transmisiones de los nuevos dispositivos GPS modernos, decodificar sus protocolos (como Teltonika, Coban y Concox) en milisegundos y estructurar la información.</p>
+        <p>Los datos procesados se insertan de forma transparente en la base de datos relacional existente, logrando compatibilidad total sin requerir una sola modificación al código del Apache Tomcat original.</p>
       </div>
     </section>
   </div>
 
-  <!-- KEY CAPABILITIES GRID (customCaseCard style) -->
-  <section class="resultsSec" id="capacidades">
+  <!-- KEY RESULTS GRID (customCaseCard style) -->
+  <section class="resultsSec">
     <div class="resultsHeader">
-      <span class="ltag">Nuestras Capacidades</span>
-      <h2>Soluciones de desarrollo a tu alcance</h2>
+      <span class="ltag">Resultados Clave</span>
+      <h2>Características y beneficios del proyecto</h2>
     </div>
 
     <div class="resultsGrid">
       <!-- Card 1 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Aplicaciones Web</h2>
+          <h2 class="caseCardTitle">Decodificación Instantánea</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Desarrollo de Single Page Applications (SPA) y Progressive Web Apps (PWA) dinámicas de alta velocidad, optimizadas para SEO y responsive.</p>
+        <p class="caseCardDesc">Decodificación veloz de múltiples protocolos de comunicación modernos, con latencia menor a 10 milisegundos por paquete recibido.</p>
       </div>
 
       <!-- Card 2 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Apps Móviles</h2>
+          <h2 class="caseCardTitle">Compatibilidad Absoluta</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Aplicaciones para iOS y Android de nivel corporativo construidas con Flutter y tecnologías nativas, garantizando un rendimiento gráfico de 60fps.</p>
+        <p class="caseCardDesc">Integración transparente y sin fisuras con Apache Tomcat, extendiendo la vida útil de su plataforma de rastreo actual con una mínima inversión.</p>
       </div>
 
       <!-- Card 3 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Backend & APIs</h2>
+          <h2 class="caseCardTitle">Monitoreo de Paquetes</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Diseño de microservicios robustos, bases de datos optimizadas y APIs REST/GraphQL seguras que integran de forma nativa todos tus canales digitales.</p>
+        <p class="caseCardDesc">Despliegue de un panel interno que monitorea la salud del middleware en tiempo real, alertando proactivamente ante pérdidas de red o desconexiones.</p>
       </div>
     </div>
   </section>
@@ -799,30 +885,26 @@
   <section class="loopSec">
     <div class="loopGrid">
       <div class="loopCta">
-        <span class="ltag">¿Listo para iniciar tu desarrollo?</span>
-        <h3>Transforma tu idea en un<br>sistema de software real.</h3>
-        <p>Diseñamos y programamos aplicaciones escalables y rápidas que resuelven cuellos de botella y potencian las ventas de tu negocio.</p>
-        <a href="../contacto.html" class="bA">Iniciar consultoría gratuita →</a>
+        <span class="ltag">¿Quieres integrar hardware heredado?</span>
+        <h3>Moderniza tu infraestructura<br>sin desechar tus sistemas.</h3>
+        <p>Diseñamos puentes de comunicación eficientes y seguros que conectan tecnologías modernas con tus sistemas centrales existentes.</p>
+        <a href="../contacto.html" class="bA">Agendar consultoría gratuita →</a>
       </div>
 
-      <!-- NEXT SERVICE PREVIEW CARD -->
-      <a href="ERP.html" class="customCaseCard vis" id="nextCaseCard">
-        <span class="nextCaseHeader">Siguiente Servicio</span>
+      <!-- NEXT CASE PREVIEW CARD -->
+      <a href="growa-greenhouse.html" class="customCaseCard vis" id="nextCaseCard">
+        <span class="nextCaseHeader">Siguiente Caso de Éxito</span>
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Integración ERP</h2>
+          <h2 class="caseCardTitle">Growa: Algoritmo de Inventarios</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <circle cx="18" cy="5" r="3"></circle>
-              <circle cx="6" cy="12" r="3"></circle>
-              <circle cx="18" cy="19" r="3"></circle>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Conectamos SAP Business One, Odoo, Microsip y más con tus sistemas comerciales, garantizando datos unificados y flujos automatizados bidireccionales en tiempo real.</p>
-        <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver capacidades</div>
+        <p class="caseCardDesc">Desarrollamos un algoritmo de conciliación automatizada en Python para migrar claves de inventario en inglés y eliminar duplicados al pasar a IFS ERP.</p>
+        <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver caso completo</div>
       </a>
     </div>
   </section>
@@ -830,7 +912,7 @@
   <!-- LIGHT FOOTER -->
   <footer style="position:relative;z-index:2;padding:1.8rem clamp(1.5rem,4vw,3rem);background:var(--bg);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
     <div style="color:var(--ink2);font-size:12.5px;"><span style="color:var(--ink);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
-    <a href="../index.html" class="nBack" style="color:var(--ink2);">← Volver al inicio</a>
+    <a href="../casos.html" class="nBack" style="color:var(--ink2);">← Volver a casos de éxito</a>
   </footer>
 
   <script>

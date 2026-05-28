@@ -5,203 +5,1055 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caso BodeVidrio — Teral IT Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-    <style>
-      body {
-        cursor: auto;
-        background: var(--dark);
-      }
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../src/img/Teral/teral morado (1).png" type="image/png">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      #cur,
-      #curR {
-        display: none;
-      }
+    :root {
+      --bg: #FFFFFF;
+      --bg2: #F8F7FB;
+      --bg3: #F1ECF7;
+      --border: #E5E0EE;
+      --ink: #111117;
+      --ink2: #4B4858;
+      --ink3: #918EA0;
+      --p1: #7B1FA2;
+      --p2: #AB47BC;
+      --p3: #CE93D8;
+      --p4: #4A148C;
+      --card: #FFFFFF;
+      --radius: 22px;
+    }
 
-      .caseHero {
-        --accent: #CE93D8;
-      }
+    html {
+      scroll-behavior: smooth;
+    }
 
-      .caseHero h1 em {
-        font-style: normal;
-        background: linear-gradient(90deg, #CE93D8, #AB47BC);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-      .caseBody {
-        background: var(--bg);
-      }
+    canvas#bgc {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-      #cur {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        background: var(--text);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-      }
+    /* ── CURSOR MORADO CLARO ── */
+    #cur {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--p1);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
 
-      #curR {
-        position: fixed;
-        width: 30px;
-        height: 30px;
-        border: 1.5px solid rgba(254, 251, 255, 0.893);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: all .38s cubic-bezier(.23, 1, .32, 1);
-      }
+    #curR {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid rgba(123, 31, 162, .28);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all .38s cubic-bezier(.23, 1, .32, 1);
+    }
 
-      body:has(a:hover) #curR,
-      body:has(button:hover) #curR {
-        transform: translate(-50%, -50%) scale(2.1);
-        border-color: var(--text);
-      }
+    body:has(a:hover) #curR,
+    body:has(button:hover) #curR,
+    body:has(.customCaseCard:hover) #curR,
+    body:has(.projectMetaCard:hover) #curR {
+      transform: translate(-50%, -50%) scale(2.1);
+      border-color: var(--p2);
+    }
 
-      /* ── CANVAS ── */
-      canvas#bgc {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
+    /* ── NAVBAR ALWAYS VISIBLE ── */
+    nav.subpage-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      height: 68px;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .nLogo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nLogo img {
+      height: 36px;
+    }
+
+    .nBack {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--ink2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nBack:hover {
+      color: var(--p1);
+    }
+
+    .nBack:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .nBack svg {
+      transition: transform .2s;
+    }
+
+    .nBtn {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: .55rem 1.3rem;
+      font-family: inherit;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: none;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+
+    .nBtn:hover {
+      background: var(--p1);
+      transform: translateY(-1px);
+    }
+
+    /* ── HÉROE ASIMÉTRICO EDITORIAL ── */
+    .caseHeroGrid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+      padding: 140px clamp(1.5rem, 4vw, 3rem) 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .heroLeft {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .ltag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--p1);
+      background: rgba(123, 31, 162, .07);
+      border: 1px solid rgba(123, 31, 162, .18);
+      border-radius: 50px;
+      padding: .3rem .9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .heroLeft h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -.03em;
+      margin-bottom: 1.3rem;
+    }
+
+    .heroLeft h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--p1), var(--p2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .heroLeft p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      max-width: 620px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hBtns {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .bA {
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      padding: .75rem 1.8rem;
+      font-weight: 700;
+      font-size: .95rem;
+      transition: background .3s, transform .2s, box-shadow .3s;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, .05);
+      border: none;
+      cursor: none;
+    }
+
+    .bA:hover {
+      background: var(--p1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(123, 31, 162, .25);
+    }
+
+    .bB {
+      background: #F0EDF5;
+      color: var(--ink);
+      text-decoration: none;
+      border-radius: 50px;
+      padding: .75rem 1.8rem;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: background .25s, transform .25s;
+      cursor: none;
+    }
+
+    .bB:hover {
+      background: var(--bg3);
+      transform: translateY(-2px);
+    }
+
+    /* ── PROJECT META CARD ── */
+    .projectMetaCard {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(123, 31, 162, 0.02);
+      transition: box-shadow 0.4s, border-color 0.4s;
+    }
+
+    .projectMetaCard:hover {
+      border-color: rgba(171, 71, 188, 0.25);
+      box-shadow: 0 15px 35px rgba(123, 31, 162, 0.05);
+    }
+
+    .projectMetaCard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(280px circle at var(--sx, -300px) var(--sy, -300px),
+              rgba(123, 31, 162, 0.04),
+              transparent 70%);
+      opacity: 0;
+      transition: opacity 0.45s;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .projectMetaCard:hover::before {
+      opacity: 1;
+    }
+
+    .metaItem {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.88rem;
+      align-items: center;
+    }
+
+    .metaItem:last-of-type {
+      border-bottom: none;
+    }
+
+    .metaLabel {
+      color: var(--ink3);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+
+    .metaValue {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .metaTags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: flex-end;
+      max-width: 65%;
+    }
+
+    .metaTag {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      background: rgba(123, 31, 162, 0.05);
+      border: 1px solid rgba(123, 31, 162, 0.1);
+      color: var(--p1);
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    /* Gran Métrica en Ficha */
+    .metaImpact {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .metaImpactVal {
+      font-size: 3rem;
+      font-weight: 850;
+      color: var(--p1);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .metaImpactLbl {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SHOWCASE CENTRAL ── */
+    .showcaseContainer {
+      max-width: 1200px;
+      margin: 1.5rem auto 4.5rem;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .showcaseImgWrap {
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 45px rgba(123, 31, 162, 0.12), 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid rgba(123, 31, 162, 0.15);
+      aspect-ratio: 21/9;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
+      background: linear-gradient(135deg, #0D0714 0%, #1A0A2E 40%, #2D1254 70%, #1A0A2E 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .showcaseImgWrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(123,31,162,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123,31,162,.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .showcaseImgWrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(123,31,162,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .showcaseImgWrap:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 60px rgba(123, 31, 162, 0.18), 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .showcaseBrand {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .showcaseLogo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: clamp(1rem, 2.5vw, 1.8rem) clamp(1.5rem, 3.5vw, 2.8rem);
+      backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .showcaseLogo:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .showcaseLogo img {
+      height: clamp(36px, 6vw, 72px);
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.92;
+    }
+
+    .showcaseUnion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .showcaseUnion::before,
+    .showcaseUnion::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: clamp(20px, 3vw, 36px);
+      background: linear-gradient(to bottom, transparent, rgba(171,71,188,0.6), transparent);
+    }
+
+    .showcaseUnionSym {
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-weight: 300;
+      color: rgba(171,71,188,0.8);
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(171,71,188,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .showcaseImgWrap {
+        aspect-ratio: 16/9;
       }
-    </style>
+    }
+
+    /* ── NARRATIVA EDITORIAL FLUIDA ── */
+    .editorialSec {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4.5rem clamp(1.5rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+
+
+    .editorialLeft {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .editorialLeft h3 {
+      font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      margin-top: 0.8rem;
+    }
+
+    .editorialRight {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--ink2);
+      font-weight: 400;
+    }
+
+    .editorialRight p {
+      margin-bottom: 1.5rem;
+    }
+
+    .editorialRight p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Quote Block */
+    .quoteBlock {
+      margin: 2.2rem 0;
+      padding: 1.6rem 2.2rem;
+      background: #FFFFFF;
+      border-left: 4px solid var(--p1);
+      border-radius: 4px 20px 20px 4px;
+      box-shadow: 0 8px 25px rgba(123, 31, 162, 0.01);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quoteBlock p {
+      font-style: italic;
+      color: var(--p4);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 0.6rem !important;
+      font-weight: 500;
+    }
+
+    .quoteAuthor {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ink3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESULTADOS CLAVE ── */
+    .resultsSec {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5.5rem clamp(1.5rem, 4vw, 3rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .resultsHeader {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .resultsHeader h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-top: 0.8rem;
+      color: var(--ink);
+    }
+
+    .resultsGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    /* ── LOOP & CTA FINAL ── */
+    .loopSec {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 5.5rem clamp(1.5rem, 4vw, 3rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .loopGrid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+
+    .loopCta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .loopCta h3 {
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.25;
+      margin-top: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .loopCta p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      margin-bottom: 2.2rem;
+      max-width: 480px;
+    }
+
+    .nextCaseHeader {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--p1);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:992px) {
+      .caseHeroGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .projectMetaCard {
+        max-width: 580px;
+      }
+      .resultsGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .loopGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media(max-width:768px) {
+      .editorialSec {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .editorialSec.alt .editorialInner {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .resultsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .showcaseImgWrap {
+        aspect-ratio: 16/9;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .caseHeroGrid {
+        padding-top: 110px;
+        padding-bottom: 30px;
+      }
+      .heroLeft h1 {
+        font-size: 1.95rem;
+      }
+      .heroLeft p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .bA, .bB {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+      .hBtns {
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+      }
+      .editorialSec {
+        padding: 3.5rem 1.2rem;
+      }
+      .resultsSec {
+        padding: 3.5rem 1.2rem;
+      }
+      .loopSec {
+        padding: 3.5rem 1.2rem;
+      }
+      .projectMetaCard {
+        padding: 1.5rem;
+      }
+      .metaImpactVal {
+        font-size: 2.4rem;
+      }
+      .quoteBlock {
+        padding: 1.2rem 1.5rem;
+      }
+      .quoteBlock p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <div id="cur"></div>
   <div id="curR"></div>
-  <nav class="caseNav">
-    <a href="../index.html#cases" class="backLink">← Volver a casos de éxito</a>
-    <a href="../index.html#cta" class="nBtn" style="text-decoration:none;display:inline-flex;align-items:center;">Hablar
-      con un experto</a>
+
+  <canvas id="bgc"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav class="subpage-nav">
+    <a href="../index.html" class="nLogo"><img src="../src/img/Teral/teral_n.png" alt="Teral IT"></a>
+    <a href="../casos.html" class="nBack"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>Volver a casos de éxito</a>
+    <a href="../contacto.html" class="nBtn">Hablar con un experto</a>
   </nav>
 
-  <section class="caseHero">
-    <div class="caseHero-tag">ERP · Automatización Comercial</div>
-
-    <h1>Sistema de cotizaciones<br>a la medida para<br><em>Grupo BodeVidrio</em></h1>
-
-    <p class="caseHero-sub">
-      Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo
-      operativo real de la empresa, reduciendo tiempos de respuesta y eliminando errores en el proceso comercial.
-    </p>
-
-    <div class="caseMetrics">
-      <div>
-        <div class="caseMetric-val">85%</div>
-        <div class="caseMetric-lbl">Reducción en tiempo de cotización</div>
+  <!-- ASYMMETRIC HERO -->
+  <section class="caseHeroGrid">
+    <div class="heroLeft">
+      <span class="ltag">ERP · Automatización Comercial</span>
+      <h1>Sistema de cotizaciones<br>a la medida para<br><em>Grupo BodeVidrio</em></h1>
+      <p>Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo operativo real de la empresa, reduciendo tiempos de respuesta y eliminando errores en el proceso comercial.</p>
+      <div class="hBtns">
+        <a href="../contacto.html" class="bA">Quiero una solución similar →</a>
+        <a href="#reto" class="bB">Ver detalles del caso</a>
       </div>
-      <div>
-        <div class="caseMetric-val">0</div>
-        <div class="caseMetric-lbl">Errores por recaptura de información</div>
+    </div>
+
+    <!-- PROJECT INFO FLOATING CARD -->
+    <div class="projectMetaCard" id="metaCard">
+      <div class="metaItem">
+        <span class="metaLabel">Cliente</span>
+        <span class="metaValue">Grupo BodeVidrio</span>
       </div>
-      <div>
-        <div class="caseMetric-val">100%</div>
-        <div class="caseMetric-lbl">Integración con Microsip</div>
+      <div class="metaItem">
+        <span class="metaLabel">Sector</span>
+        <span class="metaValue">Fabricación & Venta</span>
       </div>
-      <div>
-        <div class="caseMetric-val">3x</div>
-        <div class="caseMetric-lbl">Mayor velocidad en atención comercial</div>
+      <div class="metaItem">
+        <span class="metaLabel">Servicios</span>
+        <div class="metaTags">
+          <span class="metaTag">ERP Integration</span>
+          <span class="metaTag">Custom App</span>
+        </div>
+      </div>
+      <div class="metaItem">
+        <span class="metaLabel">Año</span>
+        <span class="metaValue">2026</span>
+      </div>
+      <div class="metaImpact">
+        <div class="metaImpactVal" id="impactVal"><span data-n="85" data-s="%">0%</span></div>
+        <div class="metaImpactLbl">Reducción en tiempo de cotización</div>
       </div>
     </div>
   </section>
 
-  <main class="caseBody">
-
-    <section class="caseSection">
-      <h2>El reto</h2>
-
-      <p>
-        Grupo BodeVidrio operaba su proceso de cotización de manera semi-manual, dependiendo de múltiples fuentes de
-        información: listas de precios en Excel, validaciones internas por área y consultas directas al ERP Microsip.
-      </p>
-
-      <p>
-        Esto generaba tiempos de respuesta elevados hacia clientes, inconsistencias en precios y errores derivados de la
-        recaptura de datos. Además, el proceso no estaba estandarizado, lo que dificultaba escalar el área comercial y
-        mantener control sobre márgenes y condiciones de venta.
-      </p>
-    </section>
-
-    <section class="caseSection">
-      <h2>La solución</h2>
-
-      <p>
-        Diseñamos y desarrollamos un sistema de cotización a la medida, completamente alineado a la operación de Grupo
-        BodeVidrio e integrado en tiempo real con Microsip, respetando su lógica de negocio, estructura de productos y
-        reglas comerciales.
-      </p>
-
-      <ul>
-        <li>Desarrollo de plataforma web de cotización personalizada según el flujo real de ventas</li>
-        <li>Integración directa con Microsip para consulta de productos, precios, clientes y existencias</li>
-        <li>Automatización de reglas comerciales: márgenes, descuentos y validaciones internas</li>
-        <li>Generación de cotizaciones en PDF listas para envío al cliente</li>
-        <li>Eliminación total de recaptura de información entre sistemas</li>
-        <li>Interfaz optimizada para uso rápido por el equipo comercial</li>
-      </ul>
-    </section>
-
-    <section class="caseSection">
-      <h2>Resultados</h2>
-
-      <div class="caseResults">
-        <div class="caseResult">
-          <span>85%</span>
-          <p>Reducción en el tiempo de generación de cotizaciones</p>
+  <!-- BRANDED SHOWCASE BANNER: Teral × BodeVidrio -->
+  <section class="showcaseContainer">
+    <div class="showcaseImgWrap">
+      <div class="showcaseBrand">
+        <div class="showcaseLogo">
+          <img src="../src/img/Teral/teral_n.png" alt="Teral IT Solutions">
         </div>
-        <div class="caseResult">
-          <span>0</span>
-          <p>Errores por captura manual o inconsistencias de información</p>
+        <div class="showcaseUnion">
+          <span class="showcaseUnionSym">×</span>
         </div>
-        <div class="caseResult">
-          <span>3x</span>
-          <p>Incremento en la velocidad de respuesta del equipo comercial</p>
-        </div>
-        <div class="caseResult">
-          <span>100%</span>
-          <p>Adopción del sistema por parte del equipo de ventas desde el primer mes</p>
+        <div class="showcaseLogo">
+          <img src="../src/img/clientes/bode.png" alt="BodeVidrio">
         </div>
       </div>
-    </section>
-
-    <section class="caseSection">
-      <h2>Tecnologías utilizadas</h2>
-
-      <ul>
-        <li>Integración directa con ERP Microsip (base de datos y lógica de negocio)</li>
-        <li>Backend personalizado para gestión de cotizaciones</li>
-        <li>Generación dinámica de PDFs para propuestas comerciales</li>
-        <li>Arquitectura modular para escalabilidad futura</li>
-        <li>Interfaz web optimizada para operación interna</li>
-      </ul>
-    </section>
-
-  </main>
-
-  <section class="caseCTA">
-    <h2>¿Tu empresa tiene un reto similar?</h2>
-    <p>La primera consultoría es sin costo. Analizamos tu situación actual sin compromiso.</p>
-    <a href="../index.html#cta" class="ctaBtn">Agendar consultoría gratuita →</a>
+    </div>
   </section>
 
-  <footer class="caseFooter">
-    <div class="caseFooter-info">
-      <span>Teral IT Solutions</span> &nbsp;·&nbsp; © 2026
+  <!-- NARRATIVE - EL RETO -->
+  <section class="editorialSec" id="reto">
+    <div class="editorialLeft">
+      <span class="ltag">El Reto</span>
+      <h3>Procesos manuales,<br>inconsistencias y demoras.</h3>
     </div>
-    <a href="../index.html#cases" class="caseFooter-link">← Ver todos los casos</a>
+    <div class="editorialRight">
+      <p>Grupo BodeVidrio operaba su proceso de generación de cotizaciones de manera semi-manual, dependiendo fuertemente de múltiples fuentes de información aisladas, tales como catálogos físicos, listas de precios complejas en archivos Excel y validaciones presenciales por departamento.</p>
+      <p>Este flujo inconexo provocaba prolongados tiempos de espera comercial, errores involuntarios derivados de la recaptura de datos en el sistema administrativo central y un nulo control en tiempo real sobre los márgenes de ganancia.</p>
+      <div class="quoteBlock">
+        <p>"El mayor dolor no era solo el tiempo de espera, sino la incertidumbre financiera de vender productos con precios desactualizados por el desfase del catálogo."</p>
+        <div class="quoteAuthor">Dirección Comercial · BodeVidrio</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NARRATIVE - LA SOLUCIÓN -->
+  <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <section class="editorialSec" style="border-top: none;">
+      <div class="editorialLeft">
+        <span class="ltag">La Solución</span>
+        <h3>Automatización integral y<br>sincronización con Microsip.</h3>
+      </div>
+      <div class="editorialRight">
+        <p>Diseñamos y desarrollamos un cotizador web a la medida integrado de forma bidireccional directa con el ERP Microsip. La plataforma permite al equipo comercial consultar catálogos, verificar niveles de stock y registrar transacciones al instante de forma totalmente confiable.</p>
+        <p>El sistema cuenta con un motor interno de cálculo inteligente de márgenes comerciales y validación automática de descuentos autorizados, enviando propuestas en formato PDF formalizadas en un par de clics.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- KEY RESULTS GRID (customCaseCard style) -->
+  <section class="resultsSec">
+    <div class="resultsHeader">
+      <span class="ltag">Resultados Clave</span>
+      <h2>Características y beneficios del proyecto</h2>
+    </div>
+
+    <div class="resultsGrid">
+      <!-- Card 1 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Panel Web a Medida</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Interfaz de usuario sumamente optimizada, responsiva y diseñada específicamente para el rápido flujo comercial interno en campo o sucursal.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Cálculo de Márgenes</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Motor automático que restringe la venta por debajo de los costos reales de Microsip, salvaguardando la salud financiera y la rentabilidad corporativa.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Propuestas en PDF</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Generación inmediata de propuestas comerciales con diseños unificados, listas para ser enviadas al cliente vía correo electrónico o WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOP NAVIGATION & CTA -->
+  <section class="loopSec">
+    <div class="loopGrid">
+      <div class="loopCta">
+        <span class="ltag">¿Quieres transformar tus procesos?</span>
+        <h3>Lleva tu flujo comercial<br>al siguiente nivel.</h3>
+        <p>Desarrollamos herramientas a la medida que integran tus sistemas, automatizan tu día a día y potencian tus ventas sin fricciones comerciales.</p>
+        <a href="../contacto.html" class="bA">Agendar consultoría gratuita →</a>
+      </div>
+
+      <!-- NEXT CASE PREVIEW CARD -->
+      <a href="medgroup-portal.html" class="customCaseCard vis" id="nextCaseCard">
+        <span class="nextCaseHeader">Siguiente Caso de Éxito</span>
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Parapente: Infraestructura de Red</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Diseño e implementación de red empresarial de alta velocidad, almacenamiento centralizado (NAS) y automatización para centralización operativa completa.</p>
+        <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver caso completo</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- LIGHT FOOTER -->
+  <footer style="position:relative;z-index:2;padding:1.8rem clamp(1.5rem,4vw,3rem);background:var(--bg);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <div style="color:var(--ink2);font-size:12.5px;"><span style="color:var(--ink);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
+    <a href="../casos.html" class="nBack" style="color:var(--ink2);">← Volver a casos de éxito</a>
   </footer>
 
-</body>
-<script>
+  <script>
+    /* ── CURSOR MORADO ── */
+    const cur = document.getElementById('cur');
+    const ring = document.getElementById('curR');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      if (cur && ring) {
+        cur.style.left = mx + 'px';
+        cur.style.top = my + 'px';
+        rx += (mx - rx) * .11;
+        ry += (my - ry) * .11;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+      }
+      requestAnimationFrame(loop);
+    })();
 
-</script>
+    /* ── SPOTLIGHT RADIAL TRACKING ── */
+    const spotlightElements = [document.getElementById('metaCard'), document.getElementById('nextCaseCard'), ...document.querySelectorAll('.resultsGrid .customCaseCard')];
+    spotlightElements.forEach(el => {
+      if (!el) return;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const xRel = e.clientX - r.left;
+        const yRel = e.clientY - r.top;
+        el.style.setProperty('--sx', xRel + 'px');
+        el.style.setProperty('--sy', yRel + 'px');
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.setProperty('--sx', '-300px');
+        el.style.setProperty('--sy', '-300px');
+      });
+    });
+
+    /* ── CANVAS PARTICLES LIGHT ── */
+    const cv = document.getElementById('bgc'), ctx = cv.getContext('2d'), DPR = window.devicePixelRatio || 1;
+    let W, H;
+    function rsz() {
+      W = innerWidth; H = innerHeight;
+      cv.width = W * DPR; cv.height = H * DPR;
+      cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(DPR, DPR);
+    }
+    rsz();
+    window.addEventListener('resize', rsz);
+
+    const PAL = [[123, 31, 162], [171, 71, 188], [206, 147, 216], [74, 20, 140], [149, 117, 205], [103, 58, 183]];
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+
+    class Dot {
+      constructor(fr) {
+        if (fr) {
+          const s = Math.random();
+          if (s < .25) { this.x = -8; this.y = rnd(0, H); }
+          else if (s < .5) { this.x = W + 8; this.y = rnd(0, H); }
+          else if (s < .75) { this.y = -8; this.x = rnd(0, W); }
+          else { this.y = H + 8; this.x = rnd(0, W); }
+        } else {
+          this.x = rnd(0, W); this.y = rnd(0, H);
+        }
+        this.vx = rnd(-.3, .3); this.vy = rnd(-.3, .3);
+        this.sz = rnd(.8, 3);
+        this.col = PAL[Math.floor(Math.random() * PAL.length)];
+        this.a = rnd(.1, .5);
+        this.life = 0; this.ml = rnd(300, 600);
+        this.sq = Math.random() > .8;
+        this.rot = rnd(0, Math.PI * 2); this.rv = rnd(-.01, .01);
+      }
+      step(mx, my) {
+        this.life++;
+        if (this.life > this.ml) return false;
+        const dx = mx - this.x, dy = my - this.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 160 && d > 0) {
+          const f = (160 - d) / 160 * .015;
+          this.vx -= dx / d * f; this.vy -= dy / d * f;
+        }
+        this.vy += .0004; this.vx *= .997; this.vy *= .997;
+        this.x += this.vx; this.y += this.vy; this.rot += this.rv;
+        return !(this.x < -20 || this.x > W + 20 || this.y < -20 || this.y > H + 20);
+      }
+      draw() {
+        const p = this.life / this.ml, fa = this.a * (p < .07 ? p / .07 : p > .88 ? (1 - p) / .12 : 1), [r, g, b] = this.col;
+        ctx.save(); ctx.globalAlpha = fa; ctx.fillStyle = `rgb(${r},${g},${b})`;
+        if (this.sq) {
+          ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.fillRect(-this.sz, -this.sz, this.sz * 2, this.sz * 2);
+        } else {
+          ctx.beginPath(); ctx.arc(this.x, this.y, this.sz, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    let dots = [], pmx = W / 2, pmy = H / 2;
+    document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
+    for (let i = 0; i < 80; i++) {
+      const d = new Dot(false); d.life = Math.random() * d.ml; dots.push(d);
+    }
+    function conn() {
+      for (let i = 0; i < dots.length; i++)for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 80) {
+          const [r, g, b] = dots[i].col;
+          ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - d / 80) * .09})`; ctx.lineWidth = .3; ctx.stroke();
+        }
+      }
+    }
+    (function frame() {
+      ctx.clearRect(0, 0, W, H); conn();
+      dots = dots.filter(d => { const ok = d.step(pmx, pmy); if (ok) d.draw(); return ok; });
+      while (dots.length < 80) dots.push(new Dot(true));
+      requestAnimationFrame(frame);
+    })();
+
+    /* ── COUNT UP ANIMATION FOR METRIC ── */
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCounters(); cObs.disconnect(); }
+      });
+    }, { threshold: .4 });
+    const mCard = document.getElementById('metaCard');
+    if (mCard) cObs.observe(mCard);
+
+    function animateCounters() {
+      document.querySelectorAll('[data-n]').forEach(el => {
+        const target = parseFloat(el.dataset.n), suffix = el.dataset.s || '', dec = String(target).includes('.') ? 1 : 0;
+        let frames = 0, total = 55;
+        const step = () => {
+          frames++; const cur = target * (frames / total);
+          if (frames <= total) { el.textContent = cur.toFixed(dec) + suffix; requestAnimationFrame(step); }
+          else { el.textContent = target.toFixed(dec) + suffix; }
+        };
+        step();
+      });
+    }
+  </script>
+</body>
 
 </html>

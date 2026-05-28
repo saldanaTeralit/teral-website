@@ -2,984 +2,975 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integración ERP — Teral IT Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #0a0612;
-            --p1: #7B1FA2;
-            --p2: #AB47BC;
-            --p3: #CE93D8;
-            --p4: #4A148C;
-            --card: rgba(255, 255, 255, .04);
-            --border: rgba(255, 255, 255, .08);
-            --text: #f0eaf8;
-            --muted: rgba(240, 234, 248, .55);
-            --radius: 18px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            cursor: none;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        canvas#bgc {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        #cur,
-        #curR {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-            transition: width .15s ease, height .15s ease;
-        }
-
-        #curR {
-            width: 32px;
-            height: 32px;
-            border: 1px solid rgba(254, 252, 255, 0.954);
-            background: transparent;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 clamp(1.5rem, 4vw, 3rem);
-            height: 68px;
-            background: rgba(10, 6, 18, .82);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nLogo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nLogo img {
-            height: 36px;
-        }
-
-        .nBack {
-            display: flex;
-            align-items: center;
-            gap: .45rem;
-            font-size: .85rem;
-            font-weight: 600;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color .2s;
-        }
-
-        .nBack:hover {
-            color: var(--p3);
-        }
-
-        .nBack:hover svg {
-            transform: translateX(-3px);
-        }
-
-        .nBack svg {
-            transition: transform .2s;
-        }
-
-        .nBtn {
-            background: var(--p1);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            padding: .55rem 1.3rem;
-            font-family: inherit;
-            font-size: .85rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background .2s;
-        }
-
-        .nBtn:hover {
-            background: var(--p2);
-        }
-
-        .sHero {
-            position: relative;
-            min-height: 92vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 120px clamp(1.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
-            overflow: hidden;
-        }
-
-        .sHero-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .sHero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(10, 6, 18, .3) 0%, rgba(10, 6, 18, .6) 40%, rgba(10, 6, 18, .94) 75%, var(--bg) 100%);
-        }
-
-        .sHero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 680px;
-            opacity: 0;
-            transform: translateY(28px);
-            animation: fadeUp .75s .15s forwards;
-        }
-
-        .ltag {
-            display: inline-block;
-            font-size: .72rem;
-            font-weight: 700;
-            letter-spacing: .13em;
-            text-transform: uppercase;
-            color: var(--p3);
-            background: rgba(171, 71, 188, .12);
-            border: 1px solid rgba(171, 71, 188, .25);
-            border-radius: 50px;
-            padding: .3rem .9rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .sHero h1 {
-            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-            font-weight: 800;
-            line-height: 1.07;
-            letter-spacing: -.03em;
-            margin-bottom: 1.1rem;
-        }
-
-        .sHero h1 em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--p2), var(--p3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .sHero p {
-            font-size: clamp(1rem, 1.8vw, 1.18rem);
-            color: var(--muted);
-            line-height: 1.65;
-            max-width: 540px;
-            margin-bottom: 2rem;
-        }
-
-        .hBtns {
-            display: flex;
-            gap: .8rem;
-            flex-wrap: wrap;
-        }
-
-        .bA {
-            background: linear-gradient(135deg, var(--p1), var(--p2));
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            padding: .75rem 1.8rem;
-            font-weight: 700;
-            font-size: .95rem;
-            transition: opacity .2s, transform .15s;
-        }
-
-        .bA:hover {
-            opacity: .88;
-            transform: translateY(-2px);
-        }
-
-        .bB {
-            background: rgba(255, 255, 255, .07);
-            color: var(--text);
-            text-decoration: none;
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: .75rem 1.8rem;
-            font-weight: 600;
-            font-size: .95rem;
-            transition: background .2s, border-color .2s;
-        }
-
-        .bB:hover {
-            background: rgba(255, 255, 255, .12);
-            border-color: rgba(171, 71, 188, .4);
-        }
-
-        .statsStrip {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-wrap: wrap;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            background: rgba(10, 6, 18, .7);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            animation: fadeUp .6s .4s forwards;
-        }
-
-        .stat {
-            flex: 1 1 160px;
-            padding: 1.6rem 2rem;
-            border-right: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .stat:last-child {
-            border-right: none;
-        }
-
-        .stat-n {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -.03em;
-            background: linear-gradient(135deg, var(--p2), var(--p3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-l {
-            font-size: .78rem;
-            color: var(--muted);
-            margin-top: .2rem;
-            font-weight: 500;
-        }
-
-        .wrap {
-            position: relative;
-            z-index: 2;
-            padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .sHead {
-            margin-bottom: 3rem;
-        }
-
-        .sHead h2 {
-            font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -.03em;
-            line-height: 1.1;
-            margin-bottom: .8rem;
-        }
-
-        .sHead p {
-            color: var(--muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            max-width: 520px;
-        }
-
-        .featGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-
-        .featCard {
-            padding: 1.8rem;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            position: relative;
-            overflow: hidden;
-            transition: border-color .25s, transform .25s, background .25s;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .featCard.visible {
-            animation: fadeUp .5s forwards;
-        }
-
-        .featCard:hover {
-            border-color: rgba(171, 71, 188, .4);
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, .06);
-        }
-
-        .featCard::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 20% 50%, rgba(171, 71, 188, .1), transparent 70%);
-            opacity: 0;
-            transition: opacity .3s;
-        }
-
-        .featCard:hover::before {
-            opacity: 1;
-        }
-
-        .fIco {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(123, 31, 162, .18);
-            border: 1px solid rgba(171, 71, 188, .2);
-            margin-bottom: 1rem;
-            color: var(--p3);
-            transition: background .25s, border-color .25s;
-        }
-
-        .featCard:hover .fIco {
-            background: rgba(123, 31, 162, .35);
-            border-color: rgba(171, 71, 188, .5);
-        }
-
-        .fT {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: .5rem;
-        }
-
-        .fD {
-            font-size: .9rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .techRow {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .5rem;
-            margin-top: 2rem;
-        }
-
-        .chip {
-            padding: .35rem .9rem;
-            border-radius: 50px;
-            font-size: .78rem;
-            font-weight: 600;
-            background: rgba(123, 31, 162, .15);
-            border: 1px solid rgba(171, 71, 188, .25);
-            color: var(--p3);
-        }
-
-        .splitWrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .splitWrap.rev {
-            direction: rtl;
-        }
-
-        .splitWrap.rev>* {
-            direction: ltr;
-        }
-
-        .splitImg {
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            position: relative;
-        }
-
-        .splitImg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(.85) saturate(1.1);
-            transition: transform .5s;
-        }
-
-        .splitImg:hover img {
-            transform: scale(1.04);
-        }
-
-        .splitImg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(74, 20, 140, .3), transparent 60%);
-            pointer-events: none;
-        }
-
-        .splitText h3 {
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            font-weight: 800;
-            letter-spacing: -.025em;
-            margin-bottom: 1rem;
-            line-height: 1.15;
-        }
-
-        .splitText p {
-            color: var(--muted);
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-        }
-
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 2.5rem;
-        }
-
-        .step {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1.6rem 0;
-            border-bottom: 1px solid var(--border);
-            opacity: 0;
-            transform: translateX(-16px);
-        }
-
-        .step.visible {
-            animation: slideIn .45s forwards;
-        }
-
-        .step:last-child {
-            border-bottom: none;
-        }
-
-        .stepN {
-            font-size: .72rem;
-            font-weight: 800;
-            letter-spacing: .1em;
-            color: var(--p2);
-            background: rgba(171, 71, 188, .1);
-            border: 1px solid rgba(171, 71, 188, .2);
-            border-radius: 8px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: .1rem;
-        }
-
-        .stepT {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: .35rem;
-        }
-
-        .stepD {
-            font-size: .9rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .ctaSec {
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-            padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 6vw, 5rem);
-        }
-
-        .ctaBg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(74, 20, 140, .25) 0%, rgba(10, 6, 18, 0) 60%);
-            border-top: 1px solid var(--border);
-        }
-
-        .ctaSec-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .ctaCard {
-            position: relative;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            overflow: hidden;
-        }
-
-        .ctaCard::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 80% 20%, rgba(171, 71, 188, .18), transparent 65%);
-        }
-
-        .ctaCard-inner {
-            position: relative;
-            z-index: 1;
-        }
-
-        .ctaCard .ltag {
-            margin-bottom: .9rem;
-        }
-
-        .ctaCard h3 {
-            font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-            font-weight: 800;
-            letter-spacing: -.025em;
-            margin-bottom: .8rem;
-            line-height: 1.2;
-        }
-
-        .ctaCard p {
-            color: var(--muted);
-            font-size: .95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .casePreview {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--card);
-            border: 1px solid var(--border);
-            text-decoration: none;
-            color: var(--text);
-            display: block;
-            transition: border-color .25s, transform .25s;
-        }
-
-        .casePreview:hover {
-            border-color: rgba(171, 71, 188, .4);
-            transform: translateY(-4px);
-        }
-
-        .casePreview-img {
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .casePreview-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(.75);
-            transition: transform .4s;
-        }
-
-        .casePreview:hover .casePreview-img img {
-            transform: scale(1.05);
-        }
-
-        .casePreview-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(10, 6, 18, .9) 0%, transparent 50%);
-        }
-
-        .casePreview-body {
-            padding: 1.5rem;
-        }
-
-        .cTag {
-            font-size: .7rem;
-            font-weight: 700;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: var(--p3);
-            margin-bottom: .5rem;
-        }
-
-        .cT {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: .4rem;
-            line-height: 1.3;
-        }
-
-        .cD {
-            font-size: .85rem;
-            color: var(--muted);
-        }
-
-        .cCta {
-            margin-top: .9rem;
-            font-size: .82rem;
-            font-weight: 600;
-            color: var(--p3);
-            display: flex;
-            align-items: center;
-            gap: .3rem;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @media(max-width:768px) {
-
-            .splitWrap,
-            .ctaSec-inner {
-                grid-template-columns: 1fr;
-            }
-
-            .splitWrap.rev {
-                direction: ltr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            nav { padding: 0 1rem; height: 58px; }
-            .nLogo img { height: 26px; }
-            .nBack { font-size: 0.75rem; } 
-            .nBtn { padding: 0.4rem 0.6rem; font-size: 0.7rem; }
-            
-            .sHero { padding: 100px 1.5rem 3rem; min-height: auto; justify-content: center; }
-            .sHero h1 { font-size: 2.2rem; margin-bottom: 1rem; }
-            .sHero p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 2rem; max-width: 100%; }
-            .ltag { font-size: 0.65rem; margin-bottom: 1rem; }
-            
-            .bA, .bB { width: 100%; text-align: center; display: block; padding: 0.8rem; font-size: 0.9rem; }
-            .hBtns { flex-direction: column; gap: 0.6rem; width: 100%; }
-            
-            .statsStrip { flex-direction: column; border-right: none; }
-            .stat { padding: 1.2rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
-            .stat:last-child { border-bottom: none; }
-            .stat-n { font-size: 1.6rem; }
-            
-            .wrap { padding: 3.5rem 1.5rem; }
-            .sHead { margin-bottom: 2rem; }
-            .sHead h2 { font-size: 1.8rem; margin-bottom: 0.6rem; line-height: 1.15; }
-            .sHead p { font-size: 0.9rem; max-width: 100%; line-height: 1.5; }
-            
-            .featGrid { grid-template-columns: 1fr; gap: 1rem; }
-            .featCard { padding: 1.5rem; }
-            
-            .splitImg { aspect-ratio: 16/10; border-radius: 12px; }
-            .splitText h3 { font-size: 1.6rem; margin-bottom: 0.8rem; line-height: 1.2; }
-            .splitText p { font-size: 0.9rem; margin-bottom: 1rem; }
-            
-            .techRow { margin-top: 1.5rem; justify-content: center; text-align: center; }
-            .chip { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
-            
-            .step { flex-direction: column; gap: 0.8rem; padding: 1.5rem 0; }
-            .stepN { width: 34px; height: 34px; font-size: 0.65rem; margin: 0; }
-            .stepT { font-size: 1rem; margin-bottom: 0.4rem; }
-            .stepD { font-size: 0.85rem; }
-            
-            .ctaSec { padding: 3rem 1.2rem; }
-            .ctaCard { padding: 1.8rem 1.2rem; text-align: center; }
-            .ctaCard h3 { font-size: 1.5rem; }
-            .ctaCard p { font-size: 0.9rem; margin-bottom: 1.5rem; }
-            .casePreview-body { padding: 1.2rem; }
-            
-            footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; gap: 1.2rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integración ERP — Teral IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../src/img/Teral/teral morado (1).png" type="image/png">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg2: #F8F7FB;
+      --bg3: #F1ECF7;
+      --border: #E5E0EE;
+      --ink: #111117;
+      --ink2: #4B4858;
+      --ink3: #918EA0;
+      --p1: #7B1FA2;
+      --p2: #AB47BC;
+      --p3: #CE93D8;
+      --p4: #4A148C;
+      --card: #FFFFFF;
+      --radius: 22px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    canvas#bgc {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── CURSOR MORADO CLARO ── */
+    #cur {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--p1);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    #curR {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid rgba(123, 31, 162, .28);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all .38s cubic-bezier(.23, 1, .32, 1);
+    }
+
+    body:has(a:hover) #curR,
+    body:has(button:hover) #curR,
+    body:has(.customCaseCard:hover) #curR,
+    body:has(.projectMetaCard:hover) #curR {
+      transform: translate(-50%, -50%) scale(2.1);
+      border-color: var(--p2);
+    }
+
+    /* ── NAVBAR ALWAYS VISIBLE ── */
+    nav.subpage-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      height: 68px;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .nLogo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nLogo img {
+      height: 36px;
+    }
+
+    .nBack {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--ink2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nBack:hover {
+      color: var(--p1);
+    }
+
+    .nBack:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .nBack svg {
+      transition: transform .2s;
+    }
+
+    .nBtn {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: .55rem 1.3rem;
+      font-family: inherit;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: none;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+
+    .nBtn:hover {
+      background: var(--p1);
+      transform: translateY(-1px);
+    }
+
+    /* ── HÉROE ASIMÉTRICO EDITORIAL ── */
+    .caseHeroGrid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+      padding: 140px clamp(1.5rem, 4vw, 3rem) 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .heroLeft {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .ltag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--p1);
+      background: rgba(123, 31, 162, .07);
+      border: 1px solid rgba(123, 31, 162, .18);
+      border-radius: 50px;
+      padding: .3rem .9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .heroLeft h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -.03em;
+      margin-bottom: 1.3rem;
+    }
+
+    .heroLeft h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--p1), var(--p2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .heroLeft p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      max-width: 620px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hBtns {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .bA {
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      padding: .75rem 1.8rem;
+      font-weight: 700;
+      font-size: .95rem;
+      transition: background .3s, transform .2s, box-shadow .3s;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, .05);
+      border: none;
+      cursor: none;
+    }
+
+    .bA:hover {
+      background: var(--p1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(123, 31, 162, .25);
+    }
+
+    .bB {
+      background: #F0EDF5;
+      color: var(--ink);
+      text-decoration: none;
+      border-radius: 50px;
+      padding: .75rem 1.8rem;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: background .25s, transform .25s;
+      cursor: none;
+    }
+
+    .bB:hover {
+      background: var(--bg3);
+      transform: translateY(-2px);
+    }
+
+    /* ── PROJECT META CARD ── */
+    .projectMetaCard {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(123, 31, 162, 0.02);
+      transition: box-shadow 0.4s, border-color 0.4s;
+    }
+
+    .projectMetaCard:hover {
+      border-color: rgba(171, 71, 188, 0.25);
+      box-shadow: 0 15px 35px rgba(123, 31, 162, 0.05);
+    }
+
+    .projectMetaCard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(280px circle at var(--sx, -300px) var(--sy, -300px),
+              rgba(123, 31, 162, 0.04),
+              transparent 70%);
+      opacity: 0;
+      transition: opacity 0.45s;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .projectMetaCard:hover::before {
+      opacity: 1;
+    }
+
+    .metaItem {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.88rem;
+      align-items: center;
+    }
+
+    .metaItem:last-of-type {
+      border-bottom: none;
+    }
+
+    .metaLabel {
+      color: var(--ink3);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+
+    .metaValue {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .metaTags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: flex-end;
+      max-width: 65%;
+    }
+
+    .metaTag {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      background: rgba(123, 31, 162, 0.05);
+      border: 1px solid rgba(123, 31, 162, 0.1);
+      color: var(--p1);
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    /* Gran Métrica en Ficha */
+    .metaImpact {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .metaImpactVal {
+      font-size: 3rem;
+      font-weight: 850;
+      color: var(--p1);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .metaImpactLbl {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SHOWCASE CENTRAL ── */
+    .showcaseContainer {
+      max-width: 1200px;
+      margin: 1.5rem auto 4.5rem;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .showcaseImgWrap {
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 45px rgba(123, 31, 162, 0.04);
+      border: 1px solid var(--border);
+      aspect-ratio: 21/9;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .showcaseImgWrap:hover {
+      transform: scale(1.008);
+    }
+
+    .showcaseImgWrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── NARRATIVA EDITORIAL FLUIDA ── */
+    .editorialSec {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4.5rem clamp(1.5rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .editorialLeft {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .editorialLeft h3 {
+      font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      margin-top: 0.8rem;
+    }
+
+    .editorialRight {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--ink2);
+      font-weight: 400;
+    }
+
+    .editorialRight p {
+      margin-bottom: 1.5rem;
+    }
+
+    .editorialRight p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Quote Block */
+    .quoteBlock {
+      margin: 2.2rem 0;
+      padding: 1.6rem 2.2rem;
+      background: #FFFFFF;
+      border-left: 4px solid var(--p1);
+      border-radius: 4px 20px 20px 4px;
+      box-shadow: 0 8px 25px rgba(123, 31, 162, 0.01);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quoteBlock p {
+      font-style: italic;
+      color: var(--p4);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 0.6rem !important;
+      font-weight: 500;
+    }
+
+    .quoteAuthor {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ink3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESULTADOS CLAVE ── */
+    .resultsSec {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5.5rem clamp(1.5rem, 4vw, 3rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .resultsHeader {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .resultsHeader h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-top: 0.8rem;
+      color: var(--ink);
+    }
+
+    .resultsGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    /* ── LOOP & CTA FINAL ── */
+    .loopSec {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 5.5rem clamp(1.5rem, 4vw, 3rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .loopGrid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+
+    .loopCta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .loopCta h3 {
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.25;
+      margin-top: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .loopCta p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      margin-bottom: 2.2rem;
+      max-width: 480px;
+    }
+
+    .nextCaseHeader {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--p1);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:992px) {
+      .caseHeroGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .projectMetaCard {
+        max-width: 580px;
+      }
+      .resultsGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .loopGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media(max-width:768px) {
+      .editorialSec {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .resultsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .showcaseImgWrap {
+        aspect-ratio: 16/9;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav.subpage-nav {
+        padding: 0 1rem;
+        height: 60px;
+      }
+      .nLogo img {
+        height: 28px;
+      }
+      .nBack {
+        display: none;
+      }
+      .nBtn {
+        padding: 0.5rem 1.1rem;
+        font-size: 0.78rem;
+      }
+      .caseHeroGrid {
+        padding-top: 110px;
+        padding-bottom: 30px;
+      }
+      .heroLeft h1 {
+        font-size: 1.95rem;
+      }
+      .heroLeft p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .bA, .bB {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+      .hBtns {
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+      }
+      .editorialSec {
+        padding: 3.5rem 1.2rem;
+      }
+      .resultsSec {
+        padding: 3.5rem 1.2rem;
+      }
+      .loopSec {
+        padding: 3.5rem 1.2rem;
+      }
+      .projectMetaCard {
+        padding: 1.5rem;
+      }
+      .metaImpactVal {
+        font-size: 2.4rem;
+      }
+      .quoteBlock {
+        padding: 1.2rem 1.5rem;
+      }
+      .quoteBlock p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="cur"></div>
-    <div id="curR"></div>
-    <canvas id="bgc"></canvas>
-    <nav>
-        <a href="../index.html" class="nLogo"><img src="../src/img/Teral/teralblanco (1).png" alt="Teral IT"></a>
-        <a href="../index.html" class="nBack"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-            </svg>Volver al inicio</a>
-        <a href="../contacto.html" class="nBtn">Hablar con un experto</a>
-    </nav>
+  <div id="cur"></div>
+  <div id="curR"></div>
 
-    <section class="sHero">
-        <div class="sHero-bg"></div>
-        <div class="sHero-content">
-            <span class="ltag">Servicio 02</span>
-            <h1>Integración<br><em>ERP</em></h1>
-            <p>Conectamos SAP, Odoo, Microsip y más con todos tus sistemas. Datos unificados, flujos automatizados y
-                operación en tiempo real.</p>
-            <div class="hBtns">
-                <a href="../contacto.html" class="bA">Evaluar mi ERP →</a>
-                <a href="#features" class="bB">Ver integraciones</a>
-            </div>
-        </div>
-    </section>
+  <canvas id="bgc"></canvas>
 
-    <div class="statsStrip">
-        <div class="stat">
-            <div class="stat-n"><span data-n="73" data-s="%">0%</span></div>
-            <div class="stat-l">Aumento de productividad promedio</div>
-        </div>
-        <div class="stat">
-            <div class="stat-n"><span data-n="18" data-s="+">0+</span></div>
-            <div class="stat-l">ERPs integrados con éxito</div>
-        </div>
-        <div class="stat">
-            <div class="stat-n"><span data-n="90" data-s="%">0%</span></div>
-            <div class="stat-l">Reducción de errores manuales</div>
-        </div>
-        <div class="stat">
-            <div class="stat-n"><span data-n="4" data-s=" meses">0</span></div>
-            <div class="stat-l">Implementación promedio</div>
-        </div>
+  <!-- NAVIGATION -->
+  <nav class="subpage-nav">
+    <a href="../index.html" class="nLogo"><img src="../src/img/Teral/teral_n.png" alt="Teral IT"></a>
+    <a href="../index.html" class="nBack"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>Volver al inicio</a>
+    <a href="../contacto.html" class="nBtn">Hablar con un experto</a>
+  </nav>
+
+  <!-- ASYMMETRIC HERO -->
+  <section class="caseHeroGrid">
+    <div class="heroLeft">
+      <span class="ltag">Servicios TI · ERP</span>
+      <h1>Integración de<br><em>Sistemas ERP</em></h1>
+      <p>Conectamos SAP Business One, Odoo, Microsip y otras plataformas administrativas con tus sistemas comerciales. Datos perfectamente unificados, flujos automatizados y operación en tiempo real sin procesos ni recapturas manuales.</p>
+      <div class="hBtns">
+        <a href="../contacto.html" class="bA">Evaluar mi ERP →</a>
+        <a href="#capacidades" class="bB">Ver capacidades</a>
+      </div>
     </div>
 
-    <section class="wrap" id="features">
-        <div class="sHead">
-            <span class="ltag">Qué integramos</span>
-            <h2>Un ecosistema digital<br>completamente conectado.</h2>
-            <p>Eliminamos los silos de información. Tus sistemas hablan entre sí y tus equipos trabajan con datos en
-                tiempo real.</p>
+    <!-- SERVICE INFO FLOATING CARD -->
+    <div class="projectMetaCard" id="metaCard">
+      <div class="metaItem">
+        <span class="metaLabel">Especialidad</span>
+        <span class="metaValue">SAP, Odoo, Microsip</span>
+      </div>
+      <div class="metaItem">
+        <span class="metaLabel">Tecnologías</span>
+        <div class="metaTags">
+          <span class="metaTag">REST API</span>
+          <span class="metaTag">SOAP</span>
+          <span class="metaTag">EDI</span>
         </div>
-        <div class="featGrid">
-            <div class="featCard">
-                <div class="fIco"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.8">
-                        <circle cx="18" cy="5" r="3" />
-                        <circle cx="6" cy="12" r="3" />
-                        <circle cx="18" cy="19" r="3" />
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                    </svg></div>
-                <div class="fT">Conectores a medida</div>
-                <div class="fD">Desarrollamos APIs y conectores específicos para tu ERP, sin importar si usa tecnología
-                    antigua o moderna.</div>
-            </div>
-            <div class="featCard">
-                <div class="fIco"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.8">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                    </svg></div>
-                <div class="fT">Datos en tiempo real</div>
-                <div class="fD">Sincronización bidireccional entre ERP, CRM, e-commerce y sistemas de producción. Sin
-                    delays, sin inconsistencias.</div>
-            </div>
-            <div class="featCard">
-                <div class="fIco"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.8">
-                        <rect x="3" y="3" width="18" height="18" rx="3" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg></div>
-                <div class="fT">Portales Web integrados</div>
-                <div class="fD">Aplicaciones web que consumen y escriben datos directamente en tu ERP. Cotizadores,
-                    portales de clientes, reportes.</div>
-            </div>
-            <div class="featCard">
-                <div class="fIco"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.8">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                        <polyline points="10 9 9 9 8 9" />
-                    </svg></div>
-                <div class="fT">Automatización de procesos</div>
-                <div class="fD">Flujos automáticos para facturación, inventario, compras y nómina. Tu equipo enfocado en
-                    lo que importa.</div>
-            </div>
-            <div class="featCard">
-                <div class="fIco"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.8">
-                        <line x1="18" y1="20" x2="18" y2="10" />
-                        <line x1="12" y1="20" x2="12" y2="4" />
-                        <line x1="6" y1="20" x2="6" y2="14" />
-                    </svg></div>
-                <div class="fT">Business Intelligence</div>
-                <div class="fD">Dashboards ejecutivos con datos de todos tus sistemas. Toma de decisiones basada en
-                    información actualizada.</div>
-            </div>
-            <div class="featCard">
-                <div class="fIco"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.8">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg></div>
-                <div class="fT">Migración de datos</div>
-                <div class="fD">Limpieza, normalización y migración segura de datos históricos. Sin pérdida de
-                    información, sin tiempo de inactividad.</div>
-            </div>
-        </div>
-        <div class="techRow">
-            <span class="chip">SAP B1</span><span class="chip">Odoo</span><span class="chip">Microsip</span><span
-                class="chip">SAP S/4HANA</span>
-            <span class="chip">Salesforce</span><span class="chip">HubSpot</span><span
-                class="chip">WooCommerce</span><span class="chip">Shopify</span>
-            <span class="chip">REST API</span><span class="chip">SOAP</span><span class="chip">EDI</span><span
-                class="chip">Power BI</span>
-        </div>
+      </div>
+      <div class="metaItem">
+        <span class="metaLabel">ROI Promedio</span>
+        <span class="metaValue">2.8x Promedio</span>
+      </div>
+      <div class="metaItem">
+        <span class="metaLabel">Roadmap TI</span>
+        <span class="metaValue">Mapeo & Go-Live</span>
+      </div>
+      <div class="metaImpact">
+        <div class="metaImpactVal" id="impactVal"><span data-n="65" data-s="%">+0%</span></div>
+        <div class="metaImpactLbl">Eficiencia Operativa Incrementada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANORAMIC SHOWCASE IMAGE -->
+  <section class="showcaseContainer">
+    <div class="showcaseImgWrap">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" alt="Teral Integración ERP">
+    </div>
+  </section>
+
+  <!-- NARRATIVE - NUESTRA METODOLOGÍA -->
+  <section class="editorialSec" id="reto">
+    <div class="editorialLeft">
+      <span class="ltag">Nuestra Metodología</span>
+      <h3>Mapeo operativo sin silos<br>y máxima precisión.</h3>
+    </div>
+    <div class="editorialRight">
+      <p>Eliminamos los silos de información que ralentizan tu negocio. Diseñamos e implementamos flujos de datos automatizados que conectan tus puntos de venta, almacenes, finanzas y compras directamente con tu ERP en tiempo real.</p>
+      <p>Con un mapeo exhaustivo y conectores bidireccionales robustos, garantizamos que cada transacción se registre instantáneamente y sin errores manuales, permitiéndote tomar decisiones informadas con absoluta confianza.</p>
+      <div class="quoteBlock">
+        <p>"Una integración de ERP no consiste solo en conectar bases de datos; consiste en liberar el potencial humano automatizando las tareas repetitivas."</p>
+        <div class="quoteAuthor">Dirección de Operaciones · Teral IT Solutions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NARRATIVE - NUESTRA FILOSOFÍA -->
+  <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <section class="editorialSec" style="border-top: none;">
+      <div class="editorialLeft">
+        <span class="ltag">Nuestra Filosofía</span>
+        <h3>Automatización inteligente y<br>conciliación exacta.</h3>
+      </div>
+      <div class="editorialRight">
+        <p>Nuestra filosofía se basa en crear puentes indestructibles entre tus plataformas comerciales y administrativas. Diseñamos algoritmos inteligentes de conciliación capaces de cruzar inventarios, facturas y pagos de manera autónoma, alertando únicamente ante discrepancias reales.</p>
+        <p>Esto reduce las recapturas manuales en un 90% y agiliza los tiempos de cierre contable, transformando tu ERP de un simple registro histórico a un motor de crecimiento activo.</p>
+      </div>
     </section>
+  </div>
 
-    <section class="wrap">
-        <div class="splitWrap">
-            <div class="splitImg">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Dashboard ERP">
-            </div>
-            <div class="splitText">
-                <span class="ltag">Por qué Teral</span>
-                <h3>Integramos lo que<br>otros no se atreven.</h3>
-                <p>Tenemos experiencia con ERPs on-premise antiguos, APIs propietarias y sistemas legacy. Si tu
-                    proveedor dice que no se puede integrar, nosotros lo revisamos.</p>
-                <p>Metodología probada: <strong style="color:var(--text)">análisis → prototipo → pruebas en ambiente de
-                        desarrollo → go-live</strong>. Sin sorpresas en producción.</p>
-                <a href="../contacto.html" class="bA" style="display:inline-flex;align-items:center;gap:.4rem;">Analizar
-                    mi caso →</a>
-            </div>
+  <!-- KEY CAPABILITIES GRID (customCaseCard style) -->
+  <section class="resultsSec" id="capacidades">
+    <div class="resultsHeader">
+      <span class="ltag">Nuestras Capacidades</span>
+      <h2>Soluciones de integración a tu alcance</h2>
+    </div>
+
+    <div class="resultsGrid">
+      <!-- Card 1 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Conectores Bidireccionales</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+          </div>
         </div>
-    </section>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Sincronización instantánea y robusta entre puntos de venta, CRM, e-commerce y tu ERP administrativo, manteniendo tus datos centralizados.</p>
+      </div>
 
-    <section class="wrap">
-        <div class="sHead"><span class="ltag">Proceso</span>
-            <h2>De sistemas aislados<br>a flujos unificados.</h2>
+      <!-- Card 2 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Automatización de Flujos</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
         </div>
-        <div class="steps">
-            <div class="step">
-                <div class="stepN">01</div>
-                <div>
-                    <div class="stepT">Mapeo de sistemas</div>
-                    <div class="stepD">Documentamos todos tus sistemas, bases de datos, APIs disponibles y flujos de
-                        datos actuales.</div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="stepN">02</div>
-                <div>
-                    <div class="stepT">Diseño de la integración</div>
-                    <div class="stepD">Definimos la arquitectura de integración: qué datos fluyen, en qué dirección, con
-                        qué frecuencia y con qué transformaciones.</div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="stepN">03</div>
-                <div>
-                    <div class="stepT">Desarrollo y pruebas</div>
-                    <div class="stepD">Desarrollamos los conectores en ambiente de pruebas con datos reales
-                        anonimizados. Validamos cada flujo contigo.</div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="stepN">04</div>
-                <div>
-                    <div class="stepT">Migración de datos</div>
-                    <div class="stepD">Limpiamos y migramos datos históricos. Ejecutamos el corte con cero downtime en
-                        horario de baja actividad.</div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="stepN">05</div>
-                <div>
-                    <div class="stepT">Capacitación y soporte</div>
-                    <div class="stepD">Entrenamos a tu equipo, entregamos documentación técnica y ofrecemos soporte
-                        post-implementación.</div>
-                </div>
-            </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Flujos automáticos para facturación, inventarios, compras y nómina. Eliminación completa de tareas repetitivas y recapturas manuales.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Reportes Consolidados</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </div>
         </div>
-    </section>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Dashboards de Business Intelligence (Power BI/Looker) con datos centralizados y unificados en tiempo real para decisiones estratégicas inmediatas.</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="ctaSec">
-        <div class="ctaBg"></div>
-        <div class="ctaSec-inner">
-            <div class="ctaCard">
-                <div class="ctaCard-inner">
-                    <span class="ltag">¿Sistemas desconectados?</span>
-                    <h3>Unifica tu operación<br>en semanas.</h3>
-                    <p>Evaluamos tu ERP actual y te mostramos exactamente qué se puede integrar, cómo y en cuánto
-                        tiempo.</p>
-                    <a href="../contacto.html" class="bA">Solicitar evaluación →</a>
-                </div>
-            </div>
-            <a href="../casos/sap-constructora.html" class="casePreview">
-                <div class="casePreview-img">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
-                        alt="Constructora ERP">
-                </div>
-                <div class="casePreview-body">
-                    <div class="cTag">Caso de éxito · ERP · Construcción</div>
-                    <div class="cT">Portal de Cotizaciones integrado a Microsip</div>
-                    <div class="cD">73% de aumento en productividad con un sistema completo de cotizaciones conectado al
-                        ERP.</div>
-                    <div class="cCta">Ver caso completo <span>→</span></div>
-                </div>
-            </a>
+  <!-- LOOP NAVIGATION & CTA -->
+  <section class="loopSec">
+    <div class="loopGrid">
+      <div class="loopCta">
+        <span class="ltag">¿Listo para unificar tus sistemas?</span>
+        <h3>Lleva tu administración al<br>siguiente nivel tecnológico.</h3>
+        <p>Analizamos la arquitectura de tu ERP actual y diseñamos una propuesta de integración ágil para optimizar tus operaciones.</p>
+        <a href="../contacto.html" class="bA">Iniciar consultoría gratuita →</a>
+      </div>
+
+      <!-- NEXT SERVICE PREVIEW CARD -->
+      <a href="redes.html" class="customCaseCard vis" id="nextCaseCard">
+        <span class="nextCaseHeader">Siguiente Servicio</span>
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Redes & Infraestructura</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
         </div>
-    </section>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Diseño e instalación de cableado estructurado, redes inalámbricas corporativas de alta velocidad y almacenamiento de datos local y nube redundante.</p>
+        <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver capacidades</div>
+      </a>
+    </div>
+  </section>
 
-    <footer
-        style="position:relative;z-index:2;padding:1.5rem clamp(1.5rem,4vw,3rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-        <div><span style="color:rgba(255,255,255,.5);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026
-        </div>
-        <a href="../index.html" class="nBack">← Volver al inicio</a>
-    </footer>
+  <!-- LIGHT FOOTER -->
+  <footer style="position:relative;z-index:2;padding:1.8rem clamp(1.5rem,4vw,3rem);background:var(--bg);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <div style="color:var(--ink2);font-size:12.5px;"><span style="color:var(--ink);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
+    <a href="../index.html" class="nBack" style="color:var(--ink2);">← Volver al inicio</a>
+  </footer>
 
-    <script>
-        const cv = document.getElementById('bgc'), ctx = cv.getContext('2d'), DPR = window.devicePixelRatio || 1; let W, H; function rsz() { W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; cv.style.width = W + 'px'; cv.style.height = H + 'px'; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(DPR, DPR); } rsz(); window.addEventListener('resize', rsz); const PAL = [[123, 31, 162], [171, 71, 188], [206, 147, 216], [74, 20, 140], [149, 117, 205], [103, 58, 183], [156, 39, 176], [186, 104, 200]]; function rnd(a, b) { return a + Math.random() * (b - a); } class Dot { constructor(fr) { if (fr) { const s = Math.random(); if (s < .25) { this.x = -8; this.y = rnd(0, H); } else if (s < .5) { this.x = W + 8; this.y = rnd(0, H); } else if (s < .75) { this.y = -8; this.x = rnd(0, W); } else { this.y = H + 8; this.x = rnd(0, W); } } else { this.x = rnd(0, W); this.y = rnd(0, H); } this.vx = rnd(-.32, .32); this.vy = rnd(-.32, .32); this.sz = rnd(.8, 3); this.col = PAL[Math.floor(Math.random() * PAL.length)]; this.a = rnd(.1, .65); this.life = 0; this.ml = rnd(300, 650); this.sq = Math.random() > .8; this.rot = rnd(0, Math.PI * 2); this.rv = rnd(-.012, .012); } step(mx, my) { this.life++; if (this.life > this.ml) return false; const dx = mx - this.x, dy = my - this.y, d = Math.sqrt(dx * dx + dy * dy); if (d < 160 && d > 0) { const f = (160 - d) / 160 * .015; this.vx -= dx / d * f; this.vy -= dy / d * f; } this.vy += .0004; this.vx *= .997; this.vy *= .997; this.x += this.vx; this.y += this.vy; this.rot += this.rv; return !(this.x < -20 || this.x > W + 20 || this.y < -20 || this.y > H + 20); } draw() { const p = this.life / this.ml, fa = this.a * (p < .07 ? p / .07 : p > .88 ? (1 - p) / .12 : 1), [r, g, b] = this.col; ctx.save(); ctx.globalAlpha = fa; ctx.fillStyle = `rgb(${r},${g},${b})`; if (this.sq) { ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.fillRect(-this.sz, -this.sz, this.sz * 2, this.sz * 2); } else { ctx.beginPath(); ctx.arc(this.x, this.y, this.sz, 0, Math.PI * 2); ctx.fill(); } ctx.restore(); } } let dots = [], pmx = W / 2, pmy = H / 2; document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; }); for (let i = 0; i < 200; i++) { const d = new Dot(false); d.life = Math.random() * d.ml; dots.push(d); } function conn() { for (let i = 0; i < dots.length; i++)for (let j = i + 1; j < dots.length; j++) { const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y, d = Math.sqrt(dx * dx + dy * dy); if (d < 80) { const [r, g, b] = dots[i].col; ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y); ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - d / 80) * .09})`; ctx.lineWidth = .3; ctx.stroke(); } } } (function frame() { ctx.clearRect(0, 0, W, H); conn(); dots = dots.filter(d => { const ok = d.step(pmx, pmy); if (ok) d.draw(); return ok; }); while (dots.length < 200) dots.push(new Dot(true)); requestAnimationFrame(frame); })(); const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: .12 }); document.querySelectorAll('.featCard,.step').forEach(el => obs.observe(el)); const cObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } }); }, { threshold: .5 }); const strip = document.querySelector('.statsStrip'); if (strip) cObs.observe(strip); function animateCounters() { document.querySelectorAll('[data-n]').forEach(el => { const target = parseFloat(el.dataset.n), suffix = el.dataset.s || '', dec = String(target).includes('.') ? 1 : 0; let frames = 0, total = 50; const step = () => { frames++; const cur = target * (frames / total); if (frames <= total) { el.textContent = cur.toFixed(dec) + suffix; requestAnimationFrame(step); } else { el.textContent = target.toFixed(dec) + suffix; } }; step(); }); }
-        /* ── CURSOR ── */
-        const cur = document.getElementById('cur');
-        const ring = document.getElementById('curR');
-        let mx = 0, my = 0, rx = 0, ry = 0;
+  <script>
+    /* ── CURSOR MORADO ── */
+    const cur = document.getElementById('cur');
+    const ring = document.getElementById('curR');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      if (cur && ring) {
+        cur.style.left = mx + 'px';
+        cur.style.top = my + 'px';
+        rx += (mx - rx) * .11;
+        ry += (my - ry) * .11;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+      }
+      requestAnimationFrame(loop);
+    })();
 
-        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    /* ── SPOTLIGHT RADIAL TRACKING ── */
+    const spotlightElements = [document.getElementById('metaCard'), document.getElementById('nextCaseCard'), ...document.querySelectorAll('.resultsGrid .customCaseCard')];
+    spotlightElements.forEach(el => {
+      if (!el) return;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const xRel = e.clientX - r.left;
+        const yRel = e.clientY - r.top;
+        el.style.setProperty('--sx', xRel + 'px');
+        el.style.setProperty('--sy', yRel + 'px');
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.setProperty('--sx', '-300px');
+        el.style.setProperty('--sy', '-300px');
+      });
+    });
 
-        (function loop() {
-            cur.style.left = mx + 'px';
-            cur.style.top = my + 'px';
-            rx += (mx - rx) * .11;
-            ry += (my - ry) * .11;
-            ring.style.left = rx + 'px';
-            ring.style.top = ry + 'px';
-            requestAnimationFrame(loop);
-        })();
-    </script>
+    /* ── CANVAS PARTICLES LIGHT ── */
+    const cv = document.getElementById('bgc'), ctx = cv.getContext('2d'), DPR = window.devicePixelRatio || 1;
+    let W, H;
+    function rsz() {
+      W = innerWidth; H = innerHeight;
+      cv.width = W * DPR; cv.height = H * DPR;
+      cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(DPR, DPR);
+    }
+    rsz();
+    window.addEventListener('resize', rsz);
+
+    const PAL = [[123, 31, 162], [171, 71, 188], [206, 147, 216], [74, 20, 140], [149, 117, 205], [103, 58, 183]];
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+
+    class Dot {
+      constructor(fr) {
+        if (fr) {
+          const s = Math.random();
+          if (s < .25) { this.x = -8; this.y = rnd(0, H); }
+          else if (s < .5) { this.x = W + 8; this.y = rnd(0, H); }
+          else if (s < .75) { this.y = -8; this.x = rnd(0, W); }
+          else { this.y = H + 8; this.x = rnd(0, W); }
+        } else {
+          this.x = rnd(0, W); this.y = rnd(0, H);
+        }
+        this.vx = rnd(-.3, .3); this.vy = rnd(-.3, .3);
+        this.sz = rnd(.8, 3);
+        this.col = PAL[Math.floor(Math.random() * PAL.length)];
+        this.a = rnd(.1, .5);
+        this.life = 0; this.ml = rnd(300, 600);
+        this.sq = Math.random() > .8;
+        this.rot = rnd(0, Math.PI * 2); this.rv = rnd(-.01, .01);
+      }
+      step(mx, my) {
+        this.life++;
+        if (this.life > this.ml) return false;
+        const dx = mx - this.x, dy = my - this.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 160 && d > 0) {
+          const f = (160 - d) / 160 * .015;
+          this.vx -= dx / d * f; this.vy -= dy / d * f;
+        }
+        this.vy += .0004; this.vx *= .997; this.vy *= .997;
+        this.x += this.vx; this.y += this.vy; this.rot += this.rv;
+        return !(this.x < -20 || this.x > W + 20 || this.y < -20 || this.y > H + 20);
+      }
+      draw() {
+        const p = this.life / this.ml, fa = this.a * (p < .07 ? p / .07 : p > .88 ? (1 - p) / .12 : 1), [r, g, b] = this.col;
+        ctx.save(); ctx.globalAlpha = fa; ctx.fillStyle = `rgb(${r},${g},${b})`;
+        if (this.sq) {
+          ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.fillRect(-this.sz, -this.sz, this.sz * 2, this.sz * 2);
+        } else {
+          ctx.beginPath(); ctx.arc(this.x, this.y, this.sz, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    let dots = [], pmx = W / 2, pmy = H / 2;
+    document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
+    for (let i = 0; i < 80; i++) {
+      const d = new Dot(false); d.life = Math.random() * d.ml; dots.push(d);
+    }
+    function conn() {
+      for (let i = 0; i < dots.length; i++)for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 80) {
+          const [r, g, b] = dots[i].col;
+          ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - d / 80) * .09})`; ctx.lineWidth = .3; ctx.stroke();
+        }
+      }
+    }
+    (function frame() {
+      ctx.clearRect(0, 0, W, H); conn();
+      dots = dots.filter(d => { const ok = d.step(pmx, pmy); if (ok) d.draw(); return ok; });
+      while (dots.length < 80) dots.push(new Dot(true));
+      requestAnimationFrame(frame);
+    })();
+
+    /* ── COUNT UP ANIMATION FOR METRIC ── */
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCounters(); cObs.disconnect(); }
+      });
+    }, { threshold: .4 });
+    const mCard = document.getElementById('metaCard');
+    if (mCard) cObs.observe(mCard);
+
+    function animateCounters() {
+      document.querySelectorAll('[data-n]').forEach(el => {
+        const target = parseFloat(el.dataset.n), suffix = el.dataset.s || '', dec = String(target).includes('.') ? 1 : 0;
+        let frames = 0, total = 55;
+        const step = () => {
+          frames++; const cur = target * (frames / total);
+          if (frames <= total) { el.textContent = cur.toFixed(dec) + suffix; requestAnimationFrame(step); }
+          else { el.textContent = target.toFixed(dec) + suffix; }
+        };
+        step();
+      });
+    }
+  </script>
 </body>
 
 </html>

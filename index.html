@@ -21,7 +21,7 @@
   <nav id="nav">
 
     <a href="#" class="nLogo">
-      <img src="src/img/Teral/teralletramorado (1).png" alt="Teral IT" height="36">
+      <img src="src/img/Teral/teral_n.png" alt="Teral IT" height="36">
     </a>
     <div class="nBurger" id="nBurger">
       <span></span>
@@ -32,7 +32,7 @@
     <div class="nContent" id="nContent">
       <ul class="nLinks">
         <li><a href="#services">Servicios</a></li>
-        <li><a href="#clients">Casos de Éxito</a></li>
+        <li><a href="casos.html">Casos de Éxito</a></li>
         <li><a href="#partners">Partners</a></li>
         <li><a href="#process">Proceso</a></li>
       </ul>
@@ -217,7 +217,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════
-       CASOS DE ÉXITO — Dark cinematic cards
+       CASOS DE ÉXITO — Premium rounded cards
   ════════════════════════════════════════════════════ -->
   <section id="cases">
     <canvas class="sec-particles" aria-hidden="true"></canvas>
@@ -229,93 +229,60 @@
 
     <div class="casesGrid">
 
-      <!-- Card 1 — ERP -->
-      <a href="casos/sap-constructora.html" class="cCard" style="--cAccent:#7B1FA2; --cGlow:rgba(171,71,188,0.22);">
-        <div class="cCard-deco" aria-hidden="true">
-          <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="70" cy="70" r="65" stroke="currentColor" stroke-width="0.8" />
-            <circle cx="70" cy="70" r="44" stroke="currentColor" stroke-width="0.8" />
-            <text x="70" y="88" text-anchor="middle" font-family="monospace" font-size="36" fill="currentColor"
-              font-weight="700">ERP</text>
-          </svg>
-        </div>
-        <div class="cCard-inner">
-          <div class="cTag">ERP · Desarrollo a la Medida</div>
-          <div class="cT">Sistema de Cotizaciones para BodeVidrio</div>
-          <p class="cD">Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip,
-            alineada al flujo operativo real de la empresa, reduciendo tiempos de respuesta y eliminando errores en el
-            proceso comercial.</p>
-          <div class="cMets">
-            <div>
-              <div class="mV" data-t="73" data-s="%">0%</div>
-              <div class="mL">Aumento de productividad</div>
-            </div>
-            <div>
-              <div class="mV" data-t="4" data-s=" meses">0</div>
-              <div class="mL">Tiempo de entrega</div>
-            </div>
+      <!-- Card 1 — BodeVidrio (Real) -->
+      <a href="casos/sap-constructora.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">BodeVidrio: Cotizador Microsip</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
           </div>
-          <div class="cCta">Ver caso completo <span class="sArrow">→</span></div>
         </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo operativo real de la empresa comercial.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
       </a>
 
-      <!-- Card 2 — Salud -->
-      <a href="casos/medgroup-portal.html" class="cCard" style="--cAccent:#7B1FA2; --cGlow:rgba(171,71,188,0.22);">
-        <div class="cCard-deco" aria-hidden="true">
-          <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="70" cy="70" r="65" stroke="currentColor" stroke-width="0.8" />
-            <path d="M70 40 V100 M40 70 H100" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="cCard-inner">
-          <div class="cTag">Redes · Centralización</div>
-          <div class="cT">Infraestructura de red y gestión de información para Parapente Logistics</div>
-          <p class="cD">Diseño e implementación de red empresarial, almacenamiento centralizado (NAS) y
-            automatización de procesos para optimizar el acceso a la información y el flujo operativo.
-          </p>
-          <div class="cMets">
-            <div>
-              <div class="mV" data-t="90" data-s="%">0k</div>
-              <div class="mL">Reduccion de timpo en busqueda de información</div>
-            </div>
-            <div>
-              <div class="mV" data-t="100" data-s="%">0%</div>
-              <div class="mL">Centralización</div>
-            </div>
+      <!-- Card 2 — Aldo Transportes (Real) -->
+      <a href="casos/aldo-transportes.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Aldo: Middleware GPS & Tomcat</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
           </div>
-          <div class="cCta">Ver caso completo <span class="sArrow">→</span></div>
         </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollamos una capa intermedia de comunicación Java para integrar dispositivos GPS modernos con su plataforma heredada basada en Apache Tomcat sin interrumpir su servicio.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
       </a>
 
-      <!-- Card 3 — Cloud -->
-      <a href="casos/logispro-cloud.html" class="cCard" style="--cAccent:#7B1FA2; --cGlow:rgba(171,71,188,0.22);">
-        <div class="cCard-deco" aria-hidden="true">
-          <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="70" cy="70" r="65" stroke="currentColor" stroke-width="0.8" />
-            <path d="M98 82 a28 28 0 1 0-8.4-54.6A35 35 0 1 0 42 82Z" stroke="currentColor" stroke-width="5"
-              stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="cCard-inner">
-          <div class="cTag">Soporte TI · Consultoría</div>
-          <div class="cT">Soporte tecnológico integral y optimización de recursos para W Brand Consulting</div>
-          <p class="cD">Acompañamiento continuo en soporte técnico, redes, equipos y consultoría estratégica para
-            mejorar la eficiencia operativa y el aprovechamiento de recursos tecnológicos.
-          </p>
-          <div class="cMets">
-            <div>
-              <div class="mV" data-t="24" data-s="/7">0%</div>
-              <div class="mL">Soporte y atención continua</div>
-            </div>
-            <div>
-              <div class="mV" data-t="0" data-s="">0</div>
-              <div class="mL">Interrupciones críticas en operación</div>
-            </div>
+      <!-- Card 3 — Growa Greenhouse Systems (Real) -->
+      <a href="casos/growa-greenhouse.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Growa: Algoritmo en Python</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            </svg>
           </div>
-          <div class="cCta">Ver caso completo <span class="sArrow">→</span></div>
         </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Diseñamos una aplicación de escritorio Python Tkinter con un algoritmo inteligente para depurar, traducir claves y conciliar stock al migrar de Microsip a IFS ERP.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
       </a>
 
+    </div>
+
+    <div class="casesBtn-wrap reveal">
+      <a href="casos.html" class="bA">Ver todos los casos</a>
     </div>
   </section>
 

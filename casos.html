@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Éxito — Teral IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="src/img/Teral/teral morado (1).png" type="image/png">
+  
+  <style>
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS PARTICLES ── */
+    canvas#bgc {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV OVERRIDES FOR SUBPAGE ── */
+    nav.subpage-nav {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── HERO DE CASOS ── */
+    .casesHero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 130px 4vw 45px;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(22px);
+      animation: fUp .7s .1s ease both;
+    }
+
+    .casesHero h1 {
+      font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+      font-weight: 800;
+      color: var(--ink);
+      margin: 0 auto 1.3rem;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      max-width: 100%;
+    }
+
+    .casesHero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--p4), var(--p1), var(--p2), var(--p3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 100%;
+      animation: gS 5s linear infinite;
+    }
+
+    .casesHero .hSub {
+      margin: 0 auto;
+      max-width: 680px;
+      color: var(--ink2);
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ── GRID DE TARJETAS ── */
+    .casesCustomGrid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      max-width: 1200px;
+      margin: 1rem auto 7rem;
+      padding: 0 4vw;
+    }
+
+    /* ── TARJETAS INDIVIDUALES ── */
+    .customCaseCard {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.3rem 2.2rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 8px 30px rgba(123, 31, 162, 0.03);
+      transition: 
+        transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), 
+        box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1), 
+        border-color 0.35s;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .customCaseCard.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    .customCaseCard:hover {
+      border-color: rgba(171, 71, 188, 0.32);
+      transform: translateY(-6px);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.02),
+        0 20px 45px rgba(123, 31, 162, 0.09),
+        0 0 0 1px rgba(123, 31, 162, 0.04);
+    }
+
+    /* Spotlight Spotlight cursor inside card */
+    .customCaseCard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(280px circle at var(--sx, -300px) var(--sy, -300px),
+              rgba(123, 31, 162, 0.05),
+              transparent 70%);
+      opacity: 0;
+      transition: opacity 0.45s;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+    .customCaseCard:hover::before {
+      opacity: 1;
+    }
+
+    /* Decorador superior sutil */
+    .customCaseCard::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--p1), var(--p2));
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .55s cubic-bezier(.23, 1, .32, 1);
+      z-index: 2;
+    }
+
+    .customCaseCard:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Layout Cabecera Interna de Tarjeta */
+    .caseCardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caseCardTitle {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin: 0;
+      padding-right: 0.5rem;
+    }
+
+    .caseCardIconWrap {
+      width: 44px;
+      height: 44px;
+      background: rgba(123, 31, 162, 0.07);
+      border: 1px solid rgba(123, 31, 162, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--p1);
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s, color 0.3s;
+    }
+
+    .customCaseCard:hover .caseCardIconWrap {
+      transform: scale(1.08) rotate(-4deg);
+      background: var(--p1);
+      color: #FFFFFF;
+    }
+
+    .caseCardIcon {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    /* Línea divisoria decorativa morada */
+    .caseCardDivider {
+      width: 45px;
+      height: 3px;
+      background: var(--p2);
+      border-radius: 20px;
+      margin: 1.1rem 0 1.2rem;
+      position: relative;
+      z-index: 1;
+      transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .customCaseCard:hover .caseCardDivider {
+      width: 75px;
+    }
+
+    /* Descripción */
+    .caseCardDesc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      font-weight: 400;
+      margin: 0;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Botón */
+    .caseCardBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--p1);
+      color: #FFFFFF;
+      padding: 0.72rem 1.6rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1.8rem;
+      align-self: flex-start;
+      border: none;
+      cursor: none;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .customCaseCard:hover .caseCardBtn {
+      background: var(--p2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(171, 71, 188, 0.35);
+    }
+
+    .customCaseCard:active .caseCardBtn {
+      transform: translateY(1px);
+    }
+
+    /* ── RESPONSIVE DE TARJETAS ── */
+    @media (max-width: 1024px) {
+      .casesCustomGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .casesHero {
+        padding: 110px 5vw 35px;
+      }
+      .casesCustomGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 5rem;
+      }
+      .cModalContainer {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="cur"></div>
+  <div id="curR"></div>
+
+  <canvas id="bgc"></canvas>
+
+  <!-- NAVBAR ALWAYS VISIBLE -->
+  <nav class="subpage-nav">
+    <a href="index.html" class="nLogo">
+      <img src="src/img/Teral/teral_n.png" alt="Teral IT" height="36">
+    </a>
+    <div class="nBurger" id="nBurger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="nContent" id="nContent">
+      <ul class="nLinks">
+        <li><a href="index.html#services">Servicios</a></li>
+        <li><a href="casos.html">Casos de Éxito</a></li>
+        <li><a href="index.html#partners">Partners</a></li>
+        <li><a href="index.html#process">Proceso</a></li>
+      </ul>
+      <a href="contacto.html" class="nBtn-wrap"><button class="nBtn">Hablar con un experto</button></a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="casesHero">
+    <span class="ltag">Casos de Éxito</span>
+    <h1 class="mainTitle"><em>CASOS DE ÉXITO</em></h1>
+    <p class="hSub">Desarrollo a medida, integración ERP, redes, consultoría y automatización. Un solo socio tecnológico para todo.</p>
+  </section>
+
+  <!-- SUCCESS CASES GRID (6 CARDS) -->
+  <section class="casesCustomGrid">
+
+    <!-- Card 1 — BodeVidrio (Real) -->
+    <a href="casos/sap-constructora.html" class="customCaseCard">
+      <div class="caseCardHeader">
+        <h2 class="caseCardTitle">BodeVidrio: Cotizador Microsip</h2>
+        <div class="caseCardIconWrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </div>
+      </div>
+      <div class="caseCardDivider"></div>
+      <p class="caseCardDesc">Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo operativo real de la empresa comercial.</p>
+      <div class="caseCardBtn">Ver caso completo</div>
+    </a>
+
+    <!-- Card 2 — Parapente Logistics (Real) -->
+    <a href="casos/medgroup-portal.html" class="customCaseCard">
+      <div class="caseCardHeader">
+        <h2 class="caseCardTitle">Parapente: Infraestructura de Red</h2>
+        <div class="caseCardIconWrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="caseCardDivider"></div>
+      <p class="caseCardDesc">Diseño e implementación de red empresarial de alta velocidad, almacenamiento centralizado (NAS) y automatización de procesos para centralización operativa.</p>
+      <div class="caseCardBtn">Ver caso completo</div>
+    </a>
+
+    <!-- Card 3 — W Brand Consulting (Real) -->
+    <a href="casos/logispro-cloud.html" class="customCaseCard">
+      <div class="caseCardHeader">
+        <h2 class="caseCardTitle">W Brand: Soporte TI & Redes</h2>
+        <div class="caseCardIconWrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="caseCardDivider"></div>
+      <p class="caseCardDesc">Acompañamiento continuo en soporte técnico, seguridad en redes, equipos dedicados y consultoría estratégica para optimizar la eficiencia operativa digital.</p>
+      <div class="caseCardBtn">Ver caso completo</div>
+    </a>
+
+    <!-- Card 4 — Aldo Transportes (Real) -->
+    <a href="casos/aldo-transportes.html" class="customCaseCard">
+      <div class="caseCardHeader">
+        <h2 class="caseCardTitle">Aldo: Middleware GPS & Tomcat</h2>
+        <div class="caseCardIconWrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="caseCardDivider"></div>
+      <p class="caseCardDesc">Desarrollamos una capa intermedia de comunicación Java para integrar dispositivos GPS modernos con su plataforma heredada basada en Apache Tomcat sin interrumpir su servicio.</p>
+      <div class="caseCardBtn">Ver caso completo</div>
+    </a>
+
+    <!-- Card 5 — Growa Greenhouse Systems (Real) -->
+    <a href="casos/growa-greenhouse.html" class="customCaseCard">
+      <div class="caseCardHeader">
+        <h2 class="caseCardTitle">Growa: Algoritmo en Python</h2>
+        <div class="caseCardIconWrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
+        </div>
+      </div>
+      <div class="caseCardDivider"></div>
+      <p class="caseCardDesc">Diseñamos una aplicación de escritorio Python Tkinter con un algoritmo inteligente para depurar, traducir claves y conciliar stock al migrar de Microsip a IFS ERP.</p>
+      <div class="caseCardBtn">Ver caso completo</div>
+    </a>
+
+    <!-- Card 6 — Entorno Lab (Real) -->
+    <a href="casos/entorno-lab.html" class="customCaseCard">
+      <div class="caseCardHeader">
+        <h2 class="caseCardTitle">Entorno Lab: Migración a Odoo</h2>
+        <div class="caseCardIconWrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="caseCardDivider"></div>
+      <p class="caseCardDesc">Migración planificada de Microsip ERP a Odoo Cloud. Desarrollamos módulos a la medida para su laboratorio y reportes personalizados a la par de un consultor certificado.</p>
+      <div class="caseCardBtn">Ver caso completo</div>
+    </a>
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div><span style="color:rgba(255,255,255,.5);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
+    <div class="fLinks">
+      <a href="https://www.instagram.com/teral_support/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/people/Teral-Solutions/61576562213263/#" target="_blank">Facebook</a>
+      <a href="mailto:contacto@teralsupport.com">contacto@teralsupport.com</a>
+      <a href="login.html" style="font-weight:600;">Iniciar Sesión</a>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    /* ── CURSOR TRACKING ── */
+    const cur = document.getElementById('cur');
+    const ring = document.getElementById('curR');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    (function loop() {
+      if (cur && ring) {
+        cur.style.left = mx + 'px';
+        cur.style.top = my + 'px';
+        rx += (mx - rx) * .11;
+        ry += (my - ry) * .11;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+      }
+      requestAnimationFrame(loop);
+    })();
+
+    /* ── SCROLL REVEAL STAGGERED ANIMATIONS ── */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: .08 });
+
+    document.querySelectorAll('.customCaseCard').forEach((card, idx) => {
+      card.style.transitionDelay = (idx * 0.08) + 's';
+      revealObs.observe(card);
+    });
+
+    /* Spotlight Spotlight cursor reaction on card */
+    document.querySelectorAll('.customCaseCard').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const xRel = e.clientX - r.left;
+        const yRel = e.clientY - r.top;
+        card.style.setProperty('--sx', xRel + 'px');
+        card.style.setProperty('--sy', yRel + 'px');
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--sx', '-300px');
+        card.style.setProperty('--sy', '-300px');
+      });
+    });
+
+    /* ── MOBILE NAV BURGER ── */
+    const burger = document.getElementById('nBurger');
+    const nav = document.querySelector('nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+      });
+    }
+
+    document.querySelectorAll('.nLinks a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav) {
+          nav.classList.remove('open');
+        }
+        document.body.style.overflow = '';
+      });
+    });
+
+
+
+    /* ── CONFIGURACIÓN DEL COLOR DE PARTÍCULAS ── */
+    window.customParticleColor = { r: 123, g: 31, b: 162, a: 0.12 };
+  </script>
+  <script src="js/particles.js"></script>
+
+</body>
+
+</html>
