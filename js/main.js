@@ -227,7 +227,7 @@ const clientLogos = [
     { src: 'src/img/clientes/grupotinta.png', alt: 'Grupo Tinta' },
     { src: 'src/img/clientes/growa.svg', alt: 'GROWA' },
     { src: 'src/img/clientes/diligencias.png', alt: 'La casa de las Diligencias' },
-    { src: 'src/img/clientes/parapente.png', alt: 'Parapente Logistics' },
+    { src: 'src/img/clientes/aldo.png', alt: 'Aldo Transportes' },
 ];
 
 const track = document.getElementById('track');
@@ -419,15 +419,7 @@ const PARTNERS = [
         bg: 'rgba(113,75,103,.05)',
         border: 'rgba(113,75,103,.28)',
     },
-    {
-        name: 'Microsip',
-        cert: 'Consultor Certificado',
-        logo: 'src/img/Partners/MICROSIP.svg',
-        brand: '#714B67',
-        glow: 'rgba(113,75,103,.17)',
-        bg: 'rgba(113,75,103,.05)',
-        border: 'rgba(113,75,103,.28)',
-    },
+
     {
         name: 'Odoo',
         cert: 'Certified Partner',
@@ -686,3 +678,57 @@ if (canvas) {
         createSymbolGroup();
     }, 2500);
 }
+
+
+/* ── COOKIE CONSENT BANNER GENERATOR ── */
+(function initCookieBanner() {
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent) {
+        if (consent === 'accepted') {
+            loadAnalytics();
+        }
+        return;
+    }
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.innerHTML = `
+        <div class="cookie-text">
+            Utilizamos cookies propias y de terceros para analizar el tráfico del sitio y personalizar el contenido. Puedes aceptar todas las cookies, rechazar las no esenciales o consultar nuestra <a href="politica-cookies.html">Política de Cookies</a> y <a href="aviso-privacidad.html">Aviso de Privacidad</a> para obtener más información.
+        </div>
+        <div class="cookie-btns">
+            <button class="cookie-btn cookie-btn--reject" id="cookieReject">Rechazar</button>
+            <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Aceptar</button>
+        </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    setTimeout(() => {
+        banner.classList.add('show');
+    }, 1500);
+
+    document.getElementById('cookieAccept').addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        loadAnalytics();
+        hideBanner();
+    });
+
+    document.getElementById('cookieReject').addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'rejected');
+        console.log("Cookies rejected. Non-essential tracking disabled.");
+        hideBanner();
+    });
+
+    function hideBanner() {
+        banner.classList.remove('show');
+        setTimeout(() => {
+            banner.remove();
+        }, 600);
+    }
+
+    function loadAnalytics() {
+        console.log("Cookies accepted. Loading analytical and tracking scripts...");
+        // Tracking scripts (e.g. Google Analytics) would be initialized here
+    }
+})();

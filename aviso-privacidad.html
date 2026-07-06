@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviso de Privacidad — Teral IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="icon" href="src/img/Teral/teral morado (1).png" type="image/png">
+  
+  <style>
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    canvas#bgc {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav.subpage-nav {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .legalHero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 130px 4vw 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fUp .7s ease both;
+    }
+
+    .legalHero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 1.3rem;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+    }
+
+    .legalHero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--p4), var(--p1), var(--p2), var(--p3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 100%;
+      animation: gS 5s linear infinite;
+    }
+
+    .legalContent {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto 8rem;
+      padding: 0 4vw;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--ink2);
+      font-weight: 400;
+    }
+
+    .legalContent h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin: 2.8rem 0 1.2rem;
+      letter-spacing: -.02em;
+    }
+
+    .legalContent p {
+      margin-bottom: 1.5rem;
+    }
+
+    .legalContent ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .legalContent li {
+      margin-bottom: 0.6rem;
+    }
+
+    .lastUpdate {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+      display: block;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="cur"></div>
+  <div id="curR"></div>
+
+  <canvas id="bgc"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="subpage-nav">
+    <a href="index.html" class="nLogo">
+      <img src="src/img/Teral/teral_n.png" alt="Teral IT" height="36">
+    </a>
+    <div class="nBurger" id="nBurger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="nContent" id="nContent">
+      <ul class="nLinks">
+        <li><a href="index.html#services">Servicios</a></li>
+        <li><a href="casos.html">Casos de Éxito</a></li>
+        <li><a href="index.html#partners">Partners</a></li>
+        <li><a href="index.html#process">Proceso</a></li>
+      </ul>
+      <a href="contacto.html" class="nBtn-wrap"><button class="nBtn">Hablar con un experto</button></a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="legalHero">
+    <span class="ltag">Legal</span>
+    <h1>Aviso de <em>Privacidad</em></h1>
+    <span class="lastUpdate">Última actualización: Julio 2026</span>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="legalContent">
+    <p>En <strong>Teral IT Solutions</strong>, valoramos la privacidad de nuestros usuarios y clientes. Este Aviso de Privacidad detalla cómo recopilamos, utilizamos, almacenamos y protegemos la información personal que nos proporcionas a través de nuestro sitio web y los servicios relacionados.</p>
+
+    <h2>1. Identidad y Domicilio del Responsable</h2>
+    <p>Teral IT Solutions, con domicilio de operación para la prestación de servicios tecnológicos, es el responsable del tratamiento de tus datos personales, de conformidad con las leyes vigentes de protección de datos personales.</p>
+
+    <h2>2. Datos Personales Recopilados</h2>
+    <p>Los datos que recopilamos a través de nuestros formularios de contacto, cotizaciones o suscripciones a boletines informativos incluyen:</p>
+    <ul>
+      <li>Nombre completo o razón social de la empresa.</li>
+      <li>Dirección de correo electrónico corporativo o personal.</li>
+      <li>Número de teléfono de contacto.</li>
+      <li>Detalles o requerimientos de proyectos específicos que elijas describir en nuestros campos de consulta.</li>
+    </ul>
+
+    <h2>3. Finalidad del Tratamiento de Datos</h2>
+    <p>Tus datos personales serán utilizados exclusivamente para las siguientes finalidades principales y necesarias para mantener nuestra relación comercial:</p>
+    <ul>
+      <li>Atender, procesar y responder a tus solicitudes de información, soporte o cotización de servicios tecnológicos.</li>
+      <li>Diseñar, personalizar y proveer propuestas técnicas y comerciales adaptadas a las necesidades de tu empresa.</li>
+      <li>Mantener comunicación directa sobre el progreso, soporte o facturación de los servicios en ejecución.</li>
+    </ul>
+    <p>Adicionalmente, y solo en caso de que lo autorices expresamente, utilizaremos tus datos para finalidades secundarias como enviarte información relevante sobre actualizaciones tecnológicas, boletines informativos o promociones comerciales de Teral IT Solutions. Podrás darte de baja de estas comunicaciones en cualquier momento.</p>
+
+    <h2>4. Transferencia de Datos</h2>
+    <p>Teral IT Solutions no vende, renta ni transfiere tus datos personales a terceros sin tu consentimiento previo, salvo en los casos estrictamente exceptuados por las leyes aplicables o cuando sea requerido por mandatos o resoluciones de autoridades competentes.</p>
+
+    <h2>5. Derechos ARCO</h2>
+    <p>Tienes en todo momento el derecho de acceder, rectificar, cancelar u oponerse (derechos ARCO) al uso y tratamiento de tus datos personales. Para ejercer cualquiera de estos derechos, o para revocar tu consentimiento, puedes enviar una solicitud formal por escrito a nuestro correo de contacto de privacidad: <a href="mailto:contacto@teralsupport.com" style="color: var(--p1); font-weight:600; text-decoration:none;">contacto@teralsupport.com</a>.</p>
+    <p>Tu solicitud deberá contener los datos mínimos de identificación del solicitante y una descripción del derecho que deseas ejercer para recibir una respuesta formal en un plazo no mayor a 20 días hábiles.</p>
+
+    <h2>6. Medidas de Seguridad</h2>
+    <p>Hemos implementado medidas de seguridad técnicas, físicas y administrativas para proteger tus datos personales contra daños, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado. Entre otras medidas, la comunicación de información entre tu navegador y nuestro servidor está encriptada mediante protocolo seguro HTTPS.</p>
+
+    <h2>7. Cambios al Aviso de Privacidad</h2>
+    <p>Nos reservamos el derecho de efectuar modificaciones o actualizaciones a este Aviso de Privacidad en cualquier momento para adaptarlo a novedades legislativas, políticas internas o nuevos requerimientos para la prestación de nuestros servicios. Cualquier cambio estará disponible y publicado a través de esta misma sección de nuestro sitio web.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div><span style="color:rgba(255,255,255,.5);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
+    <div class="fLinks">
+      <a href="https://www.instagram.com/teral_support/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/people/Teral-Solutions/61576562213263/#" target="_blank">Facebook</a>
+      <a href="mailto:contacto@teralsupport.com">contacto@teralsupport.com</a>
+      <a href="login.html" style="font-weight:600;">Iniciar Sesión</a>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    /* ── CURSOR TRACKING ── */
+    const cur = document.getElementById('cur');
+    const ring = document.getElementById('curR');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    (function loop() {
+      if (cur && ring) {
+        cur.style.left = mx + 'px';
+        cur.style.top = my + 'px';
+        rx += (mx - rx) * .11;
+        ry += (my - ry) * .11;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+      }
+      requestAnimationFrame(loop);
+    })();
+
+    /* ── MOBILE NAV BURGER ── */
+    const burger = document.getElementById('nBurger');
+    const nav = document.querySelector('nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+      });
+    }
+
+    document.querySelectorAll('.nLinks a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav) {
+          nav.classList.remove('open');
+        }
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.customParticleColor = { r: 123, g: 31, b: 162, a: 0.12 };
+  </script>
+  <script src="js/particles.js?v=2"></script>
+
+</body>
+
+</html>
