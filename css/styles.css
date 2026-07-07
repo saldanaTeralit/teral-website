@@ -1426,7 +1426,8 @@ h2 {
     transition: opacity 0.35s ease;
 }
 
-.pStep:hover::before {
+.pStep:hover::before,
+.pStep.active::before {
     opacity: 1;
 }
 
@@ -1435,7 +1436,8 @@ h2 {
     transform: none;
 }
 
-.pStep:hover {
+.pStep:hover,
+.pStep.active {
     background: var(--bg2);
     border-color: var(--p3);
     transform: translateY(-8px);
@@ -1460,7 +1462,8 @@ h2 {
     transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.pStep:hover .pN {
+.pStep:hover .pN,
+.pStep.active .pN {
     background: var(--p1);
     color: #fff;
     border-color: var(--p1);
@@ -1480,7 +1483,8 @@ h2 {
     pointer-events: none;
 }
 
-.pStep:hover .pN::after {
+.pStep:hover .pN::after,
+.pStep.active .pN::after {
     opacity: 0.4;
     transform: scale(1);
     animation: ringPulse 1.8s infinite;
@@ -1509,7 +1513,8 @@ h2 {
     transition: color 0.3s ease;
 }
 
-.pStep:hover .pT {
+.pStep:hover .pT,
+.pStep.active .pT {
     color: var(--p1);
 }
 
@@ -1521,7 +1526,8 @@ h2 {
     transition: color 0.3s ease;
 }
 
-.pStep:hover .pD {
+.pStep:hover .pD,
+.pStep.active .pD {
     color: var(--ink2);
 }
 

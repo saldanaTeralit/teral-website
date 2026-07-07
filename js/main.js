@@ -778,4 +778,74 @@ if (canvas) {
         console.log("Cookies accepted. Loading analytical and tracking scripts...");
         // Tracking scripts (e.g. Google Analytics) would be initialized here
     }
+
+    /* ── AUTOPLAY CAROUSEL PARA PASOS DE PROCESO ── */
+    (function initProcessCarousel() {
+        const steps = document.querySelectorAll('.pStep');
+        if (steps.length === 0) return;
+
+        let currentIndex = 0;
+        let timer = null;
+        const intervalTime = 3000; // 3 segundos por paso
+
+        function activateStep(index) {
+            steps.forEach((step, i) => {
+                if (i === index) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            currentIndex = index;
+        }
+
+        function nextStep() {
+            const nextIndex = (currentIndex + 1) % steps.length;
+            activateStep(nextIndex);
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            timer = setInterval(nextStep, intervalTime);
+        }
+
+        function stopAutoPlay() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        // Eventos hover para detener e iniciar desde el paso posicionado
+        steps.forEach((step, idx) => {
+            step.addEventListener('mouseenter', () => {
+                stopAutoPlay();
+                activateStep(idx);
+            });
+
+            step.addEventListener('mouseleave', () => {
+                startAutoPlay();
+            });
+        });
+
+        // IntersectionObserver para iniciar la animación solo cuando la sección es visible
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                activateStep(0); // Comienza en el primer paso
+                startAutoPlay();
+            } else {
+                stopAutoPlay();
+                // Limpiar clase active al salir de pantalla para un reinicio limpio
+                steps.forEach(s => s.classList.remove('active'));
+            }
+        }, { threshold: 0.15 });
+
+        const procRow = document.querySelector('.procRow');
+        if (procRow) {
+            observer.observe(procRow);
+        } else {
+            activateStep(0);
+            startAutoPlay();
+        }
+    })();
 })();
