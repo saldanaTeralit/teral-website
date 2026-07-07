@@ -92,33 +92,80 @@ class Dot {
         ctx.scale(DPR, DPR);
     }
     rsz();
-    window.addEventListener('resize', rsz);
+    window.addEventListener('resize', () => { rsz(); initHeroParticles(); });
 
-    let dots = [];
-    let pmx = W / 2, pmy = H / 2;
-    document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
+    const COUNT = 300; // Conteo elevado para un fondo denso e inmersivo
+    const particles = [];
 
-    for (let i = 0; i < 200; i++) {
-        const d = new Dot(W, H, false); d.life = Math.random() * d.ml; dots.push(d);
+    function initHeroParticles() {
+        particles.length = 0;
+        for (let i = 0; i < COUNT; i++) {
+            particles.push({
+                x: rnd(0, W),
+                y: rnd(0, H),
+                vx: rnd(-0.35, 0.35),
+                vy: rnd(-0.35, 0.35),
+                radius: rnd(0.8, 3.2),
+                opacity: rnd(0.12, 0.65),
+                col: PAL[Math.floor(Math.random() * PAL.length)],
+                pulse: rnd(0, Math.PI * 2),
+                pulseSpd: rnd(0.008, 0.02)
+            });
+        }
     }
+    initHeroParticles();
 
-    function conn() {
-        for (let i = 0; i < dots.length; i++) for (let j = i + 1; j < dots.length; j++) {
-            const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
-            const d = Math.sqrt(dx * dx + dy * dy);
-            if (d < 80) {
-                const [r, g, b] = dots[i].col;
-                ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y);
-                ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - d / 80) * .09})`;
-                ctx.lineWidth = .3; ctx.stroke();
+    function drawConnections() {
+        // Reducimos la distancia de conexión a 60px para evitar saturar de líneas con 300 partículas
+        const maxDist = 60;
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < maxDist) {
+                    const [r, g, b] = particles[i].col;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(${r},${g},${b},${((1 - d / maxDist) * .075).toFixed(3)})`;
+                    ctx.lineWidth = 0.35;
+                    ctx.stroke();
+                }
             }
         }
     }
 
     (function frame() {
-        ctx.clearRect(0, 0, W, H); conn();
-        dots = dots.filter(d => { const ok = d.step(pmx, pmy); if (ok) d.draw(ctx); return ok; });
-        while (dots.length < 200) dots.push(new Dot(W, H, true));
+        ctx.clearRect(0, 0, W, H);
+        
+        drawConnections();
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.pulse += p.pulseSpd;
+
+            const scale = 1 + Math.sin(p.pulse) * 0.18;
+            const rad = p.radius * scale;
+            const alpha = p.opacity * (0.75 + Math.sin(p.pulse + 1) * 0.25);
+            const [r, g, b] = p.col;
+
+            // Wrapping de bordes
+            if (p.x < -15) p.x = W + 15;
+            if (p.x > W + 15) p.x = -15;
+            if (p.y < -15) p.y = H + 15;
+            if (p.y > H + 15) p.y = -15;
+
+            ctx.save();
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        });
+
         requestAnimationFrame(frame);
     })();
 }

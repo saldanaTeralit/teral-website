@@ -181,7 +181,7 @@ nav.open .nBurger span:nth-child(3) {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 5vw 5rem;
+    padding: 1.5rem 5vw 4.5rem;
 }
 
 .eyebrow {
@@ -443,6 +443,11 @@ h1 em {
 
 .cl-item:hover img {
     transform: scale(1.05);
+}
+
+.cl-item img[src*="w.png"] {
+    filter: brightness(0);
+    opacity: 0.8; /* Make it slightly softer for a premium dark grey aesthetic */
 }
 
 /* ─────────────────────────────────────────────────
@@ -1796,7 +1801,7 @@ footer a:hover {
 
 @media (max-width: 640px) {
     #hero {
-        padding: 5rem 6vw 3rem;
+        padding: 2.5rem 6vw 2.5rem;
     }
 
     h1 {
@@ -1914,13 +1919,14 @@ footer a:hover {
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.55rem;
-        line-height: 1.15;
+        font-size: 2.65rem;
+        line-height: 1.12;
     }
 
     .eyebrow {
-        margin-bottom: 1rem;
-        font-size: 10px;
+        margin-bottom: 0.8rem;
+        font-size: 12.5px;
+        letter-spacing: .15em;
         justify-content: center;
     }
 
@@ -1931,10 +1937,10 @@ footer a:hover {
     }
 
     .hSub {
-        margin: 0.5rem 0 1rem;
-        font-size: 0.8rem;
-        line-height: 1.5;
-        opacity: 0.8;
+        margin: 1.2rem 0 2rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        opacity: 0.85;
     }
 
     h2 {
@@ -2046,8 +2052,8 @@ footer a:hover {
     }
 
     #hero {
-        min-height: 100dvh;
-        padding: 5rem 6vw 2.5rem;
+        min-height: 85dvh;
+        padding: 1.8rem 6vw;
     }
 
     .cl-item {

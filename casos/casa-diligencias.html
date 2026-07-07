@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caso Entorno Lab — Teral IT Solutions</title>
+  <title>Caso La Casa de las Diligencias — Teral IT Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css?v=3">
@@ -206,7 +206,6 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .heroLeft p {
@@ -283,8 +282,8 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(280px circle at var(--sx, -300px) var(--sy, -300px),
-          rgba(123, 31, 162, 0.04),
-          transparent 70%);
+              rgba(123, 31, 162, 0.04),
+              transparent 70%);
       opacity: 0;
       transition: opacity 0.45s;
       pointer-events: none;
@@ -297,7 +296,7 @@
 
     .metaItem {
       display: flex;
-      justify-between: space-between;
+      justify-content: space-between;
       padding: 0.8rem 0;
       border-bottom: 1px dashed var(--border);
       font-size: 0.88rem;
@@ -380,7 +379,7 @@
       width: 100%;
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 15px 45px rgba(123, 31, 162, 0.12), 0 4px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 15px 45px rgba(123, 31, 162, 0.12), 0 4px 20px rgba(0,0,0,0.08);
       border: 1px solid rgba(123, 31, 162, 0.15);
       aspect-ratio: 21/9;
       transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
@@ -396,8 +395,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(123, 31, 162, .08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(123, 31, 162, .08) 1px, transparent 1px);
+        linear-gradient(rgba(123,31,162,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123,31,162,.08) 1px, transparent 1px);
       background-size: 48px 48px;
       pointer-events: none;
     }
@@ -406,13 +405,13 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(123, 31, 162, 0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(123,31,162,0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .showcaseImgWrap:hover {
       transform: translateY(-4px);
-      box-shadow: 0 25px 60px rgba(123, 31, 162, 0.18), 0 8px 30px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 25px 60px rgba(123, 31, 162, 0.18), 0 8px 30px rgba(0,0,0,0.12);
     }
 
     .showcaseBrand {
@@ -428,17 +427,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 20px;
       padding: clamp(1rem, 2.5vw, 1.8rem) clamp(1.5rem, 3.5vw, 2.8rem);
       backdrop-filter: blur(12px);
       transition: background 0.3s, border-color 0.3s;
     }
 
+    .showcaseLogo.no-box {
+      background: transparent;
+      border: none;
+      backdrop-filter: none;
+      padding: 0;
+      box-shadow: none;
+    }
+
     .showcaseLogo:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
     }
 
     .showcaseLogo img {
@@ -447,6 +454,11 @@
       object-fit: contain;
       filter: brightness(0) invert(1);
       opacity: 0.92;
+    }
+
+    .showcaseLogo img.color-logo {
+      filter: none;
+      opacity: 1;
     }
 
     .showcaseUnion {
@@ -464,15 +476,15 @@
       display: block;
       width: 1px;
       height: clamp(20px, 3vw, 36px);
-      background: linear-gradient(to bottom, transparent, rgba(171, 71, 188, 0.6), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(171,71,188,0.6), transparent);
     }
 
     .showcaseUnionSym {
       font-size: clamp(1.4rem, 3vw, 2.4rem);
       font-weight: 300;
-      color: rgba(171, 71, 188, 0.8);
+      color: rgba(171,71,188,0.8);
       line-height: 1;
-      text-shadow: 0 0 20px rgba(171, 71, 188, 0.5);
+      text-shadow: 0 0 20px rgba(171,71,188,0.5);
     }
 
     @media (max-width: 768px) {
@@ -642,15 +654,12 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-
       .projectMetaCard {
         max-width: 580px;
       }
-
       .resultsGrid {
         grid-template-columns: repeat(2, 1fr);
       }
-
       .loopGrid {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -662,12 +671,10 @@
         grid-template-columns: 1fr;
         gap: 1.8rem;
       }
-
       .resultsGrid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-
       .showcaseImgWrap {
         aspect-ratio: 16/9;
       }
@@ -678,73 +685,57 @@
         padding: 0 1rem;
         height: 60px;
       }
-
       .nLogo img {
         height: 28px;
       }
-
       .nBack {
         display: none;
       }
-
       .nBtn {
         padding: 0.5rem 1.1rem;
         font-size: 0.78rem;
       }
-
       .caseHeroGrid {
         padding-top: 110px;
         padding-bottom: 30px;
       }
-
       .heroLeft h1 {
         font-size: 1.95rem;
       }
-
       .heroLeft p {
         font-size: 0.95rem;
         line-height: 1.6;
       }
-
-      .bA,
-      .bB {
+      .bA, .bB {
         width: 100%;
         text-align: center;
         display: block;
         padding: 0.8rem;
         font-size: 0.9rem;
       }
-
       .hBtns {
         flex-direction: column;
         gap: 0.6rem;
         width: 100%;
       }
-
       .editorialSec {
         padding: 3.5rem 1.2rem;
       }
-
       .resultsSec {
         padding: 3.5rem 1.2rem;
       }
-
       .loopSec {
         padding: 3.5rem 1.2rem;
       }
-
       .projectMetaCard {
         padding: 1.5rem;
       }
-
       .metaImpactVal {
         font-size: 2.4rem;
       }
-
       .quoteBlock {
         padding: 1.2rem 1.5rem;
       }
-
       .quoteBlock p {
         font-size: 0.95rem;
       }
@@ -771,11 +762,9 @@
   <!-- ASYMMETRIC HERO -->
   <section class="caseHeroGrid">
     <div class="heroLeft">
-      <span class="ltag">ERP · Migración · Odoo</span>
-      <h1>Migración exitosa de Microsip ERP a Odoo para<br><em>Entorno Lab</em></h1>
-      <p>Diseñamos y ejecutamos un plan de migración por fases para trasladar de forma segura toda la administración y
-        catálogos de Entorno Lab desde Microsip a Odoo Cloud, desarrollando módulos a la medida para su laboratorio y
-        reportes personalizados a la par de un consultor certificado.</p>
+      <span class="ltag">Soporte TI · Redes · Soft Restaurant</span>
+      <h1>Estabilidad y optimización de Soft Restaurant para<br><em>La Casa de las Diligencias</em></h1>
+      <p>Asumimos el rol de socio tecnológico para rescatar la operación de su punto de venta, estructurar su red local mediante aislamiento de tráfico y proveer soporte continuo a impresoras térmicas y cajas.</p>
       <div class="hBtns">
         <a href="../contacto.html" class="bA">Quiero una solución similar →</a>
         <a href="#reto" class="bB">Ver detalles del caso</a>
@@ -785,44 +774,45 @@
     <!-- PROJECT INFO FLOATING CARD -->
     <div class="projectMetaCard" id="metaCard">
       <div class="metaItem">
-        <span class="metaLabel"> Cliente</span>
-        <span class="metaValue"> Entorno Lab</span>
+        <span class="metaLabel">Cliente</span>
+        <span class="metaValue">La Casa de las Diligencias</span>
       </div>
       <div class="metaItem">
-        <span class="metaLabel"> Sector</span>
-        <span class="metaValue"> Marketing BTL</span>
+        <span class="metaLabel">Sector</span>
+        <span class="metaValue">Restaurantes & Hospitalidad</span>
       </div>
       <div class="metaItem">
         <span class="metaLabel">Servicios</span>
         <div class="metaTags">
-          <span class="metaTag">ERP Migration</span>
-          <span class="metaTag">Odoo Custom Modules</span>
-          <span class="metaTag">Custom Reports</span>
+          <span class="metaTag">Soft Restaurant</span>
+          <span class="metaTag">Aislamiento de Red</span>
+          <span class="metaTag">Soporte TI</span>
+          <span class="metaTag">Impresión Térmica</span>
         </div>
       </div>
       <div class="metaItem">
-        <span class="metaLabel"> Año</span>
-        <span class="metaValue"> 2025</span>
+        <span class="metaLabel">Año</span>
+        <span class="metaValue">2026</span>
       </div>
       <div class="metaImpact">
         <div class="metaImpactVal" id="impactVal"><span data-n="100" data-s="%">0%</span></div>
-        <div class="metaImpactLbl">Migración Exitosa de Datos</div>
+        <div class="metaImpactLbl">Estabilidad Operativa Lograda</div>
       </div>
     </div>
   </section>
 
-  <!-- BRANDED SHOWCASE BANNER: Teral × Entorno Lab -->
+  <!-- BRANDED SHOWCASE BANNER: Teral × La Casa de las Diligencias -->
   <section class="showcaseContainer">
     <div class="showcaseImgWrap">
       <div class="showcaseBrand">
-        <div class="showcaseLogo">
+        <div class="showcaseLogo no-box">
           <img src="../src/img/Teral/teral_n.png" alt="Teral IT Solutions">
         </div>
         <div class="showcaseUnion">
           <span class="showcaseUnionSym">×</span>
         </div>
         <div class="showcaseLogo">
-          <img src="../src/img/clientes/entorno (1).png" alt="Entorno Lab">
+          <img src="../src/img/clientes/diligencias.png" alt="La Casa de las Diligencias">
         </div>
       </div>
     </div>
@@ -832,21 +822,14 @@
   <section class="editorialSec" id="reto">
     <div class="editorialLeft">
       <span class="ltag">El Reto</span>
-      <h3>Limitaciones de escalabilidad<br>y riesgos de interrupción.</h3>
+      <h3>Inestabilidad en horas clave y<br>soporte deficiente.</h3>
     </div>
     <div class="editorialRight">
-      <p>Entorno Lab operaba bajo el sistema Microsip ERP on-premise, el cual presentaba serias limitaciones para
-        adaptarse a su acelerado crecimiento operativo y necesidad de personalización. Requerían un ERP moderno en la
-        nube (Odoo) que les permitiera automatizar flujos complejos y generar reportes analíticos precisos, pero la
-        migración de un sistema legacy local a la nube representaba un riesgo alto de pérdida de datos e interrupción en
-        sus operaciones críticas de laboratorio.</p>
-      <p>El flujo de Microsip no permitía un manejo dinámico de muestras ni el control automatizado de reactivos e
-        insumos, forzando a los colaboradores a llevar dobles registros manuales fuera del sistema administrativo, lo
-        que generaba retrasos en la entrega de resultados y discrepancias constantes.</p>
+      <p>La Casa de las Diligencias enfrentaba una situación operativa crítica en su restaurante. Su partner tecnológico anterior no ofrecía soluciones efectivas a los fallos recurrentes en su sistema Soft Restaurant, lo que causaba constantes bloqueos e interrupciones en la facturación y el cobro en las cajas en plena hora de servicio.</p>
+      <p>Además, la infraestructura de red local carecía de segmentación. La red Wi-Fi para comensales competía en ancho de banda con las comandas de cocina y las terminales de cobro, lo que provocaba retrasos significativos en la preparación de alimentos y desconfiguraciones en las impresoras térmicas de tickets, afectando directamente la experiencia del cliente y la productividad del personal.</p>
       <div class="quoteBlock">
-        <p>"Migrar el núcleo de nuestra operación de Microsip a Odoo parecía una tarea titánica y riesgosa. Con Teral,
-          logramos una transición transparente sin perder un solo registro histórico."</p>
-        <div class="quoteAuthor">Dirección General · Entorno Lab</div>
+        <p>"La falta de respuesta de nuestro proveedor anterior ponía en riesgo nuestra operación diaria en las horas de mayor afluencia. Con Teral, logramos estabilizar las cajas, las impresoras y asegurar el servicio."</p>
+        <div class="quoteAuthor">Gerencia de Operaciones · La Casa de las Diligencias</div>
       </div>
     </div>
   </section>
@@ -856,17 +839,11 @@
     <section class="editorialSec" style="border-top: none;">
       <div class="editorialLeft">
         <span class="ltag">La Solución</span>
-        <h3>Migración planificada y desarrollo<br>de módulos Odoo a la medida.</h3>
+        <h3>Aislamiento de tráfico, reconfiguración<br>y mantenimiento preventivo.</h3>
       </div>
       <div class="editorialRight">
-        <p>Diseñamos y ejecutamos un plan de migración por fases a Odoo, trabajando en estrecha colaboración con un
-          partner y consultor certificado de Odoo. Desarrollamos módulos a la medida adaptados exactamente al flujo
-          operativo y de laboratorio de Entorno Lab, implementando reportes personalizados de Business Intelligence y
-          logrando la normalización total y carga segura del 100% de los datos históricos de Microsip sin interrumpir
-          las labores de diagnóstico diarias de la empresa.</p>
-        <p>Con esta re-arquitectura de procesos, automatizamos la gestión de muestras e integraciones con equipos de
-          medición, eliminando recapturas y reduciendo los tiempos de procesamiento administrativo a la mitad, al tiempo
-          que habilitamos un entorno cloud escalable preparado para futuras sucursales.</p>
+        <p>Intervenimos de manera inmediata reestructurando completamente la topología de la red local. Implementamos una segmentación de red segura (aislamiento de red) para separar el tráfico administrativo y las terminales de cobro del acceso a internet de los clientes, previniendo cuellos de botella y protegiendo el flujo de datos críticos.</p>
+        <p>Adicionalmente, realizamos un mantenimiento profundo a los equipos de cómputo y cajas de cobro, reinstalando controladores y optimizando la comunicación de Soft Restaurant. Se reconfiguraron las impresoras térmicas de cocina y cajas bajo un esquema robusto y se implementó una póliza de mantenimiento continuo preventivo para asegurar la continuidad de su servicio los 365 días del año.</p>
       </div>
     </section>
   </div>
@@ -882,78 +859,9 @@
       <!-- Card 1 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Módulos a la Medida</h2>
+          <h2 class="caseCardTitle">Red Segmentada</h2>
           <div class="caseCardIconWrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="caseCardIcon">
-              <rect x="3" y="3" width="7" height="9" rx="1"></rect>
-              <rect x="14" y="3" width="7" height="5" rx="1"></rect>
-              <rect x="14" y="12" width="7" height="9" rx="1"></rect>
-              <rect x="3" y="16" width="7" height="5" rx="1"></rect>
-            </svg>
-          </div>
-        </div>
-        <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Desarrollo de módulos específicos en Odoo para automatizar el ciclo de vida de muestras
-          de laboratorio, rastreabilidad y control de reactivos.</p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="customCaseCard vis">
-        <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Reportes Personalizados</h2>
-          <div class="caseCardIconWrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="caseCardIcon">
-              <line x1="18" y1="20" x2="18" y2="10"></line>
-              <line x1="12" y1="20" x2="12" y2="4"></line>
-              <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg>
-          </div>
-        </div>
-        <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Tableros de control avanzados de Business Intelligence y reportes analíticos para una
-          toma de decisiones ejecutiva ágil basada en datos en vivo.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="customCaseCard vis">
-        <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Consultoría Certificada</h2>
-          <div class="caseCardIconWrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="caseCardIcon">
-              <circle cx="12" cy="8" r="7"></circle>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-            </svg>
-          </div>
-        </div>
-        <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Co-ingeniería e implementación de la mano de un Odoo Partner y consultores certificados,
-          garantizando las mejores prácticas de arquitectura del ERP.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOOP NAVIGATION & CTA -->
-  <section class="loopSec">
-    <div class="loopGrid">
-      <div class="loopCta">
-        <span class="ltag">¿Quieres migrar a Odoo ERP?</span>
-        <h3>Moderniza tu administración con<br>módulos y procesos a la medida.</h3>
-        <p>Te ayudamos a estructurar una migración de datos histórica limpia, segura y a implementar flujos y reportes
-          avanzados adaptados a tu negocio.</p>
-        <a href="../contacto.html" class="bA">Agendar consultoría gratuita →</a>
-      </div>
-
-      <!-- NEXT CASE PREVIEW CARD -->
-      <a href="casa-diligencias.html" class="customCaseCard vis" id="nextCaseCard">
-        <span class="nextCaseHeader">Siguiente Caso de Éxito</span>
-        <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Diligencias: Soft Restaurant & Redes</h2>
-          <div class="caseCardIconWrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="caseCardIcon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
               <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
               <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
               <line x1="6" y1="6" x2="6.01" y2="6"></line>
@@ -962,18 +870,79 @@
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Fuimos aliados clave en la transición y estabilidad operativa de Soft Restaurant,
-          reconfigurando su red interna, aislando tráfico y dando soporte proactivo a cajas e impresoras.</p>
+        <p class="caseCardDesc">Aislamiento total del tráfico de clientes mediante VLANs, garantizando prioridad y seguridad absoluta para comisiones, comandas y cobros.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Cajas e Impresión</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Limpieza de configuraciones, actualización de controladores y resolución definitiva de la desconexión de impresoras térmicas en horas pico.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Soporte Proactivo</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+              <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+              <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+              <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Esquema de mantenimiento continuo a equipos y redes para actuar proactivamente antes de que ocurra cualquier interrupción en el negocio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOP NAVIGATION & CTA -->
+  <section class="loopSec">
+    <div class="loopGrid">
+      <div class="loopCta">
+        <span class="ltag">¿Problemas con tu red o punto de venta?</span>
+        <h3>Asegura la continuidad de tu<br>operación con expertos.</h3>
+        <p>Optimizamos la conectividad, configuraciones de software y soporte técnico de tu negocio para que nunca dejes de vender.</p>
+        <a href="../contacto.html" class="bA">Agendar consultoría gratuita →</a>
+      </div>
+
+      <!-- NEXT CASE PREVIEW CARD -->
+      <a href="sap-constructora.html" class="customCaseCard vis" id="nextCaseCard">
+        <span class="nextCaseHeader">Siguiente Caso de Éxito</span>
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">BodeVidrio: Cotizador Microsip</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollo de un portal web de cotizaciones conectado directamente al ERP Microsip, logrando un incremento del 73% en productividad comercial.</p>
         <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver caso completo</div>
       </a>
     </div>
   </section>
 
   <!-- LIGHT FOOTER -->
-  <footer
-    style="position:relative;z-index:2;padding:1.8rem clamp(1.5rem,4vw,3rem);background:var(--bg);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-    <div style="color:var(--ink2);font-size:12.5px;"><span style="color:var(--ink);font-weight:600;">Teral IT
-        Solutions</span> &nbsp;·&nbsp; © 2026</div>
+  <footer style="position:relative;z-index:2;padding:1.8rem clamp(1.5rem,4vw,3rem);background:var(--bg);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <div style="color:var(--ink2);font-size:12.5px;"><span style="color:var(--ink);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
     <a href="../casos.html" class="nBack" style="color:var(--ink2);">← Volver a casos de éxito</a>
   </footer>
 

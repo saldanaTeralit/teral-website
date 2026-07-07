@@ -2,7 +2,7 @@
    TERAL IT — Adaptive Particle System
    Pega este bloque justo antes de </body> en index.html
    (o cópialo a tu archivo JS principal)
-═══════════════════════════════════════════════════ */
+ ═══════════════════════════════════════════════════ */
 (function () {
     const canvas = document.getElementById('bgc');
     if (!canvas) return;
@@ -29,7 +29,7 @@
     let target = { ...DEFAULT_COLOR };
 
     /* ── Partículas ──────────────────────────────────── */
-    const COUNT = 55;
+    const COUNT = 150; // Aumentado de 55 a 150 para una mayor densidad de partículas
     const particles = [];
 
     function rand(min, max) { return Math.random() * (max - min) + min; }
@@ -113,12 +113,12 @@
             const alpha = p.opacity * (0.75 + Math.sin(p.pulse + 1) * 0.25);
 
             /* Reciclar al salir */
-            if (p.y < -10) {
-                p.y = canvas.height + 10;
+            if (p.y < -15) {
+                p.y = canvas.height + 15;
                 p.x = rand(0, canvas.width);
             }
-            if (p.x < -10) p.x = canvas.width + 10;
-            if (p.x > canvas.width + 10) p.x = -10;
+            if (p.x < -15) p.x = canvas.width + 15;
+            if (p.x > canvas.width + 15) p.x = -15;
 
             /* Dibujar */
             ctx.beginPath();
