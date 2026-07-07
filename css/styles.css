@@ -1116,6 +1116,24 @@ h2 {
     stroke: currentColor;
 }
 
+.caseCardLogo {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* W Brand logo starts dark for contrast on white background */
+.caseCardLogo[src*="w.png"] {
+    filter: brightness(0);
+}
+
+/* When case card is hovered, invert logos to make them white on purple background */
+.customCaseCard:hover .caseCardLogo {
+    filter: brightness(0) invert(1) !important;
+}
+
 .caseCardDivider {
     width: 45px;
     height: 3px;
