@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Trabajo — Teral IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=3">
+    <link rel="icon" href="src/img/Teral/teral morado (1).png" type="image/png">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+        }
+
+        :root {
+            --bg: #0a0612;
+            --bg2: #0f0a1a;
+            --p1: #7B1FA2;
+            --p2: #AB47BC;
+            --p3: #CE93D8;
+            --p4: #4A148C;
+            --card: rgba(255, 255, 255, .04);
+            --border: rgba(255, 255, 255, .08);
+            --text: #f0eaf8;
+            --muted: rgba(240, 234, 248, .5);
+            --radius: 18px;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            cursor: none;
+        }
+
+        #cur {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--text);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        #curR {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 1.5px solid rgba(254, 251, 255, 0.893);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all .38s cubic-bezier(.23, 1, .32, 1);
+        }
+
+        body:has(a:hover) #curR,
+        body:has(button:hover) #curR,
+        body:has(select:hover) #curR,
+        body:has(input:hover) #curR,
+        body:has(textarea:hover) #curR {
+            transform: translate(-50%, -50%) scale(2.1);
+            border-color: var(--text);
+        }
+
+        /* ── CANVAS ── */
+        canvas#bgc {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(1.5rem, 4vw, 3rem);
+            height: 68px;
+            background: rgba(10, 6, 18, .82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            cursor: none;
+        }
+
+        .nLogo {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nLogo img {
+            height: 36px;
+            cursor: none;
+        }
+
+        .nBack {
+            display: flex;
+            align-items: center;
+            gap: .45rem;
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+            letter-spacing: .01em;
+            cursor: none;
+        }
+
+        .nBack:hover {
+            color: var(--p3);
+            cursor: none;
+        }
+
+        .nBack svg {
+            transition: transform .2s;
+        }
+
+        .nBack:hover svg {
+            transform: translateX(-3px);
+        }
+
+        /* ── PAGE ── */
+        .page {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            padding: 120px clamp(1.5rem, 6vw, 5rem) 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── HEADER ── */
+        .cHeader {
+            text-align: center;
+            max-width: 580px;
+            margin-bottom: 3.5rem;
+            opacity: 0;
+            transform: translateY(22px);
+            animation: fadeUp .7s .1s forwards;
+        }
+
+        .ltag {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            color: var(--p3);
+            background: rgba(171, 71, 188, .12);
+            border: 1px solid rgba(171, 71, 188, .25);
+            border-radius: 50px;
+            padding: .3rem .9rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .cHeader h1 {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -.02em;
+            margin-bottom: .9rem;
+        }
+
+        .cHeader h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--p2), var(--p3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cHeader p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* ── GRID ── */
+        .cGrid {
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ── CARDS ── */
+        .cCard {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            padding: 1.6rem 1.7rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            overflow: hidden;
+            transition: border-color .25s, transform .25s, background .25s;
+            opacity: 0;
+            transform: translateY(24px);
+            cursor: default;
+        }
+
+        .cCard::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, var(--glow, rgba(171, 71, 188, .12)), transparent 70%);
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none;
+        }
+
+        .cCard:hover::before {
+            opacity: 1;
+        }
+
+        .cCard:hover {
+            border-color: rgba(171, 71, 188, .4);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .cCard--wide {
+            grid-column: 1 / -1;
+            cursor: default !important;
+            pointer-events: auto !important;
+            padding: 2.5rem 2.8rem;
+        }
+
+        .cCard--wide:hover {
+            transform: none !important;
+        }
+
+        .cIcon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(123, 31, 162, .18);
+            border: 1px solid rgba(171, 71, 188, .2);
+            flex-shrink: 0;
+            margin-bottom: .3rem;
+            transition: background .25s, border-color .25s;
+        }
+
+        .cCard:hover .cIcon {
+            background: rgba(123, 31, 162, .35);
+            border-color: rgba(171, 71, 188, .5);
+        }
+
+        .cIcon svg {
+            color: var(--p3);
+        }
+
+        .cLabel {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--p3);
+        }
+
+        .cTitle {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .cSub {
+            font-size: .88rem;
+            color: var(--muted);
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        /* ── RECRUITMENT FORM ── */
+        .jobForm {
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            pointer-events: auto !important;
+        }
+
+        .formGroup {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            text-align: left;
+        }
+
+        .formGroup label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+
+        .jobForm input,
+        .jobForm select,
+        .jobForm textarea {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            font-family: inherit;
+            font-size: 0.92rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            width: 100%;
+            cursor: text !important;
+        }
+
+        .jobForm select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ce93d8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 1.1rem;
+            padding-right: 2.8rem;
+        }
+
+        .jobForm select option {
+            background: #0f0a1a;
+            color: var(--text);
+        }
+
+        .jobForm textarea {
+            border-radius: 16px;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .jobForm input:focus,
+        .jobForm select:focus,
+        .jobForm textarea:focus {
+            border-color: rgba(171, 71, 188, .6);
+            box-shadow: 0 0 10px rgba(171, 71, 188, 0.15);
+        }
+
+        .jobForm button {
+            background: linear-gradient(135deg, var(--p1), var(--p2));
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 0.85rem 2.2rem;
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer !important;
+            transition: opacity .2s, transform .15s, box-shadow .2s;
+            margin-top: 0.5rem;
+            align-self: center;
+            pointer-events: auto !important;
+        }
+
+        .jobForm button:hover {
+            opacity: .95;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(171, 71, 188, 0.45);
+        }
+
+        .jobForm button:active {
+            transform: scale(.98);
+        }
+
+        /* ── TOAST NOTIFICATION ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(15, 10, 26, .95);
+            border: 1px solid rgba(171, 71, 188, .4);
+            border-radius: 14px;
+            padding: 1rem 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            font-size: .9rem;
+            font-weight: 600;
+            color: #f0eaf8;
+            z-index: 200;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: transform .35s cubic-bezier(.34, 1.56,.64, 1), opacity .35s;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: auto;
+            width: 100%;
+            max-width: 900px;
+            padding: 2.2rem 0 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            font-size: .82rem;
+            color: var(--muted);
+            opacity: 0;
+            animation: fadeUp .5s 1.3s forwards;
+        }
+
+        .fLinks {
+            display: flex;
+            gap: 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .fLinks a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+            font-weight: 500;
+            cursor: none;
+        }
+
+        .fLinks a:hover {
+            color: var(--p3);
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cGrid .cCard:nth-child(1) {
+            animation: fadeUp .6s .3s forwards;
+        }
+
+        .cGrid .cCard:nth-child(2) {
+            animation: fadeUp .6s .45s forwards;
+        }
+
+        .cGrid .cCard:nth-child(3) {
+            animation: fadeUp .6s .6s forwards;
+        }
+
+        .cGrid .cCard:nth-child(4) {
+            animation: fadeUp .6s .75s forwards;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .cGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .cCard--wide {
+                padding: 1.8rem;
+            }
+
+            .page {
+                padding: 100px 1.2rem 60px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="curR"></div>
+
+    <canvas id="bgc"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="nLogo"><img src="src/img/Teral/teralblanco (1).png" alt="Teral IT"></a>
+        <a href="index.html" class="nBack">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+            </svg>Volver al inicio
+        </a>
+    </nav>
+
+    <!-- MAIN PAGE CONTENT -->
+    <div class="page">
+        <div class="cHeader">
+            <span class="ltag">Careers</span>
+            <h1>Únete al equipo de <em>Teral IT</em></h1>
+            <p>Buscamos talento independiente, apasionado y enfocado a resultados para unirse a nuestros proyectos de desarrollo de software, soporte y redes locales.</p>
+        </div>
+
+        <div class="cGrid">
+            <!-- Pillar 1 -->
+            <div class="cCard">
+                <div class="cIcon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                </div>
+                <span class="cLabel">Flexibilidad</span>
+                <span class="cTitle">Remoto por Objetivos</span>
+                <p class="cSub">Trabaja en el horario que prefieras desde donde estés. Priorizamos la calidad de tu entrega sobre las horas de oficina.</p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="cCard">
+                <div class="cIcon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                        <polyline points="2 17 12 22 22 17" />
+                        <polyline points="2 12 12 17 22 12" />
+                    </svg>
+                </div>
+                <span class="cLabel">Desafíos</span>
+                <span class="cTitle">Proyectos de Impacto</span>
+                <p class="cSub">Colabora integrando soluciones a la medida, implementando arquitecturas limpias y estructurando redes robustas para empresas reales.</p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="cCard">
+                <div class="cIcon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                </div>
+                <span class="cLabel">Cultura</span>
+                <span class="cTitle">Co-Diseño y Código</span>
+                <p class="cSub">Hablamos el mismo idioma técnico. Evitamos el micromanagement y valoramos la autonomía técnica y el soporte de excelencia.</p>
+            </div>
+
+            <!-- Job postulation form card -->
+            <div class="cCard cCard--wide">
+                <div class="jobFormWrap">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <span class="ltag" style="background:rgba(171, 71, 188, .07);">Postularse</span>
+                        <h2 style="font-size: 1.8rem; font-weight: 800; margin-top: 0.5rem; margin-bottom: 0.5rem;">Bolsa de Trabajo</h2>
+                        <p style="color: var(--muted); font-size: 0.95rem; font-weight: 300;">Déjanos tus datos de contacto y cuéntanos sobre tu especialidad para sumarte a la red.</p>
+                    </div>
+
+                    <form class="jobForm" id="jobForm" action="https://formsubmit.co/ajax/contacto@teralsupport.com" method="POST">
+                        <!-- Custom settings for FormSubmit -->
+                        <input type="hidden" name="_subject" value="Nueva postulación en Bolsa de Trabajo - Teral IT">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <div class="formGroup">
+                            <label for="fullName">Nombre Completo</label>
+                            <input type="text" id="fullName" name="nombre" placeholder="Juan Pérez" required autocomplete="name">
+                        </div>
+
+                        <div class="formGroup">
+                            <label for="emailAddr">Correo Electrónico</label>
+                            <input type="email" id="emailAddr" name="email" placeholder="tu@correo.com" required autocomplete="email">
+                        </div>
+
+                        <div class="formGroup">
+                            <label for="profileType">Especialidad / Perfil</label>
+                            <select id="profileType" name="perfil" required>
+                                <option value="" disabled selected>Selecciona tu perfil principal</option>
+                                <option value="Desarrollador Backend (Python, Node.js, Java)">Desarrollador Backend (Python, Node.js, Java)</option>
+                                <option value="Desarrollador Fullstack / Frontend">Desarrollador Fullstack / Frontend</option>
+                                <option value="Consultor ERP / Odoo / Microsip">Consultor ERP / Odoo / Microsip</option>
+                                <option value="Ingeniero en Telecomunicaciones y Redes">Ingeniero en Telecomunicaciones y Redes</option>
+                                <option value="Soporte Técnico de Campo / Hardware">Soporte Técnico de Campo / Hardware</option>
+                                <option value="Otro perfil técnico">Otro perfil técnico / Freelance</option>
+                            </select>
+                        </div>
+
+                        <div class="formGroup">
+                            <label for="portfolioLink">LinkedIn, GitHub o Portafolio (Link)</label>
+                            <input type="url" id="portfolioLink" name="portfolio" placeholder="https://github.com/usuario" required autocomplete="url">
+                        </div>
+
+                        <div class="formGroup">
+                            <label for="coverLetter">Cuéntanos sobre tu experiencia o tecnologías que dominas</label>
+                            <textarea id="coverLetter" name="experiencia" placeholder="Menciona tus stacks favoritos, años de experiencia o proyectos destacados..." required></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn">Enviar Postulación →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div><span style="color:rgba(255,255,255,.5);font-weight:600;">Teral IT Solutions</span> &nbsp;·&nbsp; © 2026</div>
+            <div class="fLinks">
+                <a href="https://www.instagram.com/teral_support/" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/people/Teral-Solutions/61576562213263/#" target="_blank">Facebook</a>
+                <a href="mailto:contacto@teralsupport.com">contacto@teralsupport.com</a>
+                <a href="login.html" style="font-weight:600;">Iniciar Sesión</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span>✉️</span>
+        <span>¡Postulación recibida! Te contactamos pronto.</span>
+    </div>
+
+    <script src="js/main.js?v=3"></script>
+    <script>
+        /* ── FORM SUBMISSION (Bolsa de Trabajo) ── */
+        (function () {
+            const form = document.getElementById('jobForm');
+            const toast = document.getElementById('toast');
+            if (!form) return;
+
+            function showToast(message, isError) {
+                if (!toast) return;
+                const iconSpan = toast.querySelector('span:first-of-type');
+                const textSpan = toast.querySelector('span:last-of-type');
+
+                if (iconSpan) iconSpan.textContent = isError ? '⚠️' : '✉️';
+                if (textSpan) textSpan.textContent = message;
+
+                toast.style.borderColor = isError ? 'rgba(239, 83, 80, 0.6)' : 'rgba(171, 71, 188, 0.4)';
+                toast.classList.add('show');
+
+                setTimeout(function () {
+                    toast.classList.remove('show');
+                }, 5000);
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Enviando...';
+                btn.disabled = true;
+
+                const formData = new FormData(form);
+                const jsonObject = Object.fromEntries(formData.entries());
+
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
+                    .then(function (response) {
+                        return response.json().then(function (data) {
+                            if (response.ok && (data.success === 'true' || data.success === true)) {
+                                return data;
+                            } else {
+                                throw new Error(data.message || 'Error en el envío');
+                            }
+                        });
+                    })
+                    .then(function (data) {
+                        showToast('¡Postulación recibida! Te contactamos pronto.', false);
+                        form.reset();
+                        btn.textContent = '¡Enviado! ✓';
+                        setTimeout(function () { btn.textContent = originalText; btn.disabled = false; }, 3000);
+                    })
+                    .catch(function (err) {
+                        console.error('Error enviando postulación:', err);
+
+                        let friendlyMessage = 'Error al enviar. Intenta de nuevo o contáctanos por WhatsApp.';
+                        if (err.message && err.message.includes('open this page through a web server')) {
+                            friendlyMessage = 'FormSubmit requiere abrir esta página mediante un servidor web (no como archivo local file://).';
+                        } else if (err.message && err.message.includes('needs activation')) {
+                            friendlyMessage = 'El correo requiere activación. Revisa la bandeja de entrada de contacto@teralsupport.com.';
+                        } else if (err.message) {
+                            friendlyMessage = `Error: ${err.message}`;
+                        }
+
+                        showToast(friendlyMessage, true);
+                        btn.textContent = 'Error, reintentar';
+                        btn.disabled = false;
+                        setTimeout(function () { btn.textContent = originalText; }, 3000);
+                    });
+            });
+        })();
+    </script>
+</body>
+
+</html>

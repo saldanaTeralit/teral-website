@@ -82,8 +82,47 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.8rem;
       max-width: 1200px;
-      margin: 1rem auto 7rem;
+      margin: 0 auto;
       padding: 0 4vw;
+    }
+
+    /* ── SECCIONES POR AÑO ── */
+    .yearSection {
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .yearHeader {
+      padding: 0 4vw;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    
+    .yearHeader h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -.03em;
+      margin: 0;
+      background: linear-gradient(90deg, var(--p1), var(--p2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .yearDivider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    .yearDivider.rev {
+      background: linear-gradient(90deg, transparent, var(--border));
     }
 
     /* ── TARJETAS INDIVIDUALES ── */
@@ -322,87 +361,187 @@
     <p class="hSub">Desarrollo a medida, integración ERP, redes, consultoría y automatización. Un solo socio tecnológico para todo.</p>
   </section>
 
-  <!-- SUCCESS CASES GRID (6 CARDS) -->
-  <section class="casesCustomGrid">
-
-    <!-- Card 1 — BodeVidrio (Real) -->
-    <a href="casos/sap-constructora.html" class="customCaseCard">
-      <div class="caseCardHeader">
-        <h2 class="caseCardTitle">BodeVidrio: Cotizador Microsip</h2>
-        <div class="caseCardIconWrap">
-          <img src="src/img/clientes/bode.png" alt="BodeVidrio" class="caseCardLogo">
+  <!-- EN DESARROLLO SECTION -->
+  <section class="yearSection">
+    <div class="yearHeader">
+      <div class="yearDivider rev"></div>
+      <h2>En Desarrollo</h2>
+      <div class="yearDivider"></div>
+    </div>
+    <div class="casesCustomGrid">
+      <!-- Card 1 — Aldo Transportes: Plataforma GPS (Real) -->
+      <a href="casos/aldo-plataforma-gps.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Aldo: Plataforma GPS & IA</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/aldo.png" alt="Aldo Transportes" class="caseCardLogo">
+          </div>
         </div>
-      </div>
-      <div class="caseCardDivider"></div>
-      <p class="caseCardDesc">Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo operativo real de la empresa comercial.</p>
-      <div class="caseCardBtn">Ver caso completo</div>
-    </a>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollamos una plataforma de rastreo GPS de última generación con telemática avanzada, sensores RFID y monitoreo de dashcams asistido por Inteligencia Artificial.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
 
-    <!-- Card 3 — W Brand Consulting (Real) -->
-    <a href="casos/logispro-cloud.html" class="customCaseCard">
-      <div class="caseCardHeader">
-        <h2 class="caseCardTitle">W Brand: Soporte TI & Redes</h2>
-        <div class="caseCardIconWrap">
-          <img src="src/img/clientes/w.png" alt="W Brand Consulting" class="caseCardLogo">
+      <!-- Card 2 — Red Tecno GTO (Real) -->
+      <a href="casos/red-tecno-gto.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Red Tecno: Marketplace Local</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/red_tecno_gto.png" alt="Red Tecno GTO" class="caseCardLogo">
+          </div>
         </div>
-      </div>
-      <div class="caseCardDivider"></div>
-      <p class="caseCardDesc">Acompañamiento continuo en soporte técnico, seguridad en redes, equipos dedicados y consultoría estratégica para optimizar la eficiencia operativa digital.</p>
-      <div class="caseCardBtn">Ver caso completo</div>
-    </a>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Diseñamos una plataforma de comercio electrónico y mensajería que impulsa a los comercios de Irapuato facilitando ventas directas y sin intermediarios.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+    </div>
+  </section>
 
-    <!-- Card 4 — Aldo Transportes (Real) -->
-    <a href="casos/aldo-transportes.html" class="customCaseCard">
-      <div class="caseCardHeader">
-        <h2 class="caseCardTitle">Aldo: Middleware GPS & Tomcat</h2>
-        <div class="caseCardIconWrap">
-          <img src="src/img/clientes/aldo.png" alt="Aldo Transportes" class="caseCardLogo">
+  <!-- 2026 SECTION -->
+  <section class="yearSection">
+    <div class="yearHeader">
+      <div class="yearDivider rev"></div>
+      <h2>2026</h2>
+      <div class="yearDivider"></div>
+    </div>
+    <div class="casesCustomGrid">
+      <!-- Card 3 — Aldo Transportes (Real) -->
+      <a href="casos/aldo-transportes.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Aldo: Middleware GPS & Tomcat</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/aldo.png" alt="Aldo Transportes" class="caseCardLogo">
+          </div>
         </div>
-      </div>
-      <div class="caseCardDivider"></div>
-      <p class="caseCardDesc">Desarrollamos una capa intermedia de comunicación Java para integrar dispositivos GPS modernos con su plataforma heredada basada en Apache Tomcat sin interrumpir su servicio.</p>
-      <div class="caseCardBtn">Ver caso completo</div>
-    </a>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollamos una capa intermedia de comunicación Java para integrar dispositivos GPS modernos con su plataforma heredada basada en Apache Tomcat sin interrumpir su servicio.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
 
-    <!-- Card 5 — Growa Greenhouse Systems (Real) -->
-    <a href="casos/growa-greenhouse.html" class="customCaseCard">
-      <div class="caseCardHeader">
-        <h2 class="caseCardTitle">Growa: Algoritmo en Python</h2>
-        <div class="caseCardIconWrap">
-          <img src="src/img/clientes/growa.svg" alt="Growa Greenhouse Systems" class="caseCardLogo">
+      <!-- Card 4 — BodeVidrio: Order Canceler (Real) -->
+      <a href="casos/microsip-order-canceler.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">BodeVidrio: Cancelador de Pedidos</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/bode.png" alt="BodeVidrio" class="caseCardLogo">
+          </div>
         </div>
-      </div>
-      <div class="caseCardDivider"></div>
-      <p class="caseCardDesc">Diseñamos una aplicación de escritorio Python Tkinter con un algoritmo inteligente para depurar, traducir claves y conciliar stock al migrar de Microsip a IFS ERP.</p>
-      <div class="caseCardBtn">Ver caso completo</div>
-    </a>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Implementamos un servicio en segundo plano automatizado para la liberación de inventario retenido en Microsip mediante la cancelación oportuna de pedidos pendientes.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
 
-    <!-- Card 6 — Entorno Lab (Real) -->
-    <a href="casos/entorno-lab.html" class="customCaseCard">
-      <div class="caseCardHeader">
-        <h2 class="caseCardTitle">Entorno Lab: Migración a Odoo</h2>
-        <div class="caseCardIconWrap">
-          <img src="src/img/clientes/entorno (1).png" alt="Entorno Lab" class="caseCardLogo">
+      <!-- Card 5 — La Casa de las Diligencias (Real) -->
+      <a href="casos/casa-diligencias.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Diligencias: Soft Restaurant & Redes</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/diligencias.png" alt="La Casa de las Diligencias" class="caseCardLogo">
+          </div>
         </div>
-      </div>
-      <div class="caseCardDivider"></div>
-      <p class="caseCardDesc">Migración planificada de Microsip ERP a Odoo Cloud. Desarrollamos módulos a la medida para su laboratorio y reportes personalizados a la par de un consultor certificado.</p>
-      <div class="caseCardBtn">Ver caso completo</div>
-    </a>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Fuimos aliados clave en la transición y estabilidad operativa de Soft Restaurant, reconfigurando su red interna, aislando tráfico y dando soporte proactivo a cajas e impresoras.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+    </div>
+  </section>
 
-    <!-- Card 7 — La Casa de las Diligencias (Real) -->
-    <a href="casos/casa-diligencias.html" class="customCaseCard">
-      <div class="caseCardHeader">
-        <h2 class="caseCardTitle">Diligencias: Soft Restaurant & Redes</h2>
-        <div class="caseCardIconWrap">
-          <img src="src/img/clientes/diligencias.png" alt="La Casa de las Diligencias" class="caseCardLogo">
+  <!-- 2025 SECTION -->
+  <section class="yearSection">
+    <div class="yearHeader">
+      <div class="yearDivider rev"></div>
+      <h2>2025</h2>
+      <div class="yearDivider"></div>
+    </div>
+    <div class="casesCustomGrid">
+      <!-- Card 4 — BodeVidrio (Real) -->
+      <a href="casos/sap-constructora.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">BodeVidrio: Cotizador Microsip</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/bode.png" alt="BodeVidrio" class="caseCardLogo">
+          </div>
         </div>
-      </div>
-      <div class="caseCardDivider"></div>
-      <p class="caseCardDesc">Fuimos aliados clave en la transición y estabilidad operativa de Soft Restaurant, reconfigurando su red interna, aislando tráfico y dando soporte proactivo a cajas e impresoras.</p>
-      <div class="caseCardBtn">Ver caso completo</div>
-    </a>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollamos una plataforma de generación de cotizaciones completamente integrada a Microsip, alineada al flujo operativo real de la empresa comercial.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
 
+      <!-- Card 5 — Growa Greenhouse Systems (Real) -->
+      <a href="casos/growa-greenhouse.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Growa: Algoritmo en Python</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/growa.svg" alt="Growa Greenhouse Systems" class="caseCardLogo">
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Diseñamos una aplicación de escritorio Python Tkinter con un algoritmo inteligente para depurar, traducir claves y conciliar stock al migrar de Microsip a IFS ERP.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+
+      <!-- Card — Growa: Editor de Notas Microsip (Real) -->
+      <a href="casos/growa-editor-notas.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Growa: Editor de Notas Microsip</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/growa.svg" alt="Growa Greenhouse Systems" class="caseCardLogo">
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Desarrollamos una aplicación de escritorio C# .NET para modificar notas de partidas en documentos guardados de Microsip, con control de cambios e historial de logs.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+
+      <!-- Card — Growa: Reporteador de Compras (Real) -->
+      <a href="casos/growa-reporteador-compras.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Growa: Reporteador de Compras</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/growa.svg" alt="Growa Greenhouse Systems" class="caseCardLogo">
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Implementamos una herramienta de reportería automatizada en Excel vía Firebird ODBC, optimizando los tiempos de consulta del departamento de compras.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+
+      <!-- Card 6 — Entorno Lab (Real) -->
+      <a href="casos/entorno-lab.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Entorno Lab: Migración a Odoo</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/entorno (1).png" alt="Entorno Lab" class="caseCardLogo">
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Migración planificada de Microsip ERP a Odoo Cloud. Desarrollamos módulos a la medida para su laboratorio y reportes personalizados a la par de un consultor certificado.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2024 SECTION -->
+  <section class="yearSection" style="margin-bottom: 7rem;">
+    <div class="yearHeader">
+      <div class="yearDivider rev"></div>
+      <h2>2024</h2>
+      <div class="yearDivider"></div>
+    </div>
+    <div class="casesCustomGrid">
+      <!-- Card 7 — W Brand Consulting (Real) -->
+      <a href="casos/logispro-cloud.html" class="customCaseCard">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">W Brand: Soporte TI & Redes</h2>
+          <div class="caseCardIconWrap">
+            <img src="src/img/clientes/w.png" alt="W Brand Consulting" class="caseCardLogo">
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Acompañamiento continuo en soporte técnico, seguridad en redes, equipos dedicados y consultoría estratégica para optimizar la eficiencia operativa digital.</p>
+        <div class="caseCardBtn">Ver caso completo</div>
+      </a>
+    </div>
   </section>
 
 
@@ -414,6 +553,7 @@
       <a href="https://www.instagram.com/teral_support/" target="_blank">Instagram</a>
       <a href="https://www.facebook.com/people/Teral-Solutions/61576562213263/#" target="_blank">Facebook</a>
       <a href="mailto:contacto@teralsupport.com">contacto@teralsupport.com</a>
+      <a href="trabaja-con-nosotros.html" style="font-weight:600;color:var(--p3);">Bolsa de Trabajo</a>
       <a href="login.html" style="font-weight:600;">Iniciar Sesión</a>
     </div>
   </footer>

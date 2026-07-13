@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caso Growa Greenhouse — Teral IT Solutions</title>
+  <title>Caso Red Tecno GTO — Teral IT Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css?v=3">
@@ -417,6 +417,7 @@
     .showcaseBrand {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: clamp(1.5rem, 4vw, 3.5rem);
       position: relative;
       z-index: 2;
@@ -430,7 +431,7 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 20px;
-      padding: clamp(1rem, 2.5vw, 1.8rem) clamp(1.5rem, 3.5vw, 2.8rem);
+      padding: clamp(1rem, 2.5vw, 1.4rem) clamp(1.5rem, 3.5vw, 2.4rem);
       backdrop-filter: blur(12px);
       transition: background 0.3s, border-color 0.3s;
     }
@@ -446,6 +447,12 @@
       object-fit: contain;
       filter: brightness(0) invert(1);
       opacity: 0.92;
+    }
+
+    .showcaseLogo img.color-logo {
+      filter: none;
+      opacity: 1;
+      height: clamp(50px, 8vw, 90px);
     }
 
     .showcaseUnion {
@@ -560,6 +567,7 @@
       padding: 5.5rem clamp(1.5rem, 4vw, 3rem);
       position: relative;
       z-index: 1;
+      border-top: 1px solid var(--border);
     }
 
     .resultsHeader {
@@ -582,6 +590,156 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.8rem;
+    }
+
+    .customCaseCard {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.3rem 2.2rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 8px 30px rgba(123, 31, 162, 0.03);
+      transition: 
+        transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), 
+        box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1), 
+        border-color 0.35s;
+    }
+
+    .customCaseCard.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    .customCaseCard:hover {
+      border-color: rgba(171, 71, 188, 0.32);
+      transform: translateY(-6px);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.02),
+        0 20px 45px rgba(123, 31, 162, 0.09),
+        0 0 0 1px rgba(123, 31, 162, 0.04);
+    }
+
+    .customCaseCard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(280px circle at var(--sx, -300px) var(--sy, -300px),
+              rgba(123, 31, 162, 0.05),
+              transparent 70%);
+      opacity: 0;
+      transition: opacity 0.45s;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+    .customCaseCard:hover::before {
+      opacity: 1;
+    }
+
+    .caseCardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caseCardTitle {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .caseCardIconWrap {
+      width: 44px;
+      height: 44px;
+      background: rgba(123, 31, 162, 0.07);
+      border: 1px solid rgba(123, 31, 162, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--p1);
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s, color 0.3s;
+    }
+
+    .customCaseCard:hover .caseCardIconWrap {
+      transform: scale(1.08) rotate(-4deg);
+      background: var(--p1);
+      color: #FFFFFF;
+    }
+
+    .caseCardIcon {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .caseCardDivider {
+      width: 45px;
+      height: 3px;
+      background: var(--p2);
+      border-radius: 20px;
+      margin: 1.1rem 0 1.2rem;
+      position: relative;
+      z-index: 1;
+      transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .customCaseCard:hover .caseCardDivider {
+      width: 75px;
+    }
+
+    .caseCardDesc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      font-weight: 400;
+      margin: 0;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caseCardBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--p1);
+      color: #FFFFFF;
+      padding: 0.72rem 1.6rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1.8rem;
+      align-self: flex-start;
+      border: none;
+      cursor: none;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .customCaseCard:hover .caseCardBtn {
+      background: var(--p2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(171, 71, 188, 0.35);
+    }
+
+    .caseCardLogo {
+      max-height: 24px;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     /* ── LOOP & CTA FINAL ── */
@@ -735,9 +893,9 @@
   <!-- ASYMMETRIC HERO -->
   <section class="caseHeroGrid">
     <div class="heroLeft">
-      <span class="ltag">Algoritmos · Python · ERP</span>
-      <h1>Algoritmo de conciliación de<br>inventarios en Python para<br><em>Growa Greenhouse</em></h1>
-      <p>Desarrollamos una herramienta de escritorio interactiva con Python Tkinter que corre un algoritmo de fondo optimizado, traduciendo claves en inglés y depurando automáticamente productos repetidos para lograr una migración de inventario impecable de Microsip a IFS ERP.</p>
+      <span class="ltag">E-Commerce · Marketplace Local</span>
+      <h1>Plataforma de comercio electrónico<br>y mensajería para<br><em>Red Tecno GTO</em></h1>
+      <p>Diseñamos y desarrollamos a la medida una plataforma de marketplace local para la Asociación de Comerciantes de Irapuato. Este canal unifica a cientos de proveedores locales con consumidores en una red aislada y segura, incorporando pasarelas de pago, mensajería integrada tipo WhatsApp y algoritmos avanzados de recomendación. Actualmente, el proyecto está en desarrollo activo para seguir incorporando las mejores tecnologías mercantiles.</p>
       <div class="hBtns">
         <a href="../contacto.html" class="bA">Quiero una solución similar →</a>
         <a href="#reto" class="bB">Ver detalles del caso</a>
@@ -748,31 +906,36 @@
     <div class="projectMetaCard" id="metaCard">
       <div class="metaItem">
         <span class="metaLabel">Cliente</span>
-        <span class="metaValue">Growa Greenhouse Systems</span>
+        <span class="metaValue">Asociación de Comerciantes</span>
       </div>
       <div class="metaItem">
         <span class="metaLabel">Sector</span>
-        <span class="metaValue">Agroindustria</span>
+        <span class="metaValue">Comercio & E-Commerce</span>
       </div>
       <div class="metaItem">
         <span class="metaLabel">Servicios</span>
         <div class="metaTags">
-          <span class="metaTag">Python Automation</span>
-          <span class="metaTag">Tkinter Desktop App</span>
+          <span class="metaTag">Marketplace</span>
+          <span class="metaTag">Custom App</span>
+          <span class="metaTag">Chat System</span>
         </div>
       </div>
       <div class="metaItem">
         <span class="metaLabel">Año</span>
         <span class="metaValue">2026</span>
       </div>
+      <div class="metaItem">
+        <span class="metaLabel">Estado</span>
+        <span class="metaValue" style="color: var(--p1); font-weight: 700;">En desarrollo</span>
+      </div>
       <div class="metaImpact">
-        <div class="metaImpactVal" id="impactVal"><span data-n="98" data-s="%">0%</span></div>
-        <div class="metaImpactLbl">Ahorro de Tiempo en Conciliación</div>
+        <div class="metaImpactVal" id="impactVal"><span data-n="250" data-s="+">+0</span></div>
+        <div class="metaImpactLbl">Tiendas Locales Conectadas</div>
       </div>
     </div>
   </section>
 
-  <!-- BRANDED SHOWCASE BANNER: Teral × Growa -->
+  <!-- BRANDED SHOWCASE BANNER: Teral × Red Tecno GTO -->
   <section class="showcaseContainer">
     <div class="showcaseImgWrap">
       <div class="showcaseBrand">
@@ -783,7 +946,7 @@
           <span class="showcaseUnionSym">×</span>
         </div>
         <div class="showcaseLogo">
-          <img src="../src/img/clientes/growa.svg" alt="Growa">
+          <img src="../src/img/clientes/red_tecno_gto.png" alt="Red Tecno GTO" class="color-logo">
         </div>
       </div>
     </div>
@@ -793,14 +956,14 @@
   <section class="editorialSec" id="reto">
     <div class="editorialLeft">
       <span class="ltag">El Reto</span>
-      <h3>Claves desfasadas en inglés<br>y productos duplicados.</h3>
+      <h3>Centralización del comercio,<br>comisiones altas e<br>interlocución rota.</h3>
     </div>
     <div class="editorialRight">
-      <p>Growa Greenhouse Systems se encontraba en medio de una compleja transición de sistemas ERP, migrando toda su operación de Microsip a la plataforma global IFS. Su catálogo de inventarios original venía de su casa matriz en Holanda con descripciones y claves en inglés, lo que provocó una enorme discrepancia con sus registros locales de existencias.</p>
-      <p>El resultado fue un inventario desfasado con miles de artículos duplicados y descripciones incompatibles. Realizar esta conciliación y traducción de manera manual registro por registro representaba meses de trabajo administrativo con alta probabilidad de error humano.</p>
+      <p>Los comercios tradicionales e independientes de la región de Irapuato se enfrentaban a una desventaja competitiva insalvable frente a gigantes transnacionales de comercio electrónico. Las plataformas comerciales existentes cobraban comisiones sumamente elevadas (que erosionaban el margen del pequeño comerciante) y bloqueaban deliberadamente la comunicación directa entre vendedor y comprador.</p>
+      <p>La Asociación de Comerciantes requería una solución propia: un canal unificado, seguro y aislado que funcionara como "un Mercado Libre local", donde los consumidores pudieran encontrar y comprar a proveedores locales directamente, promoviendo el flujo económico regional sin intermediarios abusivos.</p>
       <div class="quoteBlock">
-        <p>"La migración de inventario estaba completamente detenida. Comparar manualmente miles de claves de Holanda con nuestros registros en México era una pesadilla administrativa."</p>
-        <div class="quoteAuthor">Gerencia de Operaciones y TI · Growa Greenhouse Systems</div>
+        <p>"Nuestros comerciantes necesitaban una vitrina digital que no se comiera sus márgenes de ganancia y que mantuviera viva la calidez del comercio tradicional a través del trato directo."</p>
+        <div class="quoteAuthor">Dirección General · Asociación de Comerciantes de Irapuato</div>
       </div>
     </div>
   </section>
@@ -810,11 +973,15 @@
     <section class="editorialSec" style="border-top: none;">
       <div class="editorialLeft">
         <span class="ltag">La Solución</span>
-        <h3>Aplicación Python Tkinter y<br>motor inteligente de conciliación.</h3>
+        <h3>Marketplace autónomo,<br>mensajería directa y<br>motor de recomendación.</h3>
       </div>
       <div class="editorialRight">
-        <p>Desarrollamos una aplicación de escritorio interactiva basada en Python con una interfaz gráfica en Tkinter de gran facilidad de uso. El software permite cargar directamente los archivos de Microsip y del catálogo holandés de IFS para su análisis y mapeo instantáneo.</p>
-        <p>El núcleo de la aplicación ejecuta un algoritmo de emparejamiento inteligente que traduce y normaliza las claves técnicas en inglés apoyándose en un diccionario dinámico, unifica las existencias de productos repetidos y depura el catálogo, entregando un Excel perfectamente limpio y listo para su importación directa en IFS.</p>
+        <p>Diseñamos y desarrollamos <strong>"Red Tecno GTO"</strong>, una plataforma de comercio electrónico a la medida, alojada en servidores privados gestionados por nosotros.</p>
+        <p>El sistema cuenta con las siguientes características avanzadas:</p>
+        <p>1. <strong>Tiendas Autoadministrables</strong>: Permite a los comerciantes crear su propio perfil comercial, cargar catálogos y publicar contenido multimedia promocional (imágenes y videos) de forma ágil.</p>
+        <p>2. <strong>Mensajería Interna Integrada</strong>: Incorporamos un chat interactivo en tiempo real tipo WhatsApp que facilita la comunicación y negociación directa entre el comprador y el comerciante antes de concretar la venta.</p>
+        <p>3. <strong>Pasarela de Pagos Segura</strong>: Transacciones bancarias integradas directamente dentro de la aplicación para cobros con tarjetas de crédito y débito.</p>
+        <p>4. <strong>Algoritmo de Recomendación Inteligente</strong>: Un motor que sugiere productos a los usuarios basado en categorías de preferencia y proximidad geográfica, fomentando la compra local y optimizando el alcance.</p>
       </div>
     </section>
   </div>
@@ -822,56 +989,53 @@
   <!-- KEY RESULTS GRID (customCaseCard style) -->
   <section class="resultsSec">
     <div class="resultsHeader">
-      <span class="ltag">Resultados Clave</span>
-      <h2>Características y beneficios del proyecto</h2>
+      <span class="ltag">Características Clave</span>
+      <h2>Resultados y ventajas tecnológicas</h2>
     </div>
 
     <div class="resultsGrid">
       <!-- Card 1 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Mapeo de Claves</h2>
+          <h2 class="caseCardTitle">Mensajería en Tiempo Real</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Algoritmo inteligente de comparación y mapeo automatizado de claves técnicas de inventario de Holanda a las claves equivalentes en español.</p>
+        <p class="caseCardDesc">Chat en tiempo real integrado que permite la negociación directa de precios y la coordinación de entregas a domicilio, recreando la inmediatez de WhatsApp.</p>
       </div>
 
       <!-- Card 2 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Consolidación Activa</h2>
+          <h2 class="caseCardTitle">Pasarela de Pagos Directa</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Detección automática de descripciones redundantes para consolidar cantidades de stock y eliminar la presencia de productos repetidos en el catálogo.</p>
+        <p class="caseCardDesc">Procesamiento de cobros integrados de manera transparente y segura mediante tarjeta bancaria, eliminando cobros indirectos y liberando liquidez al instante.</p>
       </div>
 
       <!-- Card 3 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">App en un Clic</h2>
+          <h2 class="caseCardTitle">Catálogos Multimedia</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <polygon points="23 7 16 12 23 17 23 7"></polygon>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Interfaz gráfica interactiva en Python Tkinter sumamente intuitiva, facilitando a los colaboradores de administración ejecutar la depuración en un clic.</p>
+        <p class="caseCardDesc">Paneles autoadministrables para comerciantes con capacidad de subir videos e imágenes promocionales en alta resolución para personalizar la experiencia de marca.</p>
       </div>
     </div>
   </section>
@@ -880,23 +1044,23 @@
   <section class="loopSec">
     <div class="loopGrid">
       <div class="loopCta">
-        <span class="ltag">¿Quieres optimizar tus bases de datos?</span>
-        <h3>Automatiza la depuración y<br>conciliación de tus datos.</h3>
-        <p>Creamos herramientas de software a la medida y algoritmos optimizados que simplifican el manejo de catálogos e inventarios complejos en segundos.</p>
+        <span class="ltag">¿Quieres digitalizar tu comunidad comercial?</span>
+        <h3>Crea plataformas de venta avanzadas y seguras.</h3>
+        <p>Desarrollamos soluciones web de marketplace, pasarelas de pago, aplicaciones de mensajería interactiva y optimizaciones a la medida.</p>
         <a href="../contacto.html" class="bA">Agendar consultoría gratuita →</a>
       </div>
 
       <!-- NEXT CASE PREVIEW CARD -->
-      <a href="growa-editor-notas.html" class="customCaseCard vis" id="nextCaseCard">
+      <a href="growa-greenhouse.html" class="customCaseCard vis" id="nextCaseCard">
         <span class="nextCaseHeader">Siguiente Caso de Éxito</span>
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Growa: Editor de Notas Microsip</h2>
+          <h2 class="caseCardTitle">Growa: Algoritmo de Conciliación</h2>
           <div class="caseCardIconWrap">
             <img src="../src/img/clientes/growa.svg" alt="Growa Greenhouse Systems" class="caseCardLogo">
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Desarrollamos una aplicación de escritorio C# .NET para modificar notas de partidas en documentos guardados de Microsip, con control de cambios e historial de logs.</p>
+        <p class="caseCardDesc">Diseñamos una aplicación de escritorio Python Tkinter con un algoritmo inteligente para depurar, traducir claves y conciliar stock al migrar de Microsip a IFS ERP.</p>
         <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver caso completo</div>
       </a>
     </div>
@@ -927,7 +1091,11 @@
     })();
 
     /* ── SPOTLIGHT RADIAL TRACKING ── */
-    const spotlightElements = [document.getElementById('metaCard'), document.getElementById('nextCaseCard'), ...document.querySelectorAll('.resultsGrid .customCaseCard')];
+    const spotlightElements = [
+      document.getElementById('metaCard'), 
+      document.getElementById('nextCaseCard'), 
+      ...document.querySelectorAll('.resultsGrid .customCaseCard')
+    ];
     spotlightElements.forEach(el => {
       if (!el) return;
       el.addEventListener('mousemove', e => {
@@ -938,8 +1106,8 @@
         el.style.setProperty('--sy', yRel + 'px');
       });
       el.addEventListener('mouseleave', () => {
-        el.style.setProperty('--sx', '-300px');
-        el.style.setProperty('--sy', '-300px');
+        el.style.setProperty('--sx', '-400px');
+        el.style.setProperty('--sy', '-400px');
       });
     });
 

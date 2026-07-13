@@ -781,14 +781,19 @@ if (canvas) {
 
     /* ── AUTOPLAY CAROUSEL PARA PASOS DE PROCESO ── */
     (function initProcessCarousel() {
+        console.log("Teral IT: initProcessCarousel cargado.");
         const steps = document.querySelectorAll('.pStep');
-        if (steps.length === 0) return;
+        if (steps.length === 0) {
+            console.warn("Teral IT: No se encontraron elementos con la clase .pStep");
+            return;
+        }
 
         let currentIndex = 0;
         let timer = null;
         const intervalTime = 3000; // 3 segundos por paso
 
         function activateStep(index) {
+            console.log("Teral IT: activando paso", index + 1);
             steps.forEach((step, i) => {
                 if (i === index) {
                     step.classList.add('active');
@@ -805,12 +810,14 @@ if (canvas) {
         }
 
         function startAutoPlay() {
+            console.log("Teral IT: Iniciando autoplay.");
             stopAutoPlay();
             timer = setInterval(nextStep, intervalTime);
         }
 
         function stopAutoPlay() {
             if (timer) {
+                console.log("Teral IT: Deteniendo autoplay.");
                 clearInterval(timer);
                 timer = null;
             }
@@ -819,17 +826,20 @@ if (canvas) {
         // Eventos hover para detener e iniciar desde el paso posicionado
         steps.forEach((step, idx) => {
             step.addEventListener('mouseenter', () => {
+                console.log("Teral IT: Hover en paso", idx + 1);
                 stopAutoPlay();
                 activateStep(idx);
             });
 
             step.addEventListener('mouseleave', () => {
+                console.log("Teral IT: Mouse out de paso", idx + 1);
                 startAutoPlay();
             });
         });
 
         // IntersectionObserver para iniciar la animación solo cuando la sección es visible
         const observer = new IntersectionObserver(([entry]) => {
+            console.log("Teral IT: procRow visible =", entry.isIntersecting);
             if (entry.isIntersecting) {
                 activateStep(0); // Comienza en el primer paso
                 startAutoPlay();
@@ -838,12 +848,13 @@ if (canvas) {
                 // Limpiar clase active al salir de pantalla para un reinicio limpio
                 steps.forEach(s => s.classList.remove('active'));
             }
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         const procRow = document.querySelector('.procRow');
         if (procRow) {
             observer.observe(procRow);
         } else {
+            console.warn("Teral IT: No se encontró .procRow, iniciando autoplay directo.");
             activateStep(0);
             startAutoPlay();
         }

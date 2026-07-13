@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caso Growa Greenhouse — Teral IT Solutions</title>
+  <title>Caso Editor de Notas Microsip — Teral IT Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css?v=3">
@@ -417,6 +417,7 @@
     .showcaseBrand {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: clamp(1.5rem, 4vw, 3.5rem);
       position: relative;
       z-index: 2;
@@ -560,6 +561,7 @@
       padding: 5.5rem clamp(1.5rem, 4vw, 3rem);
       position: relative;
       z-index: 1;
+      border-top: 1px solid var(--border);
     }
 
     .resultsHeader {
@@ -582,6 +584,156 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.8rem;
+    }
+
+    .customCaseCard {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.3rem 2.2rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 8px 30px rgba(123, 31, 162, 0.03);
+      transition: 
+        transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), 
+        box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1), 
+        border-color 0.35s;
+    }
+
+    .customCaseCard.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    .customCaseCard:hover {
+      border-color: rgba(171, 71, 188, 0.32);
+      transform: translateY(-6px);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.02),
+        0 20px 45px rgba(123, 31, 162, 0.09),
+        0 0 0 1px rgba(123, 31, 162, 0.04);
+    }
+
+    .customCaseCard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(280px circle at var(--sx, -300px) var(--sy, -300px),
+              rgba(123, 31, 162, 0.05),
+              transparent 70%);
+      opacity: 0;
+      transition: opacity 0.45s;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+    .customCaseCard:hover::before {
+      opacity: 1;
+    }
+
+    .caseCardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caseCardTitle {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .caseCardIconWrap {
+      width: 44px;
+      height: 44px;
+      background: rgba(123, 31, 162, 0.07);
+      border: 1px solid rgba(123, 31, 162, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--p1);
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s, color 0.3s;
+    }
+
+    .customCaseCard:hover .caseCardIconWrap {
+      transform: scale(1.08) rotate(-4deg);
+      background: var(--p1);
+      color: #FFFFFF;
+    }
+
+    .caseCardIcon {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .caseCardDivider {
+      width: 45px;
+      height: 3px;
+      background: var(--p2);
+      border-radius: 20px;
+      margin: 1.1rem 0 1.2rem;
+      position: relative;
+      z-index: 1;
+      transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .customCaseCard:hover .caseCardDivider {
+      width: 75px;
+    }
+
+    .caseCardDesc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--ink2);
+      font-weight: 400;
+      margin: 0;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caseCardBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--p1);
+      color: #FFFFFF;
+      padding: 0.72rem 1.6rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1.8rem;
+      align-self: flex-start;
+      border: none;
+      cursor: none;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .customCaseCard:hover .caseCardBtn {
+      background: var(--p2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(171, 71, 188, 0.35);
+    }
+
+    .caseCardLogo {
+      max-height: 24px;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     /* ── LOOP & CTA FINAL ── */
@@ -735,9 +887,9 @@
   <!-- ASYMMETRIC HERO -->
   <section class="caseHeroGrid">
     <div class="heroLeft">
-      <span class="ltag">Algoritmos · Python · ERP</span>
-      <h1>Algoritmo de conciliación de<br>inventarios en Python para<br><em>Growa Greenhouse</em></h1>
-      <p>Desarrollamos una herramienta de escritorio interactiva con Python Tkinter que corre un algoritmo de fondo optimizado, traduciendo claves en inglés y depurando automáticamente productos repetidos para lograr una migración de inventario impecable de Microsip a IFS ERP.</p>
+      <span class="ltag">Desktop App · C# .NET · ERP</span>
+      <h1>Editor de notas adicionales en<br>pedidos Microsip para<br><em>Growa Greenhouse</em></h1>
+      <p>Diseñamos y desarrollamos una aplicación de escritorio nativa en C# .NET que resuelve la limitación operativa de Microsip para editar notas de artículos en cotizaciones y pedidos ya guardados. La herramienta se conecta directamente de forma segura a la base de datos Firebird, permitiendo recuperar partidas mediante folio y modificar notas al instante con un estricto registro de logs.</p>
       <div class="hBtns">
         <a href="../contacto.html" class="bA">Quiero una solución similar →</a>
         <a href="#reto" class="bB">Ver detalles del caso</a>
@@ -757,17 +909,22 @@
       <div class="metaItem">
         <span class="metaLabel">Servicios</span>
         <div class="metaTags">
-          <span class="metaTag">Python Automation</span>
-          <span class="metaTag">Tkinter Desktop App</span>
+          <span class="metaTag">C# .NET App</span>
+          <span class="metaTag">Firebird SQL</span>
+          <span class="metaTag">Change Logs</span>
         </div>
       </div>
       <div class="metaItem">
         <span class="metaLabel">Año</span>
-        <span class="metaValue">2026</span>
+        <span class="metaValue">2025</span>
+      </div>
+      <div class="metaItem">
+        <span class="metaLabel">Estado</span>
+        <span class="metaValue" style="color: var(--p1); font-weight: 700;">Completado</span>
       </div>
       <div class="metaImpact">
-        <div class="metaImpactVal" id="impactVal"><span data-n="98" data-s="%">0%</span></div>
-        <div class="metaImpactLbl">Ahorro de Tiempo en Conciliación</div>
+        <div class="metaImpactVal" id="impactVal"><span data-n="100" data-s="%">0%</span></div>
+        <div class="metaImpactLbl">Edición sin restricciones</div>
       </div>
     </div>
   </section>
@@ -793,14 +950,14 @@
   <section class="editorialSec" id="reto">
     <div class="editorialLeft">
       <span class="ltag">El Reto</span>
-      <h3>Claves desfasadas en inglés<br>y productos duplicados.</h3>
+      <h3>Bloqueos de edición,<br>re-procesos y falta<br>de trazabilidad.</h3>
     </div>
     <div class="editorialRight">
-      <p>Growa Greenhouse Systems se encontraba en medio de una compleja transición de sistemas ERP, migrando toda su operación de Microsip a la plataforma global IFS. Su catálogo de inventarios original venía de su casa matriz en Holanda con descripciones y claves en inglés, lo que provocó una enorme discrepancia con sus registros locales de existencias.</p>
-      <p>El resultado fue un inventario desfasado con miles de artículos duplicados y descripciones incompatibles. Realizar esta conciliación y traducción de manera manual registro por registro representaba meses de trabajo administrativo con alta probabilidad de error humano.</p>
+      <p>Microsip cuenta con una restricción nativa rigurosa: una vez que un pedido, orden de venta o cotización es guardado en firme en el sistema, no es posible editar las "Notas Adicionales" de las partidas (artículos). Para Growa, esto representaba un dolor de cabeza diario. Si un cliente modificaba una especificación técnica menor o si se detectaba un error tipográfico en las notas de los componentes del invernadero, la única alternativa era cancelar el documento completo.</p>
+      <p>Esto forzaba al personal administrativo a capturar todo el folio desde cero, duplicando folios, afectando las estadísticas de ventas y perdiendo un tiempo valioso. Además, no se disponía de un control de qué usuario solicitaba o realizaba dichos cambios de texto.</p>
       <div class="quoteBlock">
-        <p>"La migración de inventario estaba completamente detenida. Comparar manualmente miles de claves de Holanda con nuestros registros en México era una pesadilla administrativa."</p>
-        <div class="quoteAuthor">Gerencia de Operaciones y TI · Growa Greenhouse Systems</div>
+        <p>"Tener que cancelar un pedido de 50 partidas solo para corregir una acotación ortográfica en las notas de un artículo era ineficiente e insostenible para nuestra operación."</p>
+        <div class="quoteAuthor">Dirección de Ventas · Growa Greenhouse Systems</div>
       </div>
     </div>
   </section>
@@ -810,11 +967,14 @@
     <section class="editorialSec" style="border-top: none;">
       <div class="editorialLeft">
         <span class="ltag">La Solución</span>
-        <h3>Aplicación Python Tkinter y<br>motor inteligente de conciliación.</h3>
+        <h3>Aplicación de escritorio C#,<br>modificación segura y logs de auditoría.</h3>
       </div>
       <div class="editorialRight">
-        <p>Desarrollamos una aplicación de escritorio interactiva basada en Python con una interfaz gráfica en Tkinter de gran facilidad de uso. El software permite cargar directamente los archivos de Microsip y del catálogo holandés de IFS para su análisis y mapeo instantáneo.</p>
-        <p>El núcleo de la aplicación ejecuta un algoritmo de emparejamiento inteligente que traduce y normaliza las claves técnicas en inglés apoyándose en un diccionario dinámico, unifica las existencias de productos repetidos y depura el catálogo, entregando un Excel perfectamente limpio y listo para su importación directa en IFS.</p>
+        <p>Desarrollamos una herramienta de escritorio interactiva en C# .NET que se conecta directamente y de forma segura a la base de datos Firebird SQL de Microsip.</p>
+        <p>El flujo operativo diseñado ofrece:</p>
+        <p>1. <strong>Carga por Folio</strong>: El usuario ingresa el folio del documento de venta (pedido, cotización o remisión). La aplicación consulta la base de datos y carga de inmediato todas las partidas de artículos con sus respectivas notas adicionales en pantalla.</p>
+        <p>2. <strong>Edición Directa y Segura</strong>: Mediante un grid editable e intuitivo, el operador puede agregar, corregir o eliminar las notas de los artículos sin alterar otros datos críticos (precios, existencias o cantidades).</p>
+        <p>3. <strong>Sistema de Logs Estricto</strong>: Cada vez que se confirma una modificación, la app guarda un registro del valor anterior y el valor nuevo del campo, junto con la fecha, hora y el usuario que realizó la acción, previniendo alteraciones no autorizadas y asegurando control total.</p>
       </div>
     </section>
   </div>
@@ -823,45 +983,29 @@
   <section class="resultsSec">
     <div class="resultsHeader">
       <span class="ltag">Resultados Clave</span>
-      <h2>Características y beneficios del proyecto</h2>
+      <h2>Ventajas del desarrollo</h2>
     </div>
 
     <div class="resultsGrid">
       <!-- Card 1 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Mapeo de Claves</h2>
+          <h2 class="caseCardTitle">Conexión Segura</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Algoritmo inteligente de comparación y mapeo automatizado de claves técnicas de inventario de Holanda a las claves equivalentes en español.</p>
+        <p class="caseCardDesc">Escritura directa y segura en la base de datos Firebird de Microsip utilizando transacciones SQL aisladas para evitar colisiones operativas.</p>
       </div>
 
       <!-- Card 2 -->
       <div class="customCaseCard vis">
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Consolidación Activa</h2>
-          <div class="caseCardIconWrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-          </div>
-        </div>
-        <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Detección automática de descripciones redundantes para consolidar cantidades de stock y eliminar la presencia de productos repetidos en el catálogo.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="customCaseCard vis">
-        <div class="caseCardHeader">
-          <h2 class="caseCardTitle">App en un Clic</h2>
+          <h2 class="caseCardTitle">Interfaz Intuitiva</h2>
           <div class="caseCardIconWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -871,7 +1015,24 @@
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Interfaz gráfica interactiva en Python Tkinter sumamente intuitiva, facilitando a los colaboradores de administración ejecutar la depuración en un clic.</p>
+        <p class="caseCardDesc">Diseño Windows Forms moderno y reactivo con controles limpios que reducen la curva de aprendizaje de los capturistas a cero minutos.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="customCaseCard vis">
+        <div class="caseCardHeader">
+          <h2 class="caseCardTitle">Logs de Auditoría</h2>
+          <div class="caseCardIconWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="caseCardIcon">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="caseCardDivider"></div>
+        <p class="caseCardDesc">Guardado automatizado del historial con comparativa detallada (antes/después), proporcionando control absoluto sobre las modificaciones del catálogo.</p>
       </div>
     </div>
   </section>
@@ -880,23 +1041,23 @@
   <section class="loopSec">
     <div class="loopGrid">
       <div class="loopCta">
-        <span class="ltag">¿Quieres optimizar tus bases de datos?</span>
-        <h3>Automatiza la depuración y<br>conciliación de tus datos.</h3>
-        <p>Creamos herramientas de software a la medida y algoritmos optimizados que simplifican el manejo de catálogos e inventarios complejos en segundos.</p>
+        <span class="ltag">¿Necesitas optimizar tus flujos en Microsip?</span>
+        <h3>Flexibiliza tu ERP sin perder integridad.</h3>
+        <p>Desarrollamos complementos y aplicaciones de escritorio que amplían la capacidad de tus sistemas de forma segura y auditada.</p>
         <a href="../contacto.html" class="bA">Agendar consultoría gratuita →</a>
       </div>
 
       <!-- NEXT CASE PREVIEW CARD -->
-      <a href="growa-editor-notas.html" class="customCaseCard vis" id="nextCaseCard">
+      <a href="growa-reporteador-compras.html" class="customCaseCard vis" id="nextCaseCard">
         <span class="nextCaseHeader">Siguiente Caso de Éxito</span>
         <div class="caseCardHeader">
-          <h2 class="caseCardTitle">Growa: Editor de Notas Microsip</h2>
+          <h2 class="caseCardTitle">Growa: Reporteador de Compras</h2>
           <div class="caseCardIconWrap">
             <img src="../src/img/clientes/growa.svg" alt="Growa Greenhouse Systems" class="caseCardLogo">
           </div>
         </div>
         <div class="caseCardDivider"></div>
-        <p class="caseCardDesc">Desarrollamos una aplicación de escritorio C# .NET para modificar notas de partidas en documentos guardados de Microsip, con control de cambios e historial de logs.</p>
+        <p class="caseCardDesc">Implementamos una herramienta de reportería automatizada en Excel vía Firebird ODBC, optimizando los tiempos de consulta del departamento de compras.</p>
         <div class="caseCardBtn" style="margin-top: 1.5rem;">Ver caso completo</div>
       </a>
     </div>
@@ -927,7 +1088,11 @@
     })();
 
     /* ── SPOTLIGHT RADIAL TRACKING ── */
-    const spotlightElements = [document.getElementById('metaCard'), document.getElementById('nextCaseCard'), ...document.querySelectorAll('.resultsGrid .customCaseCard')];
+    const spotlightElements = [
+      document.getElementById('metaCard'), 
+      document.getElementById('nextCaseCard'), 
+      ...document.querySelectorAll('.resultsGrid .customCaseCard')
+    ];
     spotlightElements.forEach(el => {
       if (!el) return;
       el.addEventListener('mousemove', e => {
@@ -938,8 +1103,8 @@
         el.style.setProperty('--sy', yRel + 'px');
       });
       el.addEventListener('mouseleave', () => {
-        el.style.setProperty('--sx', '-300px');
-        el.style.setProperty('--sy', '-300px');
+        el.style.setProperty('--sx', '-400px');
+        el.style.setProperty('--sy', '-400px');
       });
     });
 
