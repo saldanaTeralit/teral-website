@@ -484,25 +484,32 @@ h1 em {
 
 .svcList {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.8rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.1rem;
     margin-top: 4rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+    .svcList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.3rem;
+    }
+}
+
+@media (max-width: 860px) {
     .svcList {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
 }
 
 @media (max-width: 600px) {
     .svcList {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
 }
 
@@ -2567,7 +2574,7 @@ footer a:hover {
         padding: 0 1.5rem;
     }
     .svcCard {
-        height: 320px; /* Scale down height on smaller laptops */
+        height: auto;
     }
     .svcCard-content {
         padding: 1.6rem 2.2rem;
